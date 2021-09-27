@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import "./index.scss";
 const Review = () => {
   const history = useHistory();
   const location = useLocation();
@@ -12,7 +13,7 @@ const Review = () => {
     else history.push("/");
   }, [history, location]);
   return (
-    <div>
+    <div className="review">
       <h1>종류</h1>
       {kind}
     </div>
