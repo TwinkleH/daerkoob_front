@@ -2,23 +2,16 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./index.scss";
 const Navbar = () => {
-  const activeStyle = {
-    background: "black",
-    color: "white",
-  };
+  // const activeStyle = {
+  //   background: "black",
+  //   color: "white",
+  // };
   return (
     <div className="nav">
-      <NavLink
-        to="/"
-        activeStyle={{
-          textDecoration: "none",
-          color: "black",
-          border: "1px solid",
-        }}
-      >
-        home
-      </NavLink>
-      <div className="rightNav">
+      <div className="nav__left">
+        <Link to="/">home</Link>
+      </div>
+      <div className="nav__rightBottom">
         <div>
           <Link to="/transcription">리뷰</Link>
         </div>
@@ -28,8 +21,10 @@ const Navbar = () => {
         <div>
           <Link to="/mypage"> 마이페이지</Link>
         </div>
+      </div>
+      <div className="nav__rightTop">
         <div>
-          <Link to="/login"> 로그인</Link>
+          <Link to="/auth"> 로그인</Link>
         </div>
       </div>
     </div>

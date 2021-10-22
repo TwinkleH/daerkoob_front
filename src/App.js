@@ -1,10 +1,11 @@
 import Router from "router";
 import "styles/global.scss";
+import { RecoilRoot } from "recoil";
 function App() {
   return (
-    <div className="App">
+    <RecoilRoot>
       <Router />
-    </div>
+    </RecoilRoot>
   );
 }
 

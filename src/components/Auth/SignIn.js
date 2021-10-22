@@ -1,20 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import Input from "./Input";
 
 export const SignIn = ({ toggleIsSignIn }) => {
   const history = useHistory();
   const onSubmit = () => {
     history.push("/");
   };
+  const [info, setInfo] = useState({
+    email: "",
+    password: "",
+  });
+
+  const onChange = (e) => {
+    const {
+      target: { value, id },
+    } = e;
+
+    setInfo({ ...info, [id]: value });
+  };
   return (
     <div className="auth">
-      <span>로그인</span>
-      <input placeholder="id" />
-      <input placeholder="password"></input>
+      <Input
+        id="email"
+        placeholder="Email"
+        value={info.email}
+        onChange={onChange}
+      />
+
+      <Input
+        id="password"
+        placeholder="Password"
+        value={info.password}
+        onChange={onChange}
+      />
       <button onClick={onSubmit}>로그인하기</button>
-      <div>
+      <span className="auth__noti">
         회원가입하시겠습니까?<strong onClick={toggleIsSignIn}>회원가입</strong>
-      </div>
+      </span>
     </div>
   );
 };
