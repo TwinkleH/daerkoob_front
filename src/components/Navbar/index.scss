@@ -23,7 +23,11 @@
   }
   &__rightTop {
     grid-row: 1;
-    grid-column: 12;
+    grid-column: -1/-4;
+    display: grid;
+    // grid-auto-flow: dense; /* NEW */
+    direction: rtl;
+    grid-template-columns: repeat(4, 1fr);
   }
   // .nav > div > div {
   //   border: 1px solid black;

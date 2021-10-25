@@ -1,11 +1,14 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./index.scss";
+import useCurrentUser from "Hooks/useCurrentUser";
 const Navbar = () => {
   // const activeStyle = {
   //   background: "black",
   //   color: "white",
   // };
+  const { currentUser, setCurrentUser } = useCurrentUser();
+
   return (
     <div className="nav">
       <div className="nav__left">
@@ -22,11 +25,20 @@ const Navbar = () => {
           <Link to="/mypage"> 마이페이지</Link>
         </div>
       </div>
-      <div className="nav__rightTop">
-        <div>
-          <Link to="/auth"> 로그인</Link>
+      {currentUser ? (
+        <div className="nav__rightTop">
+          <div>
+            <button onClick={() => setCurrentUser(null)}> 로그아웃</button>
+          </div>
+          <div>{currentUser}</div>
         </div>
-      </div>
+      ) : (
+        <div className="nav__rightTop">
+          <button>
+            <Link to="/auth"> 로그인</Link>
+          </button>
+        </div>
+      )}
     </div>
   );
 };

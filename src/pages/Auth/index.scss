@@ -1,11 +1,11 @@
 @import "Styles/variable.scss";
 
 .sign {
-  padding-top: 0.5%;
+  //padding-top: -10vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
 }
 .auth {
   padding-top: 40%;
@@ -40,9 +40,7 @@
       }
     }
   }
-  button {
-    background-color: $mainColor;
-  }
+
   &__noti {
     color: gray;
     & > strong {

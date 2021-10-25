@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Input from "./Input";
-
+import useCurrentUser from "Hooks/useCurrentUser";
 export const SignIn = ({ toggleIsSignIn }) => {
   const history = useHistory();
-  const onSubmit = () => {
-    history.push("/");
-  };
+  const { setCurrentUser } = useCurrentUser();
+
   const [info, setInfo] = useState({
     email: "",
     password: "",
@@ -18,6 +17,11 @@ export const SignIn = ({ toggleIsSignIn }) => {
     } = e;
 
     setInfo({ ...info, [id]: value });
+  };
+  const onSubmit = async () => {
+    await setCurrentUser(info.email);
+
+    history.push("/");
   };
   return (
     <div className="auth">
