@@ -10,7 +10,7 @@ export const SignUp = ({ toggleIsSignIn }) => {
       <Input id="password" placeholder="Password" />
       <Input id="confirmPassword" placeholder="repeat Password" />
 
-      <button>Sign up</button>
+      <button>회원가입하기</button>
       <span className="auth__noti">
         계정이 있으신가요?<strong onClick={toggleIsSignIn}>로그인</strong>
       </span>

@@ -6,6 +6,7 @@ import Mypage from "pages/Mypage";
 import Auth from "../pages/Auth";
 import Review from "../pages/Review";
 import Navbar from "components/Navbar";
+import Footer from "components/Footer";
 
 const Router = () => {
   return (
@@ -18,6 +19,7 @@ const Router = () => {
         <Route path="/review" component={Review} />
         <Route path="/transcription" component={Review} />
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 };
