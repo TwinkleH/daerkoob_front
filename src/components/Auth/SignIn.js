@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Input from "./Input";
 import useCurrentUser from "Hooks/useCurrentUser";
+import api from "api/api";
 export const SignIn = ({ toggleIsSignIn }) => {
   const history = useHistory();
   const { setCurrentUser } = useCurrentUser();
@@ -19,8 +20,15 @@ export const SignIn = ({ toggleIsSignIn }) => {
     setInfo({ ...info, [id]: value });
   };
   const onSubmit = async () => {
-    await setCurrentUser(info.email);
-
+    await setCurrentUser(info.email); //이건 프론트딴에서 email이 들어왔다고 하는거...
+    try {
+      await api.post("user/login", {
+        id: info.email, //인터넷에 api post쳐봐서 이런식으로 보내면 된다고 했는데...
+        password: info.password,
+      });
+    } catch {
+      console.log("401error");
+    }
     history.push("/");
   };
   return (
