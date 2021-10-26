@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = ({ id, placeholder, value, onChange }) => {
+const Input = ({ id, placeholder, value, onChange, type }) => {
   return (
     <div className="auth__inputWrapper">
       <input
@@ -10,6 +10,7 @@ const Input = ({ id, placeholder, value, onChange }) => {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        type={type}
       />
       <span className="auth__inputWrapper__placeholder">{placeholder}</span>
     </div>

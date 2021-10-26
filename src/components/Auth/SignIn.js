@@ -22,10 +22,14 @@ export const SignIn = ({ toggleIsSignIn }) => {
   const onSubmit = async () => {
     await setCurrentUser(info.email); //이건 프론트딴에서 email이 들어왔다고 하는거...
     try {
-      await api.post("user/login", {
-        id: info.email, //인터넷에 api post쳐봐서 이런식으로 보내면 된다고 했는데...
-        password: info.password,
-      });
+      await api
+        .post("user/login", {
+          id: info.email, //인터넷에 api post쳐봐서 이런식으로 보내면 된다고 했는데...
+          password: info.password,
+        })
+        .then((response) => {
+          console.log(response);
+        });
     } catch {
       console.log("401error");
     }
@@ -45,6 +49,7 @@ export const SignIn = ({ toggleIsSignIn }) => {
         placeholder="Password"
         value={info.password}
         onChange={onChange}
+        type="password"
       />
       <button onClick={onSubmit}>로그인하기</button>
       <span className="auth__noti">
