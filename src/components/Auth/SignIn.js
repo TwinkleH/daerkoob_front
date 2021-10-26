@@ -8,7 +8,7 @@ export const SignIn = ({ toggleIsSignIn }) => {
   const { setCurrentUser } = useCurrentUser();
 
   const [info, setInfo] = useState({
-    memberId: "",
+    userId: "",
     password: "",
   });
 
@@ -19,13 +19,17 @@ export const SignIn = ({ toggleIsSignIn }) => {
 
     setInfo({ ...info, [id]: value });
   };
-  const onSubmit = async () => {
-    await setCurrentUser(info.memberId); //이건 프론트딴에서 memberId이 들어왔다고 하는거...
+  const onSubmit = () => {
+    console.log(info.userId);
+    console.log(info.password);
+    setCurrentUser(info.userId); //이건 프론트딴에서 memberId이 들어왔다고 하는거...
     try {
-      await api
-        .post("user/login", {
-          memberId: info.memberId, //인터넷에 api post쳐봐서 이런식으로 보내면 된다고 했는데...
-          password: info.password,
+      api
+        .post("user/login", null, {
+          params: {
+            userId: info.userId, //인터넷에 api post쳐봐서 이런식으로 보내면 된다고 했는데...
+            password: info.password,
+          },
         })
         .then((response) => {
           console.log(response);
@@ -38,9 +42,9 @@ export const SignIn = ({ toggleIsSignIn }) => {
   return (
     <div className="auth">
       <Input
-        id="memberId"
-        placeholder="memberId"
-        value={info.memberId}
+        id="userId"
+        placeholder="userId"
+        value={info.userId}
         onChange={onChange}
       />
 
