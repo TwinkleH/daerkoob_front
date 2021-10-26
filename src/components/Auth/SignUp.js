@@ -21,6 +21,7 @@ export const SignUp = ({ toggleIsSignIn }) => {
       await api
         .post("user/signup", {
           memberId: info.memberId,
+          name: info.name,
           nickName: info.nickName,
           password: info.passwork,
           birth: info.birth,
@@ -36,9 +37,19 @@ export const SignUp = ({ toggleIsSignIn }) => {
   return (
     <div className="auth">
       <Input id="memberId" placeholder="Id" onChange={onChange} />
+      <Input id="name" placeholder="name" onChange={onChange} />
       <Input id="nickName" placeholder="nickname" onChange={onChange} />
-      <Input id="password" placeholder="Password" onChange={onChange} />
-      <Input id="confirmPassword" placeholder="repeat Password" />
+      <Input
+        id="password"
+        placeholder="Password"
+        onChange={onChange}
+        type="password"
+      />
+      <Input
+        id="confirmPassword"
+        placeholder="repeat Password"
+        type="password"
+      />
       <Input id="birth" placeholder="birth" type="date" onChange={onChange} />
       <button onClick={onSubmit}>회원가입하기</button>
       <span className="auth__noti">

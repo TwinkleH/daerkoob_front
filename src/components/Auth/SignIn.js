@@ -8,7 +8,7 @@ export const SignIn = ({ toggleIsSignIn }) => {
   const { setCurrentUser } = useCurrentUser();
 
   const [info, setInfo] = useState({
-    email: "",
+    memberId: "",
     password: "",
   });
 
@@ -20,11 +20,11 @@ export const SignIn = ({ toggleIsSignIn }) => {
     setInfo({ ...info, [id]: value });
   };
   const onSubmit = async () => {
-    await setCurrentUser(info.email); //이건 프론트딴에서 email이 들어왔다고 하는거...
+    await setCurrentUser(info.memberId); //이건 프론트딴에서 memberId이 들어왔다고 하는거...
     try {
       await api
         .post("user/login", {
-          id: info.email, //인터넷에 api post쳐봐서 이런식으로 보내면 된다고 했는데...
+          memberId: info.memberId, //인터넷에 api post쳐봐서 이런식으로 보내면 된다고 했는데...
           password: info.password,
         })
         .then((response) => {
@@ -38,9 +38,9 @@ export const SignIn = ({ toggleIsSignIn }) => {
   return (
     <div className="auth">
       <Input
-        id="email"
-        placeholder="Email"
-        value={info.email}
+        id="memberId"
+        placeholder="memberId"
+        value={info.memberId}
         onChange={onChange}
       />
 
