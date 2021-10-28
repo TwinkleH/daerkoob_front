@@ -1,14 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./index.scss";
 import useCurrentUser from "Hooks/useCurrentUser";
+import useCurrentForm from "../../Hooks/useCurrentForm";
 const Navbar = () => {
+  const history = useHistory();
   // const activeStyle = {
   //   background: "black",
   //   color: "white",
   // };
   const { currentUser, setCurrentUser } = useCurrentUser();
+  const { currentForm, setCurrentForm } = useCurrentForm();
 
+  // const toggleForm = () => {
+  //   setCurrentForm((prevForm) =>
+  //     prevForm === "필사페이지" ? "리뷰페이지" : "필사페이지"
+  //   );
+  // };
+  const handleLogout = () => {
+    setCurrentUser(null);
+    history.push("/");
+  };
   return (
     <div className="nav">
       <div className="nav__left">
@@ -16,7 +28,7 @@ const Navbar = () => {
       </div>
       <div className="nav__rightBottom">
         <div>
-          <Link to="/transcription">리뷰</Link>
+          <Link to="/form">필사/리뷰</Link>
         </div>
         <div>
           <Link to="/notice">공지사항</Link>
@@ -28,7 +40,7 @@ const Navbar = () => {
       {currentUser ? (
         <div className="nav__rightTop">
           <div>
-            <button onClick={() => setCurrentUser(null)}> 로그아웃</button>
+            <button onClick={handleLogout}> 로그아웃</button>
           </div>
           <div>{currentUser}</div>
         </div>

@@ -32,7 +32,8 @@ export const SignUp = ({ toggleIsSignIn }) => {
     } catch {
       console.log("error");
     }
-    history.push("/");
+    // history.push("/auth");
+    toggleIsSignIn(); //회원가입 하고 바로 로그인페이지로 가기
   };
   return (
     <div className="auth">

@@ -19,12 +19,12 @@ export const SignIn = ({ toggleIsSignIn }) => {
 
     setInfo({ ...info, [id]: value });
   };
-  const onSubmit = () => {
+  const onSubmit = async () => {
     console.log(info.userId);
     console.log(info.password);
     setCurrentUser(info.userId); //이건 프론트딴에서 memberId이 들어왔다고 하는거...
     try {
-      api
+      await api
         .post("user/login", null, {
           params: {
             userId: info.userId, //인터넷에 api post쳐봐서 이런식으로 보내면 된다고 했는데...

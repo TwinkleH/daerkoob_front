@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+// import { useEffect, useState } from "react";
+// import { useHistory, useLocation } from "react-router-dom";
+import { useState } from "react";
 import { SignIn } from "components/Auth/SignIn";
 import { SignUp } from "components/Auth/SignUp";
 import "pages/Auth/index.scss";
@@ -8,10 +9,10 @@ import "pages/Auth/index.scss";
 // import Layout from "components/Common/Layout";
 
 const Auth = () => {
-  const history = useHistory();
-  const location = useLocation();
+  // const history = useHistory();
+  // const location = useLocation();
 
-  const [kind, setKind] = useState("로그인");
+  // const [kind, setKind] = useState("로그인");
   const [isSignIn, setIsSignIn] = useState(true);
   const toggleIsSignIn = () => {
     setIsSignIn(!isSignIn);
