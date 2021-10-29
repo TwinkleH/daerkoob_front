@@ -6,7 +6,10 @@ import api from "api/api";
 export const SignIn = ({ toggleIsSignIn }) => {
   const history = useHistory();
   const { setCurrentUser } = useCurrentUser();
-
+  const [message, setMessage] = useState("");
+  //const [message,setMessage] = useState("안녕");
+  //const [j, setJ] = useState("안녕");
+  // const [kind, setKind] = useState("로그인");
   const [info, setInfo] = useState({
     userId: "",
     password: "",
@@ -22,7 +25,6 @@ export const SignIn = ({ toggleIsSignIn }) => {
   const onSubmit = async () => {
     console.log(info.userId);
     console.log(info.password);
-    setCurrentUser(info.userId); //이건 프론트딴에서 memberId이 들어왔다고 하는거...
     try {
       await api
         .post("user/login", null, {
@@ -32,12 +34,20 @@ export const SignIn = ({ toggleIsSignIn }) => {
           },
         })
         .then((response) => {
-          console.log(response);
+          if (response.data === false) {
+            console.log("실패");
+            history.push("/auth");
+            setMessage("실패했습니다");
+          } else if (response.data === true) {
+            setCurrentUser(info.userId); //이건 프론트딴에서 memberId이 들어왔다고 하는거...;
+            // console.log(response);
+            alert("로그인성공");
+            history.push("/");
+          }
         });
     } catch {
       console.log("401error");
     }
-    history.push("/");
   };
   return (
     <div className="auth">
@@ -59,6 +69,7 @@ export const SignIn = ({ toggleIsSignIn }) => {
       <span className="auth__noti">
         회원가입하시겠습니까?<strong onClick={toggleIsSignIn}>회원가입</strong>
       </span>
+      <div className="auth__message">{message ?? message}</div>
     </div>
   );
 };

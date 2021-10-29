@@ -49,4 +49,11 @@
       cursor: pointer;
     }
   }
+  &__message {
+    width: 30vw;
+    justify-content: center;
+    text-align: center;
+    background-color: #fef;
+    border-radius: 20px;
+  }
 }

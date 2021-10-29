@@ -20,13 +20,15 @@ export const SignUp = ({ toggleIsSignIn }) => {
   const onSubmit = async () => {
     try {
       await api
-        .post("user/signup", {
-          userId: info.userId,
-          name: info.name,
-          nickName: info.nickName,
-          password: info.passwork,
-          confirmPassword: info.conformPassword,
-          birth: info.birth,
+        .post("user/signup", null, {
+          params: {
+            userId: info.userId,
+            name: info.name,
+            nickName: info.nickName,
+            password: info.password,
+            confirmPassword: info.confirmPassword,
+            birth: info.birth,
+          },
         })
         .then((response) => {
           console.log(response);
