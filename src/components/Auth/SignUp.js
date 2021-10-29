@@ -5,9 +5,10 @@ import api from "api/api";
 export const SignUp = ({ toggleIsSignIn }) => {
   const history = useHistory();
   const [info, setInfo] = useState({
-    memberId: "",
+    userId: "",
     nickName: "",
     password: "",
+    confirmPassword: "",
     birth: "",
   });
   const onChange = (e) => {
@@ -20,10 +21,11 @@ export const SignUp = ({ toggleIsSignIn }) => {
     try {
       await api
         .post("user/signup", {
-          memberId: info.memberId,
+          userId: info.userId,
           name: info.name,
           nickName: info.nickName,
           password: info.passwork,
+          confirmPassword: info.conformPassword,
           birth: info.birth,
         })
         .then((response) => {
@@ -37,7 +39,7 @@ export const SignUp = ({ toggleIsSignIn }) => {
   };
   return (
     <div className="auth">
-      <Input id="memberId" placeholder="Id" onChange={onChange} />
+      <Input id="userId" placeholder="Id" onChange={onChange} />
       <Input id="name" placeholder="name" onChange={onChange} />
       <Input id="nickName" placeholder="nickname" onChange={onChange} />
       <Input
@@ -50,6 +52,7 @@ export const SignUp = ({ toggleIsSignIn }) => {
         id="confirmPassword"
         placeholder="repeat Password"
         type="password"
+        onChange={onChange}
       />
       <Input id="birth" placeholder="birth" type="date" onChange={onChange} />
       <button onClick={onSubmit}>회원가입하기</button>
