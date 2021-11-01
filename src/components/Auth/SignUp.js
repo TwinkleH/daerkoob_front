@@ -11,13 +11,13 @@ export const SignUp = ({ toggleIsSignIn }) => {
     confirmPassword: "",
     birth: "",
   });
-  const onChange = (e) => {
+  const handleChange = (e) => {
     const {
       target: { value, id },
     } = e;
     setInfo({ ...info, [id]: value });
   };
-  const onSubmit = async () => {
+  const handleSubmit = async () => {
     try {
       await api
         .post("user/signup", null, {
@@ -32,32 +32,72 @@ export const SignUp = ({ toggleIsSignIn }) => {
         })
         .then((response) => {
           console.log(response);
+          if (response.data.flag) {
+            alert("회원가입 성공 ");
+            toggleIsSignIn(); //회원가입 하고 바로 로그인페이지로 가기
+          } else {
+            alert(response.data.message);
+          }
         });
     } catch {
       console.log("error");
     }
+    // const handleKeyPress = (e) => {
+    //   //엔터키로 입력하기
+    //   if (e.key === "Enter") {
+    //     handleClick();
+    //   }
+    // };
+
     // history.push("/auth");
-    toggleIsSignIn(); //회원가입 하고 바로 로그인페이지로 가기
+  };
+  const handleKeyPress = (e) => {
+    //엔터키로 입력하기
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
   };
   return (
     <div className="auth">
-      <Input id="userId" placeholder="Id" onChange={onChange} />
-      <Input id="name" placeholder="name" onChange={onChange} />
-      <Input id="nickName" placeholder="nickname" onChange={onChange} />
+      <Input
+        id="userId"
+        placeholder="Id"
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
+      />
+      <Input
+        id="name"
+        placeholder="name"
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
+      />
+      <Input
+        id="nickName"
+        placeholder="nickname"
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
+      />
       <Input
         id="password"
         placeholder="Password"
-        onChange={onChange}
+        onChange={handleChange}
         type="password"
+        onKeyPress={handleKeyPress}
       />
       <Input
         id="confirmPassword"
         placeholder="repeat Password"
         type="password"
-        onChange={onChange}
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
       />
-      <Input id="birth" placeholder="birth" type="date" onChange={onChange} />
-      <button onClick={onSubmit}>회원가입하기</button>
+      <Input
+        id="birth"
+        placeholder="birth"
+        type="date"
+        onChange={handleChange}
+      />
+      <button onClick={handleSubmit}>회원가입하기</button>
       <span className="auth__noti">
         계정이 있으신가요?<strong onClick={toggleIsSignIn}>로그인</strong>
       </span>

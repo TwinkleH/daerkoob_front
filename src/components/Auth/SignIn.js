@@ -15,14 +15,14 @@ export const SignIn = ({ toggleIsSignIn }) => {
     password: "",
   });
 
-  const onChange = (e) => {
+  const handleChange = (e) => {
     const {
       target: { value, id },
     } = e;
 
     setInfo({ ...info, [id]: value });
   };
-  const onSubmit = async () => {
+  const handleSubmit = async () => {
     console.log(info.userId);
     console.log(info.password);
     try {
@@ -40,7 +40,6 @@ export const SignIn = ({ toggleIsSignIn }) => {
             setMessage("실패했습니다");
           } else if (response.data === true) {
             setCurrentUser(info.userId); //이건 프론트딴에서 memberId이 들어왔다고 하는거...;
-            // console.log(response);
             alert("로그인성공");
             history.push("/");
           }
@@ -49,26 +48,36 @@ export const SignIn = ({ toggleIsSignIn }) => {
       console.log("401error");
     }
   };
+  const handleKeyPress = (e) => {
+    //엔터키로 입력하기
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
   return (
     <div className="auth">
       <Input
         id="userId"
         placeholder="userId"
         value={info.userId}
-        onChange={onChange}
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
       />
-
       <Input
         id="password"
         placeholder="Password"
         value={info.password}
-        onChange={onChange}
+        onChange={handleChange}
         type="password"
+        onKeyPress={handleKeyPress}
       />
-      <button onClick={onSubmit}>로그인하기</button>
+      <button onClick={handleSubmit}>로그인하기</button>
       <span className="auth__noti">
-        회원가입하시겠습니까?<strong onClick={toggleIsSignIn}>회원가입</strong>
+        회원가입하시겠습니까?
+        <strong onClick={toggleIsSignIn}>회원가입</strong>
       </span>
+
       <div className="auth__message">{message ?? message}</div>
     </div>
   );
