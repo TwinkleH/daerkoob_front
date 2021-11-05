@@ -11,11 +11,14 @@ export const SignUp = ({ toggleIsSignIn }) => {
     confirmPassword: "",
     birth: "",
   });
+  const [message, setMessage] = useState("");
+
   const handleChange = (e) => {
     const {
       target: { value, id },
     } = e;
     setInfo({ ...info, [id]: value });
+    console.log("handleChange");
   };
   const handleSubmit = async () => {
     try {
@@ -42,20 +45,24 @@ export const SignUp = ({ toggleIsSignIn }) => {
     } catch {
       console.log("error");
     }
-    // const handleKeyPress = (e) => {
-    //   //엔터키로 입력하기
-    //   if (e.key === "Enter") {
-    //     handleClick();
-    //   }
-    // };
-
-    // history.push("/auth");
   };
   const handleKeyPress = (e) => {
     //엔터키로 입력하기
     if (e.key === "Enter") {
       handleSubmit();
     }
+  };
+  const handleCheck = (e) => {
+    console.log(e);
+    const {
+      target: { value, id },
+    } = e;
+    if (info.password !== value) {
+      setMessage("일치하지 않습니다.");
+    } else {
+      setMessage("일치합니다");
+    }
+    // console.log("gkgkk");
   };
   return (
     <div className="auth">
@@ -88,8 +95,9 @@ export const SignUp = ({ toggleIsSignIn }) => {
         id="confirmPassword"
         placeholder="repeat Password"
         type="password"
-        onChange={handleChange}
+        onChange={handleCheck}
         onKeyPress={handleKeyPress}
+        message={message}
       />
       <Input
         id="birth"

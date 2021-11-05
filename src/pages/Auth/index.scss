@@ -10,7 +10,7 @@
 .auth {
   padding-top: 40%;
   width: 500px;
-  // background-color: rgba(26, 26, 28, 0.8);
+  //background-color: rgba(26, 26, 28, 0.8);
   border: solid 0.5px black;
   padding: 60px 48px;
   box-shadow: 10px 5px 5px gray;
@@ -18,26 +18,59 @@
   flex-direction: column;
   align-items: center;
 
-  @import "styles/variable.scss";
   &__inputWrapper {
     position: relative;
     width: 100%;
     height: 60px;
     margin-bottom: 10px;
     overflow: hidden;
+    border-radius: 12px;
     &__input {
       width: 100%;
-      height: 50px;
-
+      height: 100%;
       background-color: gray;
-
       padding-left: 12px;
-      margin-bottom: 10px;
+      //margin-bottom: 10px;
       color: white;
 
-      &::placeholder {
-        color: white;
-      }
+      // &::placeholder {
+      //   color: white;
+      // }
+    }
+    &__input:valid ~ &__placeholder,
+    &__input:focus ~ &__placeholder {
+      transform: scale(0.6) translate(0, -160%);
+    }
+    &__placeholder {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      color: white;
+      transform: translate(0, -50%);
+      transform-origin: top left;
+      transition: transform 0.3s;
+    }
+
+    &__input:valid ~ &__line,
+    &__input:focus ~ &__line {
+      width: 100%;
+    }
+
+    &__line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+
+      width: 0;
+      height: 2px;
+      background-color: red;
+      transition: width 0.5s;
+    }
+    &__input:valid ~ &__message {
+      position: absolute;
+      color: red;
+      top: 60%;
+      left: 12px;
     }
   }
 
@@ -57,3 +90,32 @@
     border-radius: 20px;
   }
 }
+
+input[type="date"]:invalid::-webkit-datetime-edit-text {
+  -webkit-appearance: none;
+  display: none;
+}
+input[type="date"]:invalid::-webkit-datetime-edit-month-field {
+  -webkit-appearance: none;
+  display: none;
+}
+input[type="date"]:invalid::-webkit-datetime-edit-day-field {
+  -webkit-appearance: none;
+  display: none;
+}
+input[type="date"]:invalid::-webkit-datetime-edit-year-field {
+  -webkit-appearance: none;
+  display: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: rgba(0, 0, 0, 0);
+  opacity: 1;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-width: thin;
+  padding: 20px;
+}
+
+//출처: https://baegofda.tistory.com/106 [오물오물 개발일기]

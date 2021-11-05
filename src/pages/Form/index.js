@@ -1,42 +1,35 @@
-import Transcription from "components/Review/Transcription";
-import Review from "components/Review/Review";
-// import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 // import { useHistory, useLocation } from "react-router-dom";
+import axios from "axios";
 import "./index.scss";
 import useCurrentForm from "../../Hooks/useCurrentForm";
 import BookCard from "components/Card/BookCard";
+import Input from "components/Auth/Input";
+import openApi from "api/openApi";
 const Form = () => {
   const { currentForm, setCurrentForm } = useCurrentForm();
   const img_link =
     "https://resource.grapplet.com/marketplace/7176/1591667231081/i.svg.preview.580x870.png";
-  // console.log(currentForm);
-  // const history = useHistory();
-  // const location = useLocation();
-  // const [note, setNote] = useState(true);
 
-  // const [kind, setKind] = useState("필사");
-  // useEffect(() => {
-  //   const { pathname } = location;
-  //   if (pathname === "/review") setKind("리뷰");
-  //   else if (pathname === "/transcription") setKind("필사");
-  //   else history.push("/");
-  // }, [history, location]);
-
-  const toggleForm = () => {
-    console.log(currentForm);
-    setCurrentForm((prevForm) =>
-      prevForm === "필사페이지" ? "리뷰페이지" : "필사페이지"
-    );
+  // const toggleForm = () => {
+  //   console.log(currentForm);
+  //   setCurrentForm((prevForm) =>
+  //     prevForm === "필사페이지" ? "리뷰페이지" : "필사페이지"
+  //   );
+  // };
+  const [title, setTitle] = useState("");
+  const handleChange = (e) => {
+    setTitle(e.target.value);
+    console.log(title);
   };
-  console.log(currentForm);
+
   return (
     <div className="form">
-      {/* <button onClick={toggleForm}>바꾸기</button> */}
-      {/* {currentForm === "필사페이지" ? (
-        <Review onClick={toggleForm} />
-      ) : (
-        <Transcription onClick={toggleForm} />
-      )} */}
+      <Input
+        className="form__input"
+        placeholder="제목입력"
+        onChange={handleChange}
+      ></Input>
       <div className="form__wrapper">
         <BookCard title="해리포터" image={img_link} />
         <BookCard title="반지의제왕" image={img_link} />

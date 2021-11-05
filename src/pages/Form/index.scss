@@ -12,6 +12,10 @@
     justify-content: center;
     // grid-template-rows: repeat(auto, minmax(200px, auto));
   }
+  &__input {
+    background-color: white;
+    width: 100%;
+  }
 }
 // .bookCard {
 //   display: flex;
