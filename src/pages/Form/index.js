@@ -7,9 +7,9 @@ import BookCard from "components/Card/BookCard";
 import Input from "components/Auth/Input";
 import api from "api/api";
 import Transcription from "components/Review/Transcription";
-import _data from "book.json";
+//import _data from "book.json";
 const Form = () => {
-  const mockData = _data.concat();
+  //const mockData = _data.concat();
   const { currentForm, setCurrentForm } = useCurrentForm();
   // const img_link ="https://resource.grapplet.com/marketplace/7176/1591667231081/i.svg.preview.580x870.png";
 
@@ -19,6 +19,7 @@ const Form = () => {
   //     prevForm === "필사페이지" ? "리뷰페이지" : "필사페이지"
   //   );
   // };
+  const [data, setData] = useState([]);
   const [title, setTitle] = useState("");
   const handleChange = (e) => {
     setTitle(e.target.value);
@@ -33,10 +34,10 @@ const Form = () => {
   const handleSubmit = async () => {
     try {
       await api
-        .post("", null, {
-          //url 먼지
+        .post("book/find", null, {
           params: {
-            //파람스 뭐로 넘길지
+            title: title,
+            display: 12,
           },
         })
         .then((response) => {
@@ -51,22 +52,22 @@ const Form = () => {
           // }
         });
     } catch {
-      console.log("401error");
+      console.log("error");
     }
   };
-  const data = {};
+  // const data = {};
   return (
     <div className="form">
       <div className="form__input">
-        <Input
+        <input
           placeholder="제목입력"
           onChange={handleChange}
           onKeyPress={handleKeyPress}
-        ></Input>
+        ></input>
         <button onClick={handleSubmit}>검색</button>
       </div>
       <div className="form__wrapper">
-        <Transcription data={mockData} />
+        {/* <Transcription data={mockData} /> */}
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import "components/Card/BookCard.scss";
 const BookCard = ({ image, title }) => {
   const history = useHistory();
   const handleClick = () => {
@@ -8,7 +9,7 @@ const BookCard = ({ image, title }) => {
 
   return (
     <div className="bookCard" onClick={handleClick}>
-      <img src={image} alt="" />
+      <img src={image} alt="" className="bookCard__img" />
       {title}
     </div>
   );
