@@ -23,7 +23,6 @@ const Form = () => {
   const [title, setTitle] = useState("");
   const handleChange = (e) => {
     setTitle(e.target.value);
-    console.log(title);
   };
   const handleKeyPress = (e) => {
     //엔터키로 입력하기
@@ -37,25 +36,23 @@ const Form = () => {
         .post("book/find", null, {
           params: {
             title: title,
-            display: 12,
+            display: 18,
           },
         })
         .then((response) => {
-          // if (response.data === false) {
-          //   console.log("실패");
-          //   history.push("/auth");
-          //   setMessage("실패했습니다");
-          // } else if (response.data === true) {
-          //   setCurrentUser(info.userId); //이건 프론트딴에서 memberId이 들어왔다고 하는거...;
-          //   alert("로그인성공");
-          //   history.push("/");
-          // }
+          console.log(response);
+          let preData = [];
+          response.data.forEach((item) => {
+            preData.push(item);
+          });
+          setData(preData);
+          console.log(data);
         });
     } catch {
       console.log("error");
     }
   };
-  // const data = {};
+
   return (
     <div className="form">
       <div className="form__input">
@@ -67,7 +64,7 @@ const Form = () => {
         <button onClick={handleSubmit}>검색</button>
       </div>
       <div className="form__wrapper">
-        {/* <Transcription data={mockData} /> */}
+        <Transcription data={data} />
       </div>
     </div>
   );

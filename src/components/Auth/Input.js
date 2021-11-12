@@ -9,7 +9,6 @@ const Input = ({
   onKeyPress,
   message,
 }) => {
-  console.log(message);
   return (
     <div className="auth__inputWrapper">
       <input

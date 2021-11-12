@@ -7,7 +7,10 @@ const Transcription = ({ data }) => {
   return (
     <div className="form__wrapper">
       {data.map((d) => (
-        <BookCard title={d.title} image={d.image} />
+        <BookCard
+          title={d.title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")}
+          image={d.image ? d.image : img_link}
+        />
       ))}
     </div>
   );

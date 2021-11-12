@@ -34,6 +34,7 @@ export const SignIn = ({ toggleIsSignIn }) => {
           },
         })
         .then((response) => {
+          // console.log(response);
           if (response.data === false) {
             console.log("실패");
             history.push("/auth");

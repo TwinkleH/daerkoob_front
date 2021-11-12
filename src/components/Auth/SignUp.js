@@ -18,7 +18,6 @@ export const SignUp = ({ toggleIsSignIn }) => {
       target: { value, id },
     } = e;
     setInfo({ ...info, [id]: value });
-    console.log("handleChange");
   };
   const handleSubmit = async () => {
     try {
@@ -34,7 +33,6 @@ export const SignUp = ({ toggleIsSignIn }) => {
           },
         })
         .then((response) => {
-          console.log(response);
           if (response.data.flag) {
             alert("회원가입 성공 ");
             toggleIsSignIn(); //회원가입 하고 바로 로그인페이지로 가기
@@ -53,7 +51,6 @@ export const SignUp = ({ toggleIsSignIn }) => {
     }
   };
   const handleCheck = (e) => {
-    console.log(e);
     const {
       target: { value, id },
     } = e;
@@ -61,8 +58,8 @@ export const SignUp = ({ toggleIsSignIn }) => {
       setMessage("일치하지 않습니다.");
     } else {
       setMessage("일치합니다");
+      setInfo({ ...info, confirmPassword: value });
     }
-    // console.log("gkgkk");
   };
   return (
     <div className="auth">
