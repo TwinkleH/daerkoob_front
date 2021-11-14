@@ -7,12 +7,11 @@ import BookCard from "components/Card/BookCard";
 import Input from "components/Auth/Input";
 import api from "api/api";
 import Transcription from "components/Review/Transcription";
-//import _data from "book.json";
+import _data from "book.json";
 const Form = () => {
-  //const mockData = _data.concat();
+  const mockData = _data.concat();
   const { currentForm, setCurrentForm } = useCurrentForm();
-  // const img_link ="https://resource.grapplet.com/marketplace/7176/1591667231081/i.svg.preview.580x870.png";
-
+  console.log(mockData);
   // const toggleForm = () => {
   //   console.log(currentForm);
   //   setCurrentForm((prevForm) =>
@@ -64,7 +63,8 @@ const Form = () => {
         <button onClick={handleSubmit}>검색</button>
       </div>
       <div className="form__wrapper">
-        <Transcription data={data} />
+        {/* <Transcription data={data} /> */}
+        <Transcription data={mockData} />
       </div>
     </div>
   );

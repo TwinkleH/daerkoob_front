@@ -16,9 +16,9 @@ const Home = () => {
       </div>
       <div className="wrapper__container">
         {mockData.slice(0, 5).map((d) => (
-          <BookCard title={d.title} image={d.image} />
+          <BookCard title={d.title} image={d.image} data={d} />
         ))}
-      </div>{" "}
+      </div>
     </div>
   );
 };

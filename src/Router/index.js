@@ -8,7 +8,7 @@ import Form from "../pages/Form";
 import Navbar from "components/Navbar";
 import Footer from "components/Footer";
 import Notice from "../pages/Notice/index";
-
+import BookDetail from "components/Card/BookDetail";
 const Router = () => {
   return (
     <BrowserRouter>
@@ -20,6 +20,7 @@ const Router = () => {
         <Route path="/form" component={Form} />
         <Route path="/notice" component={Notice} />
         {/* <Route path="/transcription" component={Review} /> */}
+        <Route path="/bookdetail" component={BookDetail} />
       </Switch>
       <Footer />
     </BrowserRouter>
