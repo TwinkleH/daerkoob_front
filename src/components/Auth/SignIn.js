@@ -19,9 +19,10 @@ export const SignIn = ({ toggleIsSignIn }) => {
     const {
       target: { value, id },
     } = e;
-
     setInfo({ ...info, [id]: value });
   };
+
+  //localstorage에 저장하는거 추가하기
   const handleSubmit = async () => {
     console.log(info.userId);
     console.log(info.password);

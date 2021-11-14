@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 import Input from "./Input";
 import api from "api/api";
 export const SignUp = ({ toggleIsSignIn }) => {
-  const history = useHistory();
+  // const history = useHistory();
   const [info, setInfo] = useState({
     userId: "",
     nickName: "",
@@ -52,7 +52,7 @@ export const SignUp = ({ toggleIsSignIn }) => {
   };
   const handleCheck = (e) => {
     const {
-      target: { value, id },
+      target: { value },
     } = e;
     if (info.password !== value) {
       setMessage("일치하지 않습니다.");

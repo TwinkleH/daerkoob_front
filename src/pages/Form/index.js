@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react";
 
 import "./index.scss";
 import useCurrentForm from "../../Hooks/useCurrentForm";
-import BookCard from "components/Card/BookCard";
-import Input from "components/Auth/Input";
 import api from "api/api";
 import Transcription from "components/Review/Transcription";
 import _data from "book.json";

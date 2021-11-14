@@ -1,5 +1,5 @@
-import React from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "components/Card/BookCard.scss";
 //import BookDetail from "components/Card/BookDetail";
 //import useContents from "Hooks/useContents";
@@ -14,17 +14,25 @@ const BookCard = ({ data }) => {
   const { currentBook, setCurrentBook } = useCurrentBook();
 
   const history = useHistory();
+
   const handleClick = () => {
     setCurrentBook(data);
     console.log(currentBook);
   };
 
+  useEffect(() => {
+    return () => {
+      history.push("/bookrecord");
+    };
+  }, [currentBook]);
+  //이렇게 해결하는게 맞나?
+  //아니면 디비에서 불러와서 해야하는게 맞나?
+  //이것도 localstorage에 넣어야하나?
+
   return (
     <div className="bookCard" onClick={handleClick}>
-      {/* <Link to="/bookDetail"> */}
       <img src={image ? image : img_link} alt="" className="bookCard__img" />
       {title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")}
-      {/* </Link> */}
     </div>
   );
 };
