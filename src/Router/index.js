@@ -8,7 +8,7 @@ import Form from "../pages/Form";
 import Navbar from "components/Navbar";
 import Footer from "components/Footer";
 import Notice from "../pages/Notice/index";
-import BookRecord from "components/Card/BookRecord";
+import BookRegister from "components/Card/BookRegister";
 const Router = () => {
   return (
     <BrowserRouter>
@@ -20,9 +20,9 @@ const Router = () => {
         <Route path="/form" component={Form} />
         <Route path="/notice" component={Notice} />
         {/* <Route path="/transcription" component={Review} /> */}
-        <Route path="/bookrecord" component={BookRecord} />
+        <Route path="/bookregister" component={BookRegister} />
         {/* 
-        <Route path="/bookrecord/:id" component={BookRecord} />
+        <Route path="/bookregister/:id" component={BookRegister} />
         id를 파라미터로 받기
          */}
       </Switch>

@@ -15,16 +15,17 @@ const BookCard = ({ data }) => {
 
   const history = useHistory();
 
-  const handleClick = () => {
-    setCurrentBook(data);
-    console.log(currentBook);
+  const handleClick = async () => {
+    await setCurrentBook(data);
+    // console.log(currentBook);
+    history.push("/bookregister");
   };
 
-  useEffect(() => {
-    return () => {
-      history.push("/bookrecord");
-    };
-  }, [currentBook]);
+  // useEffect(() => {
+  //   return () => {
+  //     history.push("/bookrecord");
+  //   };
+  // }, [currentBook]);
   //이렇게 해결하는게 맞나?
   //아니면 디비에서 불러와서 해야하는게 맞나?
   //이것도 localstorage에 넣어야하나?

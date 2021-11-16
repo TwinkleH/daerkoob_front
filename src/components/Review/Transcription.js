@@ -1,7 +1,7 @@
 import React from "react";
 import BookCard from "components/Card/BookCard";
 const Transcription = ({ data }) => {
-  console.log(data);
+  // console.log(data);
   return (
     <div className="form__wrapper">
       {data.map((d) => (

@@ -9,7 +9,7 @@ import _data from "book.json";
 const Form = () => {
   const mockData = _data.concat();
   const { currentForm, setCurrentForm } = useCurrentForm();
-  console.log(mockData);
+  // console.log(mockData);
   // const toggleForm = () => {
   //   console.log(currentForm);
   //   setCurrentForm((prevForm) =>
@@ -37,13 +37,13 @@ const Form = () => {
           },
         })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           let preData = [];
           response.data.forEach((item) => {
             preData.push(item);
           });
           setData(preData);
-          console.log(data);
+          // console.log(data);
         });
     } catch {
       console.log("error");
@@ -61,8 +61,8 @@ const Form = () => {
         <button onClick={handleSubmit}>검색</button>
       </div>
       <div className="form__wrapper">
-        {/* <Transcription data={data} /> */}
-        <Transcription data={mockData} />
+        <Transcription data={data} />
+        {/* <Transcription data={mockData} /> */}
       </div>
     </div>
   );

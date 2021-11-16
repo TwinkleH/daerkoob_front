@@ -43,6 +43,7 @@ export const SignIn = ({ toggleIsSignIn }) => {
           } else if (response.data === true) {
             setCurrentUser(info.userId); //이건 프론트딴에서 memberId이 들어왔다고 하는거...;
             alert("로그인성공");
+            console.log(response);
             history.push("/");
           }
         });
