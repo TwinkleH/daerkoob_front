@@ -43,6 +43,8 @@ export const SignIn = ({ toggleIsSignIn }) => {
           } else if (response.data) {
             console.log(response);
             setCurrentUser(response.data); //이건 프론트딴에서 memberId이 들어왔다고 하는거...;
+
+            window.localStorage.setItem("id", id);
             alert("로그인성공");
             history.push("/");
           }
