@@ -20,6 +20,7 @@ const Navbar = () => {
   console.log(currentUser);
   const handleLogout = () => {
     setCurrentUser(null);
+    localStorage.removeItem("currentUserState");
     history.push("/");
   };
   return (
