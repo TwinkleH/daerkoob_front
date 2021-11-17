@@ -5,10 +5,11 @@ import "components/Card/BookCard.scss";
 //import useContents from "Hooks/useContents";
 // import { currentContent } from 'Store';
 import useCurrentBook from "Hooks/useCurrentBook";
+import useCurrentUser from "Hooks/useCurrentUser";
 const BookCard = ({ data }) => {
   const img_link =
     "https://resource.grapplet.com/marketplace/7176/1591667231081/i.svg.preview.580x870.png";
-
+  const { currentUser } = useCurrentUser();
   const { title, image } = data;
 
   const { currentBook, setCurrentBook } = useCurrentBook();
@@ -17,7 +18,8 @@ const BookCard = ({ data }) => {
 
   const handleClick = async () => {
     await setCurrentBook(data);
-    // console.log(currentBook);
+    console.log(currentBook);
+    // currentUser ? history.push("/bookregister") : history.push("/auth");
     history.push("/bookregister");
   };
 

@@ -17,6 +17,7 @@ const Navbar = () => {
   //     prevForm === "필사페이지" ? "리뷰페이지" : "필사페이지"
   //   );
   // };
+  console.log(currentUser);
   const handleLogout = () => {
     setCurrentUser(null);
     history.push("/");
@@ -42,7 +43,7 @@ const Navbar = () => {
           <div>
             <button onClick={handleLogout}> 로그아웃</button>
           </div>
-          <div>{currentUser}</div>
+          <div>{currentUser.nickName}</div>
         </div>
       ) : (
         <div className="nav__rightTop">

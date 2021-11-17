@@ -9,34 +9,40 @@ const BookRegister = ({ match }) => {
   const { currentContent, setCurrentContent } = useContent();
   const { currentUser } = useCurrentUser();
   const { currentBook } = useCurrentBook();
-  const {
-    title,
-    author,
-    publisher,
-    pubdate,
-    isbn,
-    image,
-    //description
-  } = currentBook;
-  console.log(currentBook);
+  const { title, author, publisher, pubdate, isbn, image, description } =
+    currentBook;
+  // console.log(currentBook);
 
   const handleChange = (e) => {
     setCurrentContent(e.target.value);
   };
   //하나하나 내용 칠때마다 set되는게 아니라 서브밋 누르면 한번에 되고 싶은데 그러면 한번 실행을 했다가 해야함...
   const handleSubmit = async () => {
-    await api.post("transcription/register", null, {
-      params: {
-        userId: currentUser,
-        title,
-        author,
-        publisher,
-        pubdate,
-        isbn,
-        image,
-        transcriptionContent: currentContent,
-      },
-    });
+    await api
+      .post("transciption/click", null, {
+        params: { isbn },
+      })
+      .then((response) => {
+        console.log("있나없나");
+        console.log(response);
+      });
+    await api
+      .post("transcription/register", null, {
+        params: {
+          userId: currentUser.id,
+          title: title,
+          author: author,
+          publisher: publisher,
+          pubdate: pubdate,
+          isbn: isbn,
+          image: image,
+          description: description,
+          transcriptionContent: currentContent,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      });
   };
   // const bookRegister = async () => {
   //   console.log(currentContent);

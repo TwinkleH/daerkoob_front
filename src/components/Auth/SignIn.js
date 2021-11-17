@@ -24,8 +24,8 @@ export const SignIn = ({ toggleIsSignIn }) => {
 
   //localstorage에 저장하는거 추가하기
   const handleSubmit = async () => {
-    console.log(info.userId);
-    console.log(info.password);
+    // console.log(info.userId);
+    // console.log(info.password);
     try {
       await api
         .post("user/login", null, {
@@ -35,15 +35,15 @@ export const SignIn = ({ toggleIsSignIn }) => {
           },
         })
         .then((response) => {
-          // console.log(response);
-          if (response.data === false) {
+          console.log(response);
+          if (!response.data) {
             console.log("실패");
             history.push("/auth");
             setMessage("실패했습니다");
-          } else if (response.data === true) {
-            setCurrentUser(info.userId); //이건 프론트딴에서 memberId이 들어왔다고 하는거...;
-            alert("로그인성공");
+          } else if (response.data) {
             console.log(response);
+            setCurrentUser(response.data); //이건 프론트딴에서 memberId이 들어왔다고 하는거...;
+            alert("로그인성공");
             history.push("/");
           }
         });
