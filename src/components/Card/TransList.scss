@@ -1,0 +1,12 @@
+.transList {
+  display: flex;
+  flex-direction: column;
+  &__line {
+    display: flex;
+    padding: 10px;
+    color: blue;
+    > div {
+      padding-right: 10px;
+    }
+  }
+}

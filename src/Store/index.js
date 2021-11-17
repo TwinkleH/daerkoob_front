@@ -12,7 +12,7 @@ export const currentUserState = atom({
 //이건 쓸지말지 모르겠음
 export const currentFormState = atom({
   key: "currentFormState",
-  default: "필사페이지",
+  default: null,
 });
 
 //클릭한 책 저장
