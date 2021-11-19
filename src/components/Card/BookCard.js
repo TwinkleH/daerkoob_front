@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import "components/Card/BookCard.scss";
 //import BookDetail from "components/Card/BookDetail";
@@ -11,15 +11,18 @@ const BookCard = ({ data }) => {
   const img_link =
     "https://resource.grapplet.com/marketplace/7176/1591667231081/i.svg.preview.580x870.png";
   const { currentUser } = useCurrentUser();
-  const { title, image } = data;
-
+  const { title, image, isbn } = data;
+  const [flip, setFlip] = useState(false); //일단 뒤집혀지지 않음
   const { currentBook, setCurrentBook } = useCurrentBook();
 
   const history = useHistory();
 
   const handleClick = async () => {
-    await setCurrentBook(data);
-    history.push("/detail");
+    // await setCurrentBook(data);
+    // console.log(currentBook);
+    console.log("flip");
+    console.log(flip);
+    setFlip(!flip);
   };
 
   // useEffect(() => {
@@ -30,11 +33,40 @@ const BookCard = ({ data }) => {
   //이렇게 해결하는게 맞나?
   //아니면 디비에서 불러와서 해야하는게 맞나?
   //이것도 localstorage에 넣어야하나?
-
+  // onClick=
   return (
     <div className="bookCard" onClick={handleClick}>
+      {/* {flip ? (
+        <>
+         
+          
+        </>
+      ) : (
+        <> */}
       <img src={image ? image : img_link} alt="" className="bookCard__img" />
       {title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")}
+      <button
+        onClick={() => {
+          history.push({
+            pathname: `/detail/${isbn}`,
+            state: { isRegister: false },
+          });
+        }}
+      >
+        다른사람 필사 보기
+      </button>{" "}
+      <button
+        onClick={() => {
+          history.push({
+            pathname: `/detail/${isbn}`,
+            state: { isRegister: true },
+          });
+        }}
+      >
+        필사 쓰러가기
+      </button>
+      {/* </>
+      )} */}
     </div>
   );
 };

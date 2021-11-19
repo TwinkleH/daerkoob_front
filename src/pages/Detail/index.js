@@ -4,11 +4,23 @@ import api from "api/api";
 import useCurrentBook from "Hooks/useCurrentBook";
 import Transcription from "../../components/Review/Transcription";
 import TransList from "components/Card/TransList";
+import qs from "qs";
 
-const Detail = () => {
+const Detail = ({ match, location }) => {
+  // console.log("Match");
+  // console.dir(match);
+  // console.log("Location");
+  // console.dir(location);
+  // const query = qs.parse(location.search, {
+  //   iignoreQueryPrefix: true, //이 설정을 통해 문자열 맨 앞의 ?를 생략
+  // });
+  // console.log(query);
+  const { params } = match;
+  console.log("params");
+  console.log(params);
   const [otherTrans, setOtherTrans] = useState([]);
-  const { currentBook } = useCurrentBook();
-  const [isRegister, setIsRegister] = useState(true);
+  // const { currentBook } = useCurrentBook();
+  const [isRegister, setIsRegister] = useState(location.state.isRegister);
   const handleToggle = () => {
     setIsRegister(!isRegister);
   };
@@ -19,13 +31,13 @@ const Detail = () => {
       await api
         .post("transcription/click", null, {
           params: {
-            isbn: currentBook.isbn,
+            isbn: params,
           },
         })
         .then((response) => {
           let preData = [];
           console.log(response);
-          if (response.data) {
+          if (response.data.length > 0) {
             response.data.forEach((item) => {
               preData.push(item);
             });
@@ -42,7 +54,7 @@ const Detail = () => {
   return (
     <div>
       {isRegister ? (
-        <BookRegister toggle={handleToggle} />
+        <BookRegister toggle={handleToggle} isbn={params} />
       ) : (
         <TransList data={otherTrans} toggle={handleToggle} />
       )}

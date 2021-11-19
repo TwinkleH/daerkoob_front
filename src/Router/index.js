@@ -20,8 +20,8 @@ const Router = () => {
         <Route path="/form" component={Form} />
         <Route path="/notice" component={Notice} />
         {/* <Route path="/transcription" component={Review} /> */}
-        <Route path="/detail" component={Detail} />
-        {/* 
+        <Route path="/detail/:isbn?" component={Detail} />
+        {/*        
         <Route path="/bookregister/:id" component={BookRegister} />
         id를 파라미터로 받기
          */}

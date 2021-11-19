@@ -19,28 +19,25 @@ const BookRegister = ({ toggle }) => {
   };
   //하나하나 내용 칠때마다 set되는게 아니라 서브밋 누르면 한번에 되고 싶은데 그러면 한번 실행을 했다가 해야함...
   const handleSubmit = async () => {
-    await api
-      .post("transcription/register", null, {
-        params: {
-          userId: currentUser.id,
-          title,
-          author,
-          publisher,
-          pubdate,
-          //  isbn: isbn.replace(/(\s*)/g, ""),
-          isbn,
-          image,
-          description,
-          transcriptionContent: currentContent,
-        },
-      })
-      .then((response) => {
-        console.log(response);
-        if (response.data.flag) {
-          alert("저장했습니다.");
-          history.push("/mypage");
-        }
-      });
+    const response = await api.post("transcription/register", null, {
+      params: {
+        userId: currentUser.id,
+        title,
+        author,
+        publisher,
+        pubdate,
+        //  isbn: isbn.replace(/(\s*)/g, ""),
+        isbn,
+        image,
+        description,
+        transcriptionContent: currentContent,
+      },
+    });
+    console.log(response);
+    if (response.data.flag) {
+      alert("저장했습니다.");
+      history.push("/mypage");
+    }
   };
 
   return (
