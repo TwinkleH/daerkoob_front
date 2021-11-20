@@ -14,17 +14,20 @@ const BookCard = ({ data }) => {
   const { title, image, isbn } = data;
   const [flip, setFlip] = useState(false); //일단 뒤집혀지지 않음
   const { currentBook, setCurrentBook } = useCurrentBook();
-
+  const [isExist, setIsExist] = useState(false);
   const history = useHistory();
 
-  const handleClick = async () => {
+  const handleMouseOver = async () => {
     // await setCurrentBook(data);
     // console.log(currentBook);
-    console.log("flip");
-    console.log(flip);
-    setFlip(!flip);
+    const response = await api.get(`transcription/judge/${isbn}`);
+    console.log(response);
+    !response.data ?? setIsExist(true);
+    setFlip(true);
   };
-
+  const handleMouseOut = () => {
+    setFlip(false);
+  };
   // useEffect(() => {
   //   return () => {
   //     history.push("/bookrecord");
@@ -35,38 +38,47 @@ const BookCard = ({ data }) => {
   //이것도 localstorage에 넣어야하나?
   // onClick=
   return (
-    <div className="bookCard" onClick={handleClick}>
-      {/* {flip ? (
+    <div
+      className="bookCard"
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+    >
+      {flip ? (
         <>
-         
-          
+          {isExist ? (
+            <button
+              onClick={() => {
+                history.push({
+                  pathname: `/detail/${isbn}`,
+                  state: { isRegister: false },
+                });
+              }}
+            >
+              다른사람 필사 보기
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                history.push({
+                  pathname: `/detail/${isbn}`,
+                  state: { isRegister: true },
+                });
+              }}
+            >
+              필사 쓰러가기
+            </button>
+          )}
         </>
       ) : (
-        <> */}
-      <img src={image ? image : img_link} alt="" className="bookCard__img" />
-      {title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")}
-      <button
-        onClick={() => {
-          history.push({
-            pathname: `/detail/${isbn}`,
-            state: { isRegister: false },
-          });
-        }}
-      >
-        다른사람 필사 보기
-      </button>{" "}
-      <button
-        onClick={() => {
-          history.push({
-            pathname: `/detail/${isbn}`,
-            state: { isRegister: true },
-          });
-        }}
-      >
-        필사 쓰러가기
-      </button>
-      {/* </>
-      )} */}
+        <>
+          <img
+            src={image ? image : img_link}
+            alt=""
+            className="bookCard__img"
+          />
+          {title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")}
+        </>
+      )}
     </div>
   );
 };

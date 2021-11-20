@@ -17,7 +17,7 @@ const Navbar = () => {
   //     prevForm === "필사페이지" ? "리뷰페이지" : "필사페이지"
   //   );
   // };
-  console.log(currentUser);
+  //console.log(currentUser);
   const handleLogout = () => {
     setCurrentUser(null);
     localStorage.removeItem("currentUserState");

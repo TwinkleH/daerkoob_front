@@ -16,45 +16,44 @@ const Detail = ({ match, location }) => {
   // });
   // console.log(query);
   const { params } = match;
-  console.log("params");
-  console.log(params);
+
   const [otherTrans, setOtherTrans] = useState([]);
   // const { currentBook } = useCurrentBook();
   const [isRegister, setIsRegister] = useState(location.state.isRegister);
   const handleToggle = () => {
     setIsRegister(!isRegister);
   };
-  useEffect(() => {
-    console.log("디테일페이지 새로 옴");
+  // useEffect(() => {
+  //   console.log("디테일페이지 새로 옴");
 
-    const handleExist = async () => {
-      await api
-        .post("transcription/click", null, {
-          params: {
-            isbn: params,
-          },
-        })
-        .then((response) => {
-          let preData = [];
-          console.log(response);
-          if (response.data.length > 0) {
-            response.data.forEach((item) => {
-              preData.push(item);
-            });
-            setOtherTrans(preData);
-            setIsRegister(false);
-          }
-        });
-    };
-    handleExist();
-    return () => {};
-  }, []);
+  //   const handleExist = async () => {
+  //     await api
+  //       .post("transcription/click", null, {
+  //         params: {
+  //           isbn: params,
+  //         },
+  //       })
+  //       .then((response) => {
+  //         let preData = [];
+  //         console.log(response);
+  //         if (response.data.length > 0) {
+  //           response.data.forEach((item) => {
+  //             preData.push(item);
+  //           });
+  //           setOtherTrans(preData);
+  //           setIsRegister(false);
+  //         }
+  //       });
+  //   };
+  //   handleExist();
+  //   return () => {};
+  // }, []);
 
-  console.log(otherTrans);
+  // console.log(otherTrans);
   return (
     <div>
       {isRegister ? (
-        <BookRegister toggle={handleToggle} isbn={params} />
+        <BookRegister toggle={handleToggle} isbn={params.isbn} />
       ) : (
         <TransList data={otherTrans} toggle={handleToggle} />
       )}

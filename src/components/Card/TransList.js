@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import "./TransList.scss";
 const TransList = ({ data, toggle }) => {
   const history = useHistory();
-  console.log(typeof data);
 
   return (
     <div className="transList">
