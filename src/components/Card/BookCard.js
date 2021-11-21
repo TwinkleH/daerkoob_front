@@ -17,17 +17,19 @@ const BookCard = ({ data }) => {
   const [isExist, setIsExist] = useState(false);
   const history = useHistory();
 
-  const handleMouseOver = async () => {
+  const handleClick = async () => {
     // await setCurrentBook(data);
     // console.log(currentBook);
     const response = await api.get(`transcription/judge/${isbn}`);
+
     console.log(response);
-    !response.data ?? setIsExist(true);
-    setFlip(true);
+    !response.data || setIsExist(true);
+    console.log(isExist);
+    setFlip(!flip);
   };
-  const handleMouseOut = () => {
-    setFlip(false);
-  };
+  // const handleMouseOut = () => {
+  //   setFlip(false);
+  // };
   // useEffect(() => {
   //   return () => {
   //     history.push("/bookrecord");
@@ -40,12 +42,13 @@ const BookCard = ({ data }) => {
   return (
     <div
       className="bookCard"
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
+      // onMouseOver={handleMouseOver}
+      // onMouseOut={handleMouseOut}
+      onClick={handleClick}
     >
       {flip ? (
         <>
-          {isExist ? (
+          {isExist && (
             <button
               onClick={() => {
                 history.push({
@@ -56,18 +59,18 @@ const BookCard = ({ data }) => {
             >
               다른사람 필사 보기
             </button>
-          ) : (
-            <button
-              onClick={() => {
-                history.push({
-                  pathname: `/detail/${isbn}`,
-                  state: { isRegister: true },
-                });
-              }}
-            >
-              필사 쓰러가기
-            </button>
           )}
+          <button
+            onClick={() => {
+              history.push({
+                pathname: `/detail/${isbn}`,
+                state: { isRegister: true },
+              });
+            }}
+          >
+            필사 쓰러가기
+          </button>
+          {title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")}
         </>
       ) : (
         <>

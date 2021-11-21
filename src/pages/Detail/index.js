@@ -20,34 +20,30 @@ const Detail = ({ match, location }) => {
   const [otherTrans, setOtherTrans] = useState([]);
   // const { currentBook } = useCurrentBook();
   const [isRegister, setIsRegister] = useState(location.state.isRegister);
+
   const handleToggle = () => {
     setIsRegister(!isRegister);
   };
-  // useEffect(() => {
-  //   console.log("디테일페이지 새로 옴");
 
-  //   const handleExist = async () => {
-  //     await api
-  //       .post("transcription/click", null, {
-  //         params: {
-  //           isbn: params,
-  //         },
-  //       })
-  //       .then((response) => {
-  //         let preData = [];
-  //         console.log(response);
-  //         if (response.data.length > 0) {
-  //           response.data.forEach((item) => {
-  //             preData.push(item);
-  //           });
-  //           setOtherTrans(preData);
-  //           setIsRegister(false);
-  //         }
-  //       });
-  //   };
-  //   handleExist();
-  //   return () => {};
-  // }, []);
+  useEffect(() => {
+    console.log("디테일페이지 새로 옴");
+
+    const handleExist = async () => {
+      const response = await api.get(`transcription/inquiry/${params.isbn}`);
+      let preData = [];
+      console.log(response);
+      if (response.data.length > 0) {
+        response.data.forEach((item) => {
+          preData.push(item);
+        });
+        setOtherTrans(preData);
+        // setIsRegister(false);
+      }
+    };
+
+    handleExist();
+    return () => {};
+  }, []);
 
   // console.log(otherTrans);
   return (

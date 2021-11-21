@@ -38,7 +38,7 @@ export const SignUp = ({ toggleIsSignIn }) => {
             alert("회원가입 성공 ");
             toggleIsSignIn(); //회원가입 하고 바로 로그인페이지로 가기
           } else {
-            alert.log(response.data.message);
+            alert(response.data.message);
           }
         });
     } catch {
