@@ -51,17 +51,18 @@ export const SignUp = ({ toggleIsSignIn }) => {
       handleSubmit();
     }
   };
-  const handleCheck = (e) => {
-    const {
-      target: { value },
-    } = e;
-    if (info.password !== value) {
-      setMessage("일치하지 않습니다.");
-    } else {
-      setMessage("일치합니다");
-      setInfo({ ...info, confirmPassword: value });
-    }
-  };
+  // const handleCheck = (e) => {
+  //   const {
+  //     target: { value },
+  //   } = e;
+  //   if (info.password !== value) {
+  //     setMessage("일치하지 않습니다.");
+  //   } else {
+  //     setMessage("일치합니다");
+  //     setInfo({ ...info, confirmPassword: value });
+  //   }
+  // };
+  //백에서 구현함
   return (
     <div className="auth">
       <Input
@@ -93,7 +94,7 @@ export const SignUp = ({ toggleIsSignIn }) => {
         id="confirmPassword"
         placeholder="repeat Password"
         type="password"
-        onChange={handleCheck}
+        onChange={handleChange}
         onKeyPress={handleKeyPress}
         message={message}
       />

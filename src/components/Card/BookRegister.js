@@ -88,8 +88,8 @@ const BookRegister = ({ toggle, isbn }) => {
         </div>
         <button onClick={handleSubmit}>저장</button>
         {/* {currentContent} */}
+        <button onClick={toggle}>다른사람 쓴 글 보러가기</button>
       </div>
-      <button onClick={toggle}>다른사람 쓴 글 보러가기</button>
     </div>
   );
 };
