@@ -1,9 +1,15 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import "./TransList.scss";
+import { useState } from "react";
 import api from "api/api";
 import useCurrentUser from "Hooks/useCurrentUser";
+import TransCard from "components/Card/TransCard";
+
 const TransList = ({ data, toggle, onThumb }) => {
+  // FaRegThumbsUp;
+  // FaThumbsUp;
+
   const { currentUser } = useCurrentUser();
   const history = useHistory();
 
@@ -16,18 +22,14 @@ const TransList = ({ data, toggle, onThumb }) => {
         transcriptionId: d.id, //필사아이디
       },
     });
-    console.log(response);
+    console.log(response.data);
     onThumb();
   };
+  console.log(data);
   return (
     <div className="transList">
       {data.map((d) => (
-        <div className="transList__line">
-          <div>필사:{d.transcription}</div>
-          <div>유저아이디:{d.userId}</div>
-          <div>북아이디:{d.bookId}</div>
-          <button onClick={() => handleThumb(d)}>좋아요:{d.thumb}</button>
-        </div>
+        <TransCard data={d} onThumb={handleThumb} />
       ))}
       <button onClick={toggle}>작성하러가기</button>
     </div>
