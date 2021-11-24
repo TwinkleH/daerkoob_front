@@ -20,25 +20,16 @@ const BookCard = ({ data }) => {
   const handleClick = async () => {
     // await setCurrentBook(data);
     // console.log(currentBook);
-    const response = await api.get(`transcription/judge/${isbn}`);
-
-    console.log(response);
-    !response.data || setIsExist(true);
+    const response1 = await api.get(`transcription/judge/${isbn}`);
+    const response2 = await api.get(`review/judge/${isbn}`);
+    console.log(response1);
+    console.log(response2);
+    response1.data && setIsExist(true);
+    response2.data && setIsExist(true);
     console.log(isExist);
     setFlip(!flip);
   };
-  // const handleMouseOut = () => {
-  //   setFlip(false);
-  // };
-  // useEffect(() => {
-  //   return () => {
-  //     history.push("/bookrecord");
-  //   };
-  // }, [currentBook]);
-  //이렇게 해결하는게 맞나?
-  //아니면 디비에서 불러와서 해야하는게 맞나?
-  //이것도 localstorage에 넣어야하나?
-  // onClick=
+
   return (
     <div
       className="bookCard"
@@ -49,27 +40,49 @@ const BookCard = ({ data }) => {
       {flip ? (
         <>
           {isExist && (
-            <button
-              onClick={() => {
-                history.push({
-                  pathname: `/detail/${isbn}`,
-                  state: { isRegister: false },
-                });
-              }}
-            >
-              다른사람 필사 보기
-            </button>
+            <>
+              <div
+                onClick={() => {
+                  history.push({
+                    pathname: `/detail/${isbn}`,
+                    state: { isRegister: false, isTranscription: true },
+                  });
+                }}
+              >
+                다른사람 필사 보기
+              </div>
+              <div
+                onClick={() => {
+                  history.push({
+                    pathname: `/detail/${isbn}`,
+                    state: { isRegister: false, isTranscription: false },
+                  });
+                }}
+              >
+                다른사람 리뷰 보기
+              </div>
+            </>
           )}
-          <button
+          <div
             onClick={() => {
               history.push({
                 pathname: `/detail/${isbn}`,
-                state: { isRegister: true },
+                state: { isRegister: true, isTranscription: true },
               });
             }}
           >
             필사 쓰러가기
-          </button>
+          </div>
+          <div
+            onClick={() => {
+              history.push({
+                pathname: `/detail/${isbn}`,
+                state: { isRegister: true, isTranscription: false },
+              });
+            }}
+          >
+            리뷰 쓰러가기
+          </div>
           {title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")}
         </>
       ) : (

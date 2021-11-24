@@ -19,7 +19,12 @@ const Detail = ({ match, location }) => {
   const [otherTrans, setOtherTrans] = useState([]);
   // const { currentBook } = useCurrentBook();
   const [isRegister, setIsRegister] = useState(location.state.isRegister); //작성페이지인지 아닌지
+  // console.log("isregister");
+  // console.log(isRegister);
+  const isTranscription = location.state.isTranscription;
 
+  // console.log("type");
+  // console.log(isTranscription);
   const handleToggle = () => {
     //작성페이지 vs 필사리스트
     setIsRegister(!isRegister);
@@ -33,12 +38,14 @@ const Detail = ({ match, location }) => {
     const response = await api.get(`transcription/inquiry/${params.isbn}`);
     //검색
     let preData = [];
-    console.log(response);
+    // console.log(response);
     if (response.data.length > 0) {
       response.data.forEach((item) => {
         preData.push(item);
       });
       setOtherTrans(preData);
+      console.log("preData");
+      console.log(preData);
       // setIsRegister(false);
     }
   };
@@ -54,13 +61,25 @@ const Detail = ({ match, location }) => {
   return (
     <div>
       {isRegister ? (
-        <BookRegister toggle={handleToggle} isbn={params.isbn} />
+        <>
+          {isTranscription ? (
+            <BookRegister toggle={handleToggle} isbn={params.isbn} />
+          ) : (
+            <div>리뷰쓰기</div>
+          )}
+        </>
       ) : (
-        <TransList
-          data={otherTrans}
-          toggle={handleToggle}
-          onThumb={handleThumb}
-        />
+        <>
+          {isTranscription ? (
+            <TransList
+              data={otherTrans}
+              toggle={handleToggle}
+              onThumb={handleThumb}
+            />
+          ) : (
+            <div>다른사람 리뷰</div>
+          )}
+        </>
       )}
     </div>
   );
