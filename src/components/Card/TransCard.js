@@ -1,23 +1,36 @@
 import React, { useState } from "react";
 import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
+import api from "api/api";
+import useCurrentUser from "Hooks/useCurrentUser";
 const TransCard = ({ data, onThumb }) => {
   const [thumbUp, setThumbUp] = useState(false);
   const user = data.user;
   const book = data.book;
-  console.log(data);
+  const { currentUser, setCurrentUser } = useCurrentUser();
+
+  const followFriend = async () => {
+    const response = await api.post("friend/add", null, {
+      params: {
+        userId: currentUser.id,
+        friendId: user.id,
+      },
+    });
+    alert(response.data.message);
+  };
+
   return (
     <div>
       <div className="transList__line">
-        {/* <div>필사:{d.transcription}</div> */}
-        <div>유저아이디:{user.userId}</div>
+        <div>필사:{data.content}</div>
+        <div onClick={followFriend}>유저닉네임:{user.nickName}</div>
         <div>북아이디:{book.id}</div>
         <button
           onClick={() => {
-            // onThumb(d);
+            onThumb(data);
             setThumbUp(!thumbUp);
           }}
         >
-          {/* {thumbUp ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumb} */}
+          {thumbUp ? <FaThumbsUp /> : <FaRegThumbsUp />}:{data.thumbCount}
         </button>
       </div>
     </div>

@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Input from "./Input";
 import useCurrentUser from "Hooks/useCurrentUser";
+
 import api from "api/api";
 export const SignIn = ({ toggleIsSignIn }) => {
   const history = useHistory();
   const { setCurrentUser } = useCurrentUser();
+
   const [message, setMessage] = useState("");
   //const [message,setMessage] = useState("안녕");
   //const [j, setJ] = useState("안녕");
@@ -44,6 +46,7 @@ export const SignIn = ({ toggleIsSignIn }) => {
             console.log(response);
             setCurrentUser(response.data); //이건 프론트딴에서 memberId이 들어왔다고 하는거...;
             alert("로그인성공");
+
             history.push("/");
           }
         });
