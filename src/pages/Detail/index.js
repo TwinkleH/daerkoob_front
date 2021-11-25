@@ -1,9 +1,11 @@
 import BookRegister from "components/Card/BookRegister";
 import React, { useState, useEffect } from "react";
 import api from "api/api";
-
-import TransList from "components/Card/TransList";
+import useCurrentUser from "Hooks/useCurrentUser";
+import TransList from "components/List/TransList";
 import qs from "qs";
+import TransRegister from "../../components/Card/TransRegister";
+import ReviewList from "components/List/ReviewList";
 
 const Detail = ({ match, location }) => {
   // console.log("Match");
@@ -15,8 +17,9 @@ const Detail = ({ match, location }) => {
   // });
   // console.log(query);
   const { params } = match; //url params
-
+  const { currentUser } = useCurrentUser();
   const [otherTrans, setOtherTrans] = useState([]);
+  const [otherReview, setOtherReview] = useState([]);
   // const { currentBook } = useCurrentBook();
   const [isRegister, setIsRegister] = useState(location.state.isRegister); //작성페이지인지 아닌지
   // console.log("isregister");
@@ -31,11 +34,14 @@ const Detail = ({ match, location }) => {
   };
   const handleThumb = () => {
     //좋아요누르면
-    handleExist();
+    handleTransExist();
+    handleReviewExist();
   };
 
-  const handleExist = async () => {
-    const response = await api.get(`transcription/inquiry/${params.isbn}`);
+  const handleTransExist = async () => {
+    const response = await api.get(
+      `transcription/inquiry/${currentUser.id}/${params.isbn}`
+    );
     //검색
     let preData = [];
     // console.log(response);
@@ -49,23 +55,42 @@ const Detail = ({ match, location }) => {
       // setIsRegister(false);
     }
   };
-
+  const handleReviewExist = async () => {
+    const response = await api.get(
+      `review/inquiry/${currentUser.id}/${params.isbn}`
+    );
+    let preData = [];
+    if (response.data.length > 0) {
+      response.data.forEach((item) => {
+        preData.push(item);
+      });
+      setOtherReview(preData);
+      console.log("preReview");
+      console.log(otherReview);
+      // setIsRegister(false);
+    }
+  };
   useEffect(() => {
     console.log("디테일페이지 새로 옴");
 
-    handleExist();
+    handleTransExist();
+    handleReviewExist();
     return () => {};
   }, []);
-
+  const handleComment = () => {
+    console.log("댓글다루기");
+  };
   // console.log(otherTrans);
   return (
     <div>
       {isRegister ? (
         <>
           {isTranscription ? (
-            <BookRegister toggle={handleToggle} isbn={params.isbn} />
+            <TransRegister toggle={handleToggle} isbn={params.isbn}>
+              리뷰쓰기
+            </TransRegister>
           ) : (
-            <div>리뷰쓰기</div>
+            <BookRegister toggle={handleToggle} isbn={params.isbn} />
           )}
         </>
       ) : (
@@ -77,7 +102,12 @@ const Detail = ({ match, location }) => {
               onThumb={handleThumb}
             />
           ) : (
-            <div>다른사람 리뷰</div>
+            <ReviewList
+              data={otherReview}
+              toggle={handleToggle}
+              onThumb={handleThumb}
+              onComment={handleComment}
+            />
           )}
         </>
       )}

@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 import api from "api/api";
 import useCurrentUser from "Hooks/useCurrentUser";
-const TransCard = ({ data, onThumb }) => {
+const TransCard = ({ data, onThumb, thumbJudge }) => {
   const [thumbUp, setThumbUp] = useState(false);
   const user = data.user;
   const book = data.book;
   const { currentUser, setCurrentUser } = useCurrentUser();
-
+  console.log(thumbJudge);
   const followFriend = async () => {
     const response = await api.post("friend/add", null, {
       params: {
@@ -30,7 +30,7 @@ const TransCard = ({ data, onThumb }) => {
             setThumbUp(!thumbUp);
           }}
         >
-          {thumbUp ? <FaThumbsUp /> : <FaRegThumbsUp />}:{data.thumbCount}
+          {thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{data.thumbCount}
         </button>
       </div>
     </div>

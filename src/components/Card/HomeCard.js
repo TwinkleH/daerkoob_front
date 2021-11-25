@@ -1,7 +1,12 @@
 import React from "react";
 
-const HomeCard = ({ name }) => {
-  return <div className="homeCard">{name}</div>;
+const HomeCard = ({ name, data }) => {
+  return (
+    <div className="homeCard">
+      <div>{name}</div>
+      <h1>{data}</h1>
+    </div>
+  );
 };
 
 export default HomeCard;
