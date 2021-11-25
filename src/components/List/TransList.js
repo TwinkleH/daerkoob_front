@@ -10,7 +10,7 @@ import TransCard from "components/Card/TransCard";
 const TransList = ({ data, toggle, onThumb }) => {
   // FaRegThumbsUp;
   // FaThumbsUp;
-
+  console.log(data);
   const { currentUser } = useCurrentUser();
   const history = useHistory();
 
@@ -25,11 +25,12 @@ const TransList = ({ data, toggle, onThumb }) => {
     console.log(response);
     onThumb();
   };
-  const followFriend = async () => {
+  const followFriend = async (d) => {
+    console.log(d);
     const response = await api.post("friend/add", null, {
       params: {
         userId: currentUser.id, //나
-        friendId: data.user.id, //내가 친구하고 싶은 사람
+        friendId: d.id, //내가 친구하고 싶은 사람
       },
     });
     alert(response.data.message);
@@ -38,10 +39,14 @@ const TransList = ({ data, toggle, onThumb }) => {
   return (
     <div className="transList">
       {data.map((d) => (
-        // <TransCard data={d} onThumb={handleThumb} thumbJudge={d.thumbJudge} />
+        //   <TransCard data={d} onThumb={handleThumb} thumbJudge={d.thumbJudge} />
+        // ))}
+
         <div className="transList__line">
           <div>필사:{d.content}</div>
-          <div onClick={followFriend}>유저닉네임:{currentUser.nickName}</div>
+          <div onClick={() => followFriend(d.user)}>
+            유저닉네임:{d.user.nickName}
+          </div>
           <div>북아이디:{d.book.id}</div>
           <button onClick={() => handleThumb(d)}>
             {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumbCount}

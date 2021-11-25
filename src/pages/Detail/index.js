@@ -50,9 +50,6 @@ const Detail = ({ match, location }) => {
         preData.push(item);
       });
       setOtherTrans(preData);
-      console.log("preData");
-      console.log(preData);
-      // setIsRegister(false);
     }
   };
   const handleReviewExist = async () => {

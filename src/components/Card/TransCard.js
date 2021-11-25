@@ -1,3 +1,4 @@
+//안쓰게됨.. 언젠간 쓸수도 있어서 남겨둠
 import React, { useState } from "react";
 import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 import api from "api/api";
