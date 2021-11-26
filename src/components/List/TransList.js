@@ -33,7 +33,7 @@ const TransList = ({ data, toggle, onThumb }) => {
         friendId: d.id, //내가 친구하고 싶은 사람
       },
     });
-    alert(response.data.message);
+    // alert(response.data.message);
   };
 
   return (
@@ -47,7 +47,7 @@ const TransList = ({ data, toggle, onThumb }) => {
           <div onClick={() => followFriend(d.user)}>
             유저닉네임:{d.user.nickName}
           </div>
-          <div>북아이디:{d.book.id}</div>
+          <div>북아이디:{d.book.title}</div>
           <button onClick={() => handleThumb(d)}>
             {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumbCount}
           </button>

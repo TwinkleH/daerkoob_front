@@ -2,13 +2,14 @@ import React from "react";
 import useCurrentUser from "Hooks/useCurrentUser";
 import api from "api/api";
 import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
+import "./ReviewList.scss";
 const ReviewList = ({ data, toggle, onThumb, onComment }) => {
   const { currentUser } = useCurrentUser();
-  const followFriend = async () => {
+  const followFriend = async (d) => {
     const response = await api.post("friend/add", null, {
       params: {
         userId: currentUser.id, //나
-        friendId: data.user.id, //내가 친구하고 싶은 사람
+        friendId: d.id, //내가 친구하고 싶은 사람
       },
     });
     alert(response.data.message);
@@ -30,8 +31,10 @@ const ReviewList = ({ data, toggle, onThumb, onComment }) => {
         // <TransCard data={d} onThumb={handleThumb} thumbJudge={d.thumbJudge} />
         <div className="review">
           <div>필사:{d.content}</div>
-          <div onClick={followFriend}>유저닉네임:{currentUser.nickName}</div>
-          <div>북아이디:{d.book.id}</div>
+          <div onClick={() => followFriend(d.user)}>
+            유저닉네임:{d.user.nickName}
+          </div>
+          <div>책제목 :{d.book.title}</div>
           <button onClick={() => handleThumb(d)}>
             {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumbCount}
           </button>
