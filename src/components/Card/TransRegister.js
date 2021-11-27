@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import useCurrentUser from "Hooks/useCurrentUser";
 import api from "api/api";
+import { useHistory } from "react-router-dom";
 const TransRegister = ({ toggle, isbn }) => {
   const [currentContent, setCurrentContent] = useState("");
   const { currentUser } = useCurrentUser();
   const [currentBook, setCurrentBook] = useState([]);
+  const history = useHistory();
   const handleChange = (e) => {
     setCurrentContent(e.target.value);
   };
@@ -22,9 +24,9 @@ const TransRegister = ({ toggle, isbn }) => {
       },
     });
     console.log(response);
-    if (response.data.flag) {
+    if (response.data) {
       alert("저장했습니다.");
-      // history.push("/mypage");
+      history.push("/");
     }
   };
   useEffect(() => {

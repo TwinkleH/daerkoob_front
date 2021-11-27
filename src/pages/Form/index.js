@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 // import { useHistory, useLocation } from "react-router-dom";
 
 import "./index.scss";
-import useCurrentForm from "../../Hooks/useCurrentForm";
 import api from "api/api";
 import Transcription from "components/Review/Transcription";
 import _data from "book.json";
 const Form = () => {
   const mockData = _data.concat();
-  const { currentForm, setCurrentForm } = useCurrentForm();
   // console.log(mockData);
   // const toggleForm = () => {
   //   console.log(currentForm);

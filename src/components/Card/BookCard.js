@@ -4,7 +4,6 @@ import "components/Card/BookCard.scss";
 //import BookDetail from "components/Card/BookDetail";
 //import useContents from "Hooks/useContents";
 // import { currentContent } from 'Store';
-import useCurrentBook from "Hooks/useCurrentBook";
 import useCurrentUser from "Hooks/useCurrentUser";
 import api from "api/api";
 const BookCard = ({ data }) => {
@@ -13,7 +12,6 @@ const BookCard = ({ data }) => {
   const { currentUser } = useCurrentUser();
   const { title, image, isbn } = data;
   const [flip, setFlip] = useState(false); //일단 뒤집혀지지 않음
-  const { currentBook, setCurrentBook } = useCurrentBook();
   const [isExist, setIsExist] = useState(false);
   const history = useHistory();
 

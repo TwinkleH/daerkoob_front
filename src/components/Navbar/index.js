@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./index.scss";
 import useCurrentUser from "Hooks/useCurrentUser";
-import useCurrentForm from "../../Hooks/useCurrentForm";
 const Navbar = () => {
   const history = useHistory();
   // const activeStyle = {
@@ -10,7 +9,6 @@ const Navbar = () => {
   //   color: "white",
   // };
   const { currentUser, setCurrentUser } = useCurrentUser();
-  const { currentForm, setCurrentForm } = useCurrentForm();
 
   // const toggleForm = () => {
   //   setCurrentForm((prevForm) =>

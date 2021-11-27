@@ -2,7 +2,7 @@ import React from "react";
 import useCurrentUser from "Hooks/useCurrentUser";
 import api from "api/api";
 import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
-import "./ReviewList.scss";
+
 const ReviewList = ({ data, toggle, onThumb, onComment }) => {
   const { currentUser } = useCurrentUser();
   const followFriend = async (d) => {
@@ -35,6 +35,7 @@ const ReviewList = ({ data, toggle, onThumb, onComment }) => {
             유저닉네임:{d.user.nickName}
           </div>
           <div>책제목 :{d.book.title}</div>
+          <div> 리뷰 쓴 사람이 준 별점:{d.score}</div>
           <button onClick={() => handleThumb(d)}>
             {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumbCount}
           </button>

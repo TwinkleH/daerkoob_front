@@ -11,7 +11,7 @@ const TransList = ({ data, toggle, onThumb }) => {
   // FaRegThumbsUp;
   // FaThumbsUp;
   console.log(data);
-  const { currentUser } = useCurrentUser();
+  const { currentUser, setCurrentUser } = useCurrentUser();
   const history = useHistory();
 
   const handleThumb = async (d) => {
@@ -27,12 +27,20 @@ const TransList = ({ data, toggle, onThumb }) => {
   };
   const followFriend = async (d) => {
     console.log(d);
-    const response = await api.post("friend/add", null, {
+    const response = await api.post("friend/register", null, {
       params: {
         userId: currentUser.id, //나
         friendId: d.id, //내가 친구하고 싶은 사람
       },
     });
+
+    alert(response.data.message);
+
+    const newObject = {
+      ...currentUser,
+      friends: response.data.friendList,
+    };
+    setCurrentUser(newObject);
     // alert(response.data.message);
   };
 

@@ -1,30 +1,24 @@
 import React, { useState } from "react";
 import useCurrentUser from "Hooks/useCurrentUser";
-import useCurrentBook from "Hooks/useCurrentBook";
-import useContent from "Hooks/useContent";
 import "components/Card/BookRegister.scss";
 import { useEffect } from "react";
 import api from "api/api";
 import { useHistory } from "react-router-dom";
-import { recoilPersist } from "recoil-persist";
+import { BsStarFill } from "react-icons/bs";
 const BookRegister = ({ toggle, isbn }) => {
   const [reviewContent, setReviewContent] = useState("");
   const { currentUser } = useCurrentUser();
-  // const { currentBook } = useCurrentBook();
-  // const { title, author, publisher, pubdate, isbn, image, description } =
-  //   currentBook;
-  // console.log(currentBook);
+
   const [currentBook, setCurrentBook] = useState([]);
   const history = useHistory();
   const handleChange = (e) => {
     setReviewContent(e.target.value);
   };
-  const [score, setScore] = useState(0);
-  // currentBook || const { title, author, publisher, pubdate, isbn, image, description } = currentBook;
+  const [starColor, setStarColor] = useState(["", "", "", "", ""]);
+  const [score, setScore] = useState();
+
   //하나하나 내용 칠때마다 set되는게 아니라 서브밋 누르면 한번에 되고 싶은데 그러면 한번 실행을 했다가 해야함...
-  const handleScore = (e) => {
-    setScore(e.target.value);
-  };
+
   const handleSubmit = async () => {
     console.log("저장할내용");
     console.log(currentUser.id);
@@ -33,16 +27,16 @@ const BookRegister = ({ toggle, isbn }) => {
     const response = await api.post("review/register", null, {
       params: {
         userId: currentUser.id,
-        //  isbn: isbn.replace(/(\s*)/g, ""),
         isbn,
         reviewContent,
         score,
       },
     });
+    console.log(currentUser.id, isbn, reviewContent, score);
     console.log(response);
-    if (response.data.flag) {
+    if (response.data) {
       alert("저장했습니다.");
-      // history.push("/mypage");
+      history.push("/");
     }
   };
   useEffect(() => {
@@ -58,29 +52,31 @@ const BookRegister = ({ toggle, isbn }) => {
       // cleanup;
     };
   }, []);
-
+  const handleStarClick = (e, index) => {
+    e.preventDefault();
+    let clickStates = [...starColor];
+    for (let i = 0; i < 5; i++) {
+      if (i <= index) clickStates[i] = "red";
+      else clickStates[i] = "";
+    }
+    setScore(index + 1);
+    setStarColor(clickStates);
+  };
   return (
     <div className="bookDetail">
       <div className="bookDetail__wrapper">
         <img src={currentBook.image} alt="" />
         <div>
           제목:
-          {currentBook.title
-            ? currentBook.title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")
-            : ""}
+          {currentBook.title}
         </div>
         <div>
           저자:
-          {currentBook.author
-            ? currentBook.author.replace(/<b>/gi, "").replace(/<\/b>/gi, "")
-            : ""}
+          {currentBook.author}
         </div>
         <div>
-          {" "}
           출판사:
-          {currentBook.publisher
-            ? currentBook.publisher.replace(/<b>/gi, "").replace(/<\/b>/gi, "")
-            : ""}
+          {currentBook.publisher}
         </div>
         <div>
           필사:
@@ -91,10 +87,28 @@ const BookRegister = ({ toggle, isbn }) => {
             onChange={handleChange}
           ></textarea>
         </div>
-        <input
-          onChange={handleScore}
-          placeholder="숫자로써주세여 다음에 별로 바꿈"
-        ></input>
+        <div className="star">
+          <BsStarFill
+            onClick={(e) => handleStarClick(e, 0)}
+            color={starColor[0]}
+          />
+          <BsStarFill
+            onClick={(e) => handleStarClick(e, 1)}
+            color={starColor[1]}
+          />
+          <BsStarFill
+            onClick={(e) => handleStarClick(e, 2)}
+            color={starColor[2]}
+          />
+          <BsStarFill
+            onClick={(e) => handleStarClick(e, 3)}
+            color={starColor[3]}
+          />
+          <BsStarFill
+            onClick={(e) => handleStarClick(e, 4)}
+            color={starColor[4]}
+          />
+        </div>
         <div>
           <button onClick={handleSubmit}>저장</button>
         </div>
