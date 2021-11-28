@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // import { useHistory, useLocation } from "react-router-dom";
 
 import "./index.scss";
 import api from "api/api";
 import Transcription from "components/Review/Transcription";
-import _data from "book.json";
+// import _data from "book.json";
 const Form = () => {
-  const mockData = _data.concat();
+  // const mockData = _data.concat();
   // console.log(mockData);
   // const toggleForm = () => {
   //   console.log(currentForm);

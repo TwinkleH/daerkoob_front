@@ -39,11 +39,9 @@ export const SignIn = ({ toggleIsSignIn }) => {
         .then((response) => {
           console.log(response);
           if (!response.data) {
-            console.log("실패");
             history.push("/auth");
             setMessage("실패했습니다");
           } else if (response.data) {
-            console.log(response);
             setCurrentUser(response.data); //이건 프론트딴에서 memberId이 들어왔다고 하는거...;
             alert("로그인성공");
 

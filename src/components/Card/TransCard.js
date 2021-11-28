@@ -7,7 +7,7 @@ const TransCard = ({ data, onThumb, thumbJudge }) => {
   const [thumbUp, setThumbUp] = useState(false);
   const user = data.user;
   const book = data.book;
-  const { currentUser, setCurrentUser } = useCurrentUser();
+  const { currentUser } = useCurrentUser();
   console.log(thumbJudge);
   const followFriend = async () => {
     const response = await api.post("friend/add", null, {

@@ -20,10 +20,6 @@ const BookRegister = ({ toggle, isbn }) => {
   //하나하나 내용 칠때마다 set되는게 아니라 서브밋 누르면 한번에 되고 싶은데 그러면 한번 실행을 했다가 해야함...
 
   const handleSubmit = async () => {
-    console.log("저장할내용");
-    console.log(currentUser.id);
-    console.log(isbn);
-    console.log(reviewContent);
     const response = await api.post("review/register", null, {
       params: {
         userId: currentUser.id,
@@ -32,19 +28,15 @@ const BookRegister = ({ toggle, isbn }) => {
         score,
       },
     });
-    console.log(currentUser.id, isbn, reviewContent, score);
-    console.log(response);
+
     if (response.data) {
       alert("저장했습니다.");
       history.push("/");
     }
   };
   useEffect(() => {
-    console.log("리뷰작성페이지 옴");
-
     const findBook = async () => {
       const response = await api.get(`book/find/${isbn}`);
-      // console.log(response);
       setCurrentBook(response.data);
     };
     findBook();

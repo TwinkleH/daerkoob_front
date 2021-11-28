@@ -11,7 +11,7 @@ export const SignUp = ({ toggleIsSignIn }) => {
     confirmPassword: "",
     birth: "",
   });
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     const {
@@ -96,7 +96,6 @@ export const SignUp = ({ toggleIsSignIn }) => {
         type="password"
         onChange={handleChange}
         onKeyPress={handleKeyPress}
-        message={message}
       />
       <Input
         id="birth"

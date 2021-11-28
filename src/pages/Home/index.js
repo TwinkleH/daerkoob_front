@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import "pages/Home/index.scss";
 import HomeCard from "components/Card/HomeCard";
 import BookCard from "components/Card/BookCard";
-import _data from "book.json";
+// import _data from "book.json";
 import api from "api/api";
 
 const Home = () => {
-  const mockData = _data.concat();
+  // const mockData = _data.concat();
   const [totalTrans, setTotalTrans] = useState(0); //전체 필사수
   const [totalReview, setTotalReview] = useState(0); //전체 리뷰수
   const [totalBook, setTotalBook] = useState(0); //등록된 책 수

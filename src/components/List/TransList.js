@@ -1,18 +1,15 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import "./TransList.scss";
 import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
-import { useState } from "react";
 import api from "api/api";
 import useCurrentUser from "Hooks/useCurrentUser";
-import TransCard from "components/Card/TransCard";
 
 const TransList = ({ data, toggle, onThumb }) => {
   // FaRegThumbsUp;
   // FaThumbsUp;
   console.log(data);
   const { currentUser, setCurrentUser } = useCurrentUser();
-  const history = useHistory();
 
   const handleThumb = async (d) => {
     const response = await api.post("thumb/transcription", null, {
@@ -21,12 +18,9 @@ const TransList = ({ data, toggle, onThumb }) => {
         transcriptionId: d.id, //필사아이디
       },
     });
-    console.log("response");
-    console.log(response);
     onThumb();
   };
   const followFriend = async (d) => {
-    console.log(d);
     const response = await api.post("friend/register", null, {
       params: {
         userId: currentUser.id, //나

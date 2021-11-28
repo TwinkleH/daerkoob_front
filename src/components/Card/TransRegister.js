@@ -11,19 +11,14 @@ const TransRegister = ({ toggle, isbn }) => {
     setCurrentContent(e.target.value);
   };
   const handleSubmit = async () => {
-    console.log("필사는 댓글로저장할내용");
-    console.log(currentUser.id);
-    console.log(isbn);
-    console.log(currentContent);
     const response = await api.post("transcription/register", null, {
       params: {
         userId: currentUser.id,
         //  isbn: isbn.replace(/(\s*)/g, ""),
-        isbn: isbn,
+        isbn,
         transcriptionContent: currentContent,
       },
     });
-    console.log(response);
     if (response.data) {
       alert("저장했습니다.");
       history.push("/");

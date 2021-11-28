@@ -21,8 +21,6 @@ const ReviewList = ({ data, toggle, onThumb, onComment }) => {
         reviewId: d.id, //리뷰아이디
       },
     });
-    console.log("response");
-    console.log(response);
     onThumb();
   };
   return (
