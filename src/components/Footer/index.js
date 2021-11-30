@@ -14,10 +14,6 @@ function Footer() {
         <div className="footer-link-wrapper">
           <div className="footer-link-items">
             <h2>Social Media</h2>
-            {/* <Link to="/">Instagram</Link>
-            <Link to="/">Facebook</Link>
-            <Link to="/">Youtube</Link>
-            <Link to="/">Twitter</Link> */}
           </div>
         </div>
       </div>

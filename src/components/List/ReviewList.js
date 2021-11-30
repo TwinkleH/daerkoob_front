@@ -2,7 +2,7 @@ import React from "react";
 import useCurrentUser from "Hooks/useCurrentUser";
 import api from "api/api";
 import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
-
+import "components/List/ReviewList.scss";
 const ReviewList = ({ data, toggle, onThumb, onComment }) => {
   const { currentUser } = useCurrentUser();
   const followFriend = async (d) => {
@@ -27,7 +27,7 @@ const ReviewList = ({ data, toggle, onThumb, onComment }) => {
     <div className="review">
       {data.map((d) => (
         // <TransCard data={d} onThumb={handleThumb} thumbJudge={d.thumbJudge} />
-        <div className="review">
+        <div className="review__box">
           <div>필사:{d.content}</div>
           <div onClick={() => followFriend(d.user)}>
             유저닉네임:{d.user.nickName}

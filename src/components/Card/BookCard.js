@@ -22,11 +22,16 @@ const BookCard = ({ data }) => {
     response2.data && setIsExist(true);
     setFlip(!flip);
   };
-
+  // const handleMouseOut = () => {
+  //   setFlip(false);
+  // };
+  // const handleMouseOver = () => {
+  //   setFlip(true);
+  // };
   return (
     <div
       className="bookCard"
-      // onMouseOver={handleMouseOver}
+      // // onMouseOver={handleMouseOver}
       // onMouseOut={handleMouseOut}
       onClick={handleClick}
     >
