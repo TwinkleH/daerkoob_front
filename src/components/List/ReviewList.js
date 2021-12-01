@@ -25,20 +25,24 @@ const ReviewList = ({ data, toggle, onThumb, onComment }) => {
   };
   return (
     <div className="review">
-      {data.map((d) => (
-        // <TransCard data={d} onThumb={handleThumb} thumbJudge={d.thumbJudge} />
-        <div className="review__box">
-          <div>필사:{d.content}</div>
-          <div onClick={() => followFriend(d.user)}>
-            유저닉네임:{d.user.nickName}
+      {data ? (
+        data.map((d) => (
+          // <TransCard data={d} onThumb={handleThumb} thumbJudge={d.thumbJudge} />
+          <div className="review__box">
+            <div>필사:{d.content}</div>
+            <div onClick={() => followFriend(d.user)}>
+              유저닉네임:{d.user.nickName}
+            </div>
+            <div>책제목 :{d.book.title}</div>
+            <div> 리뷰 쓴 사람이 준 별점:{d.score}</div>
+            <button onClick={() => handleThumb(d)}>
+              {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumbCount}
+            </button>
           </div>
-          <div>책제목 :{d.book.title}</div>
-          <div> 리뷰 쓴 사람이 준 별점:{d.score}</div>
-          <button onClick={() => handleThumb(d)}>
-            {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumbCount}
-          </button>
-        </div>
-      ))}
+        ))
+      ) : (
+        <>리뷰가 없습니다.</>
+      )}
       <button onClick={toggle}>작성하러가기</button>
     </div>
   );

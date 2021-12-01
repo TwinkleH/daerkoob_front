@@ -40,21 +40,26 @@ const TransList = ({ data, toggle, onThumb }) => {
 
   return (
     <div className="transList">
-      {data.map((d) => (
-        //   <TransCard data={d} onThumb={handleThumb} thumbJudge={d.thumbJudge} />
-        // ))}
+      {data ? (
+        data.map((d) => (
+          //   <TransCard data={d} onThumb={handleThumb} thumbJudge={d.thumbJudge} />
+          // ))}
 
-        <div className="transList__line">
-          <div>필사:{d.content}</div>
-          <div onClick={() => followFriend(d.user)}>
-            유저닉네임:{d.user.nickName}
+          <div className="transList__line">
+            <div>필사:{d.content}</div>
+            <div onClick={() => followFriend(d.user)}>
+              유저닉네임:{d.user.nickName}
+            </div>
+            <div>북아이디:{d.book.title}</div>
+            <button onClick={() => handleThumb(d)}>
+              {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumbCount}
+            </button>
           </div>
-          <div>북아이디:{d.book.title}</div>
-          <button onClick={() => handleThumb(d)}>
-            {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumbCount}
-          </button>
-        </div>
-      ))}
+        ))
+      ) : (
+        <>필사가 없습니다.</>
+      )}
+
       <button onClick={toggle}>작성하러가기</button>
     </div>
   );
