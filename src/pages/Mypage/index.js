@@ -12,7 +12,10 @@ const Mypage = () => {
 
   //이렇게 useEffect쓰는게 아닌가?
   useEffect(() => {
-    if (!currentUser) history.push("/auth");
+    if (!currentUser)
+      history.push({
+        pathname: "/auth",
+      });
   }, [currentUser]);
 
   return (

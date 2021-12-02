@@ -4,7 +4,7 @@ import Input from "./Input";
 import useCurrentUser from "Hooks/useCurrentUser";
 
 import api from "api/api";
-export const SignIn = ({ toggleIsSignIn }) => {
+export const SignIn = ({ toggleIsSignIn, from }) => {
   const history = useHistory();
   const { setCurrentUser } = useCurrentUser();
 
@@ -44,8 +44,7 @@ export const SignIn = ({ toggleIsSignIn }) => {
           } else if (response.data) {
             setCurrentUser(response.data); //이건 프론트딴에서 memberId이 들어왔다고 하는거...;
             alert("로그인성공");
-
-            history.push("/");
+            from();
           }
         });
     } catch {
