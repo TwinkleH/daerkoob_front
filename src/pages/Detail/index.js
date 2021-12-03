@@ -6,12 +6,13 @@ import TransList from "components/List/TransList";
 // import qs from "qs";
 import TransRegister from "../../components/Card/TransRegister";
 import ReviewList from "components/List/ReviewList";
-
+import { useHistory } from "react-router";
 const Detail = ({ match, location }) => {
   // const query = qs.parse(location.search, {
   //   iignoreQueryPrefix: true, //이 설정을 통해 문자열 맨 앞의 ?를 생략
   // });
   // console.log(query);
+  const history = useHistory();
   const { params } = match; //url params
   const { currentUser } = useCurrentUser();
   const [otherTrans, setOtherTrans] = useState([]);
@@ -56,9 +57,10 @@ const Detail = ({ match, location }) => {
   };
   useEffect(() => {
     console.log("디테일페이지 새로 옴");
-
+    //isTransition일때 로그인 안되어있으면 로그인하러가기...
     handleTransExist();
     handleReviewExist();
+
     return () => {};
   }, []);
   const handleComment = () => {

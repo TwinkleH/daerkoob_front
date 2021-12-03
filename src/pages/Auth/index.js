@@ -4,7 +4,6 @@ import { useState } from "react";
 import { SignIn } from "components/Auth/SignIn";
 import { SignUp } from "components/Auth/SignUp";
 import "pages/Auth/index.scss";
-import { useLocation } from "react-router";
 import { useHistory } from "react-router";
 // import Header from "components/Auth/Header";
 // import Main from "components/Auth/Main";
