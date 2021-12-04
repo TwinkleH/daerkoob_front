@@ -10,6 +10,7 @@ import Footer from "components/Footer";
 import Notice from "../pages/Notice/index";
 import Detail from "../pages/Detail";
 import useCurrentUser from "Hooks/useCurrentUser";
+
 const Router = () => {
   const { currentUser } = useCurrentUser();
   const pushWhenSignedIn = (Component) =>

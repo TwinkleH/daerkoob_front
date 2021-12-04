@@ -4,6 +4,8 @@ import useCurrentUser from "Hooks/useCurrentUser";
 import "pages/Mypage/index.scss";
 import TransList from "components/List/TransList";
 import ReviewList from "components/List/ReviewList";
+import Slider from "react-slick"; //좌우로 이동
+import "slick-carousel/slick/slick-theme.css";
 
 const Mypage = () => {
   const { currentUser } = useCurrentUser();

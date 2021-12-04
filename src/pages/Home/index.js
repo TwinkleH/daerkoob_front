@@ -4,7 +4,9 @@ import HomeCard from "components/Card/HomeCard";
 import BookCard from "components/Card/BookCard";
 // import _data from "book.json";
 import api from "api/api";
-
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 const Home = () => {
   // const mockData = _data.concat();
   const [totalTrans, setTotalTrans] = useState(0); //전체 필사수
@@ -39,6 +41,15 @@ const Home = () => {
       // cleanup;
     };
   }, []);
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 1500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+  };
 
   if (!bestBook) return <div>...loading</div>;
 
@@ -51,9 +62,11 @@ const Home = () => {
         <HomeCard name="등록된 책 수" data={totalBook} />
       </div>
       <div className="wrapper__container">
-        {bestBook.map((d) => (
-          <BookCard title={d.title} image={d.image} data={d} />
-        ))}
+        <Slider {...settings}>
+          {bestBook.map((d) => (
+            <BookCard title={d.title} image={d.image} data={d} />
+          ))}
+        </Slider>
       </div>
     </div>
   );
