@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "components/Card/BookCard.scss";
+import useCurrentUser from "Hooks/useCurrentUser";
 //import BookDetail from "components/Card/BookDetail";
 //import useContents from "Hooks/useContents";
 // import { currentContent } from 'Store';
 import api from "api/api";
+
 const BookCard = ({ data }) => {
   const img_link =
     "https://resource.grapplet.com/marketplace/7176/1591667231081/i.svg.preview.580x870.png";
@@ -12,7 +14,7 @@ const BookCard = ({ data }) => {
   const [flip, setFlip] = useState(false); //일단 뒤집혀지지 않음
   const [isExist, setIsExist] = useState(false);
   const history = useHistory();
-
+  const { currentUser } = useCurrentUser();
   const handleClick = async () => {
     // await setCurrentBook(data);
     // console.log(currentBook);
@@ -61,22 +63,41 @@ const BookCard = ({ data }) => {
               </div>
             </>
           )}
+
           <div
             onClick={() => {
-              history.push({
-                pathname: `/detail/${isbn}`,
-                state: { isRegister: true, isTranscription: true },
-              });
+              currentUser.id !== 0
+                ? history.push({
+                    pathname: `/detail/${isbn}`,
+                    state: { isRegister: true, isTranscription: true },
+                  })
+                : history.push({
+                    pathname: `/auth`,
+                    state: {
+                      from: `/detail/${isbn}`,
+                      isRegister: true,
+                      isTranscription: true,
+                    },
+                  });
             }}
           >
             필사 쓰러가기
           </div>
           <div
             onClick={() => {
-              history.push({
-                pathname: `/detail/${isbn}`,
-                state: { isRegister: true, isTranscription: false },
-              });
+              currentUser.id !== 0
+                ? history.push({
+                    pathname: `/detail/${isbn}`,
+                    state: { isRegister: true, isTranscription: false },
+                  })
+                : history.push({
+                    pathname: `/auth`,
+                    state: {
+                      from: `/detail/${isbn}`,
+                      isRegister: true,
+                      isTranscription: false,
+                    },
+                  });
             }}
           >
             리뷰 쓰러가기

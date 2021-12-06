@@ -17,7 +17,7 @@ const Navbar = () => {
   // };
   //console.log(currentUser);
   const handleLogout = () => {
-    setCurrentUser(null);
+    setCurrentUser({ id: 0 });
     localStorage.removeItem("currentUserState");
     history.push("/");
   };
@@ -37,7 +37,7 @@ const Navbar = () => {
           <Link to="/mypage"> 마이페이지</Link>
         </div>
       </div>
-      {currentUser ? (
+      {currentUser.id !== 0 ? (
         <div className="nav__rightTop">
           <div>
             <button onClick={handleLogout}> 로그아웃</button>

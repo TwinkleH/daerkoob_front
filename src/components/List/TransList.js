@@ -60,7 +60,7 @@ const TransList = ({ data, toggle, onThumb }) => {
         <>필사가 없습니다.</>
       )}
 
-      <button onClick={toggle}>작성하러가기</button>
+      {currentUser.id !== 0 && <button onClick={toggle}>작성하러가기</button>}
     </div>
   );
 };

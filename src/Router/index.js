@@ -14,7 +14,7 @@ import useCurrentUser from "Hooks/useCurrentUser";
 const Router = () => {
   const { currentUser } = useCurrentUser();
   const pushWhenSignedIn = (Component) =>
-    currentUser ? (
+    currentUser.id !== 0 ? (
       Component
     ) : (
       <Redirect

@@ -5,7 +5,7 @@ const { persistAtom } = recoilPersist();
 
 export const currentUserState = atom({
   key: "currentUserState",
-  default: null,
+  default: { id: 0 },
   effects_UNSTABLE: [persistAtom],
 });
 //클릭한 책 저장

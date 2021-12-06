@@ -4,7 +4,7 @@ import useCurrentUser from "Hooks/useCurrentUser";
 import "pages/Mypage/index.scss";
 import TransList from "components/List/TransList";
 import ReviewList from "components/List/ReviewList";
-import Slider from "react-slick"; //좌우로 이동
+// import Slider from "react-slick"; //좌우로 이동
 import "slick-carousel/slick/slick-theme.css";
 
 const Mypage = () => {
@@ -13,12 +13,12 @@ const Mypage = () => {
   const history = useHistory();
 
   //이렇게 useEffect쓰는게 아닌가?
-  useEffect(() => {
-    if (!currentUser)
-      history.push({
-        pathname: "/auth",
-      });
-  }, [currentUser]);
+  // useEffect(() => {
+  //   if (currentUser)
+  //     history.push({
+  //       pathname: "/auth",
+  //     });
+  // }, [currentUser]);
 
   return (
     <div className="mypage">

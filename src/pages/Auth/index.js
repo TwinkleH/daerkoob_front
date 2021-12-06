@@ -27,7 +27,17 @@ const Auth = ({ location }) => {
   // }, [history, location]);
 
   const beforeLocation = () => {
-    !location.state ? history.push("/") : history.push(location.state.from);
+    !location.state
+      ? history.push("/")
+      : location.state.isRegister
+      ? history.push({
+          pathname: location.state.from,
+          state: {
+            isRegister: location.state.isRegister,
+            isTranscription: location.state.isTranscription,
+          },
+        })
+      : history.push(location.state.from);
   };
   return (
     <div className="sign">

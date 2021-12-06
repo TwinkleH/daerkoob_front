@@ -42,13 +42,13 @@ const Home = () => {
     };
   }, []);
   var settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     autoplay: true,
-    autoplaySpeed: 1500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    autoplaySpeed: 1000,
+    slidesToShow: 4,
+    slidesToScroll: 1,
   };
 
   if (!bestBook) return <div>...loading</div>;
