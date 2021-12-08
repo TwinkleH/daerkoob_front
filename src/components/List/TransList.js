@@ -51,16 +51,21 @@ const TransList = ({ data, toggle, onThumb }) => {
               유저닉네임:{d.user.nickName}
             </div>
             <div>북아이디:{d.book.title}</div>
-            <button onClick={() => handleThumb(d)}>
-              {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumbCount}
-            </button>
+            {toggle && (
+              <button onClick={() => handleThumb(d)}>
+                {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:
+                {d.thumbCount}
+              </button>
+            )}
           </div>
         ))
       ) : (
         <>필사가 없습니다.</>
       )}
 
-      {currentUser.id !== 0 && <button onClick={toggle}>작성하러가기</button>}
+      {currentUser.id !== 0 && toggle && (
+        <button onClick={toggle}>작성하러가기</button>
+      )}
     </div>
   );
 };

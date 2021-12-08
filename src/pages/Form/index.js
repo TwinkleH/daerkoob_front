@@ -36,12 +36,11 @@ const Form = () => {
         })
         .then((response) => {
           // console.log(response);
-          let preData = [];
-          response.data.forEach((item) => {
-            preData.push(item);
-          });
-          setData(preData);
-          // console.log(data);
+          // let preData = [];
+          // response.data.forEach((item) => {
+          //   preData.push(item);
+          // });
+          setData([...response.data]);
         });
     } catch {
       console.log("error");

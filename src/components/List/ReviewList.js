@@ -35,15 +35,20 @@ const ReviewList = ({ data, toggle, onThumb, onComment }) => {
             </div>
             <div>책제목 :{d.book.title}</div>
             <div> 리뷰 쓴 사람이 준 별점:{d.score}</div>
-            <button onClick={() => handleThumb(d)}>
-              {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumbCount}
-            </button>
+            {toggle && (
+              <button onClick={() => handleThumb(d)}>
+                {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:
+                {d.thumbCount}
+              </button>
+            )}
           </div>
         ))
       ) : (
         <>리뷰가 없습니다.</>
       )}
-      {currentUser.id !== 0 && <button onClick={toggle}>작성하러가기</button>}
+      {currentUser.id !== 0 && toggle && (
+        <button onClick={toggle}>작성하러가기</button>
+      )}
     </div>
   );
 };
