@@ -10,7 +10,7 @@ import Footer from "components/Footer";
 import Notice from "../pages/Notice/index";
 import Detail from "../pages/Detail";
 import useCurrentUser from "Hooks/useCurrentUser";
-
+import FriendPage from "pages/Mypage/FriendPage";
 const Router = () => {
   const { currentUser } = useCurrentUser();
   const pushWhenSignedIn = (Component) =>
@@ -32,7 +32,8 @@ const Router = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/mypage" render={() => pushWhenSignedIn(<Mypage />)} />
-        {/* <Route path="/mypage/:id" component={Mypage} /> */}
+        {/* <Route path="/mypage/" component={Mypage} /> */}
+        <Route path="/friendPage/:id" component={FriendPage} />
         <Route path="/auth" component={Auth} />
         <Route path="/form" component={Form} />
         <Route path="/notice" component={Notice} />
