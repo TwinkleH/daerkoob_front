@@ -14,6 +14,7 @@ const Detail = ({ match, location }) => {
   // console.log(query);
   const history = useHistory();
   const { params } = match; //url params
+  console.log(params);
   const { currentUser } = useCurrentUser();
   const [otherTrans, setOtherTrans] = useState([]);
   const [otherReview, setOtherReview] = useState([]);

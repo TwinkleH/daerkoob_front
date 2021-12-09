@@ -1,7 +1,8 @@
 import React from "react";
 import "pages/Notice/index.scss";
 
-const Notice = () => {
+const Notice = (props) => {
+  console.log(props);
   return (
     <div className="notice">
       <h1>notice</h1>

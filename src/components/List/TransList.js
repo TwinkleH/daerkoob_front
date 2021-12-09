@@ -8,7 +8,7 @@ import useCurrentUser from "Hooks/useCurrentUser";
 const TransList = ({ data, toggle, onThumb }) => {
   // FaRegThumbsUp;
   // FaThumbsUp;
-  console.log(data);
+
   const { currentUser, setCurrentUser } = useCurrentUser();
 
   const handleThumb = async (d) => {
@@ -29,11 +29,12 @@ const TransList = ({ data, toggle, onThumb }) => {
     });
 
     alert(response.data.message);
-
+    console.log(response);
     const newObject = {
       ...currentUser,
-      friends: response.data.friendList,
+      friends: response.data.list,
     };
+    console.log(newObject);
     setCurrentUser(newObject);
     // alert(response.data.message);
   };

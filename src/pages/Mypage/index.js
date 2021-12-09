@@ -8,9 +8,11 @@ import ReviewList from "components/List/ReviewList";
 import "slick-carousel/slick/slick-theme.css";
 import api from "api/api";
 const Mypage = () => {
+  console.log();
+  const history = useHistory();
+
   const { currentUser } = useCurrentUser();
 
-  const history = useHistory();
   const [MyTransList, setMyTransList] = useState([]);
   const [MyReviewList, setMyReviewList] = useState([]);
   //이렇게 useEffect쓰는게 아닌가?
@@ -22,17 +24,25 @@ const Mypage = () => {
     const responseTrans = await api.get(`user/transcription/${currentUser.id}`);
     setMyTransList([...responseTrans.data]);
     const responseReview = await api.get(`user/review/${currentUser.id}`);
-    console.log(responseTrans.data);
+
     setMyReviewList([...responseReview.data]);
-    console.log(MyTransList);
-    console.log(MyReviewList);
+  };
+  const gotoFriendPage = (friendId) => {
+    history.push({
+      pathname: `/friendPage`,
+      state: {
+        jiyeong: " ji",
+      },
+    });
   };
   return (
     <div className="mypage">
       <h1>mypage</h1>
       <h1> {currentUser.nickName}의친구목록</h1>
       {currentUser.friends.map((d) => (
-        <div>{d.friendNickName}</div>
+        <div onClick={() => gotoFriendPage(d.friendIndex)}>
+          {d.friendNickName}
+        </div>
       ))}
       {MyTransList.length !== 0 ? (
         <>
