@@ -11,6 +11,7 @@ import Notice from "../pages/Notice/index";
 import Detail from "../pages/Detail";
 import useCurrentUser from "Hooks/useCurrentUser";
 import FriendPage from "pages/Mypage/FriendPage";
+import NotFound from "pages/NotFound";
 const Router = () => {
   const { currentUser } = useCurrentUser();
   const pushWhenSignedIn = (Component) =>
@@ -43,6 +44,7 @@ const Router = () => {
         <Route path="/bookregister/:id" component={BookRegister} />
         id를 파라미터로 받기
          */}
+        <Route path="*" component={NotFound} />
       </Switch>
       <Footer />
     </BrowserRouter>
