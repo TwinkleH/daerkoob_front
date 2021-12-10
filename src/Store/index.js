@@ -9,7 +9,7 @@ export const currentUserState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 //클릭한 책 저장
-export const currentBookState = atom({
-  key: "currentBookState",
+export const currentBooksState = atom({
+  key: "currentBooksState",
   default: "",
 });

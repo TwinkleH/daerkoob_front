@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./index.scss";
 import useCurrentUser from "Hooks/useCurrentUser";
+import api from "api/api";
+import useCurrentBooks from "Hooks/useCurrentBooks";
+import "./index.scss";
+import { BiSearchAlt } from "react-icons/bi";
 const Navbar = () => {
   const history = useHistory();
   // const activeStyle = {
@@ -9,7 +13,9 @@ const Navbar = () => {
   //   color: "white",
   // };
   const { currentUser, setCurrentUser } = useCurrentUser();
+  const { currentBooks, setCurrentBooks } = useCurrentBooks();
 
+  const [title, setTitle] = useState("");
   // const toggleForm = () => {
   //   setCurrentForm((prevForm) =>
   //     prevForm === "필사페이지" ? "리뷰페이지" : "필사페이지"
@@ -21,15 +27,56 @@ const Navbar = () => {
     localStorage.removeItem("currentUserState");
     history.push("/");
   };
+  const handleChange = (e) => {
+    setTitle(e.target.value);
+  };
+  const handleKeyPress = (e) => {
+    //엔터키로 입력하기
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
+  };
+  const handleSubmit = async () => {
+    try {
+      await api
+        .post("book/find", null, {
+          params: {
+            title: title,
+            display: 18,
+          },
+        })
+        .then((response) => {
+          // console.log(response);
+          // let preData = [];
+          // response.data.forEach((item) => {
+          //   preData.push(item);
+          // });
+          setCurrentBooks([...response.data]);
+          history.push("/form");
+        });
+    } catch {
+      console.log("error");
+    }
+  };
+
   return (
     <div className="nav">
       <div className="nav__left">
         <Link to="/">home</Link>
       </div>
       <div className="nav__rightBottom">
-        <div>
-          <Link to="/form">필사/리뷰</Link>
+        <div className="form__input">
+          <BiSearchAlt size="30" />
+          <input
+            placeholder="제목, 작가, 출판사 입력"
+            onChange={handleChange}
+            onKeyPress={handleKeyPress}
+          ></input>
+          <button onClick={handleSubmit}>검색</button>
         </div>
+        {/* <div>
+          <Link to="/form">필사/리뷰</Link>
+        </div> */}
         <div>
           <Link to="/notice">공지사항</Link>
         </div>
