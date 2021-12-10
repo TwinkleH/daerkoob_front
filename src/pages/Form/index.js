@@ -3,7 +3,8 @@ import React, { useState } from "react";
 
 import "./index.scss";
 import api from "api/api";
-import Transcription from "components/Review/Transcription";
+import BookList from "components/List/BookList";
+import useCurrentBooks from "Hooks/useCurrentBooks";
 // import _data from "book.json";
 const Form = () => {
   // const mockData = _data.concat();
@@ -14,7 +15,8 @@ const Form = () => {
   //     prevForm === "필사페이지" ? "리뷰페이지" : "필사페이지"
   //   );
   // };
-  const [data, setData] = useState([]);
+  //const [data, setData] = useState([]);
+  const { currentBooks, setCurrentBooks } = useCurrentBooks();
   const [title, setTitle] = useState("");
   const handleChange = (e) => {
     setTitle(e.target.value);
@@ -40,7 +42,7 @@ const Form = () => {
           // response.data.forEach((item) => {
           //   preData.push(item);
           // });
-          setData([...response.data]);
+          setCurrentBooks([...response.data]);
         });
     } catch {
       console.log("error");
@@ -49,18 +51,20 @@ const Form = () => {
 
   return (
     <div className="form">
-      <div className="form__input">
+      {/* <div className="form__input">
         <input
           placeholder="제목입력"
           onChange={handleChange}
           onKeyPress={handleKeyPress}
         ></input>
         <button onClick={handleSubmit}>검색</button>
-      </div>
-      <div className="form__wrapper">
-        <Transcription data={data} />
-        {/* <Transcription data={mockData} /> */}
-      </div>
+      </div> */}
+      {currentBooks && (
+        <div className="form__wrapper">
+          <BookList data={currentBooks} />
+          {/* <Transcription data={mockData} /> */}
+        </div>
+      )}
     </div>
   );
 };
