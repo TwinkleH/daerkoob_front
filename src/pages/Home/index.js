@@ -15,6 +15,7 @@ const Home = () => {
   const [totalBook, setTotalBook] = useState(0); //등록된 책 수
   const [bestBook, setBestBook] = useState(); //베스트책
   const [newTrans, setNewTrans] = useState();
+  const [newReview, setNewReview] = useState();
   // const img_link =  "https://resource.grapplet.com/marketplace/7176/1591667231081/i.svg.preview.580x870.png";
   const TransCount = async () => {
     const response = await api.get("transcription/count");
@@ -43,12 +44,20 @@ const Home = () => {
     console.log(response.data);
     console.log(newTrans);
   };
+  const NewReview = async () => {
+    const response = await api.get("review/recent");
+    setNewReview(response.data);
+    console.log(typeof response);
+    console.log(response.data);
+    // console.log(newTrans);
+  };
   useEffect(() => {
     TransCount();
     ReviewCount();
     BookCount();
     BookBest();
     NewTrans();
+    NewReview();
     return () => {
       // cleanup;
     };
@@ -63,7 +72,7 @@ const Home = () => {
     slidesToScroll: 1,
   };
 
-  if (!bestBook && !newTrans) return <div>...loading</div>;
+  if (!bestBook || !newTrans) return <div>...loading</div>;
 
   return (
     <div className="wrapper">
@@ -80,11 +89,29 @@ const Home = () => {
           ))}
         </Slider>
       </div>
+
       <div className="wrapper__newList">
-        {newTrans.map((d) => (
-          // <h1> {d.title}</h1>
-          <NewList data={d} />
-        ))}
+        {/* <h1 className="wrapper__newList__line">새로운 필사</h1> */}
+
+        <h1>새로운필사</h1>
+        <h1>새로운리뷰</h1>
+        <div className="wrapper__newList__line">
+          {newTrans.map((d) => (
+            // <h1> {d.title}</h1>
+            <NewList data={d} />
+          ))}
+        </div>
+        {/* <h1 className="wrapper__newList__line">새로운 리뷰</h1> */}
+        {/* <div className="wrapper__newList">
+          <h1>새로운필사</h1>
+        </div> */}
+
+        <div className="wrapper__newList__line">
+          {newReview.map((d) => (
+            // <h1> {d.title}</h1>
+            <NewList data={d} />
+          ))}
+        </div>
       </div>
     </div>
   );
