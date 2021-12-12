@@ -7,12 +7,14 @@ import api from "api/api";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import NewList from "components/List/NewList";
 const Home = () => {
   // const mockData = _data.concat();
   const [totalTrans, setTotalTrans] = useState(0); //전체 필사수
   const [totalReview, setTotalReview] = useState(0); //전체 리뷰수
   const [totalBook, setTotalBook] = useState(0); //등록된 책 수
   const [bestBook, setBestBook] = useState(); //베스트책
+  const [newTrans, setNewTrans] = useState();
   // const img_link =  "https://resource.grapplet.com/marketplace/7176/1591667231081/i.svg.preview.580x870.png";
   const TransCount = async () => {
     const response = await api.get("transcription/count");
@@ -31,12 +33,22 @@ const Home = () => {
     const response = await api.get("book/best");
     setBestBook(response.data);
     console.log(response.data);
+    console.log(typeof response.data);
+    console.log(bestBook);
+  };
+  const NewTrans = async () => {
+    const response = await api.get("transcription/recent");
+    setNewTrans(response.data);
+    console.log(typeof response);
+    console.log(response.data);
+    console.log(newTrans);
   };
   useEffect(() => {
     TransCount();
     ReviewCount();
     BookCount();
     BookBest();
+    NewTrans();
     return () => {
       // cleanup;
     };
@@ -51,7 +63,7 @@ const Home = () => {
     slidesToScroll: 1,
   };
 
-  if (!bestBook) return <div>...loading</div>;
+  if (!bestBook && !newTrans) return <div>...loading</div>;
 
   return (
     <div className="wrapper">
@@ -67,6 +79,12 @@ const Home = () => {
             <BookCard title={d.title} image={d.image} data={d} />
           ))}
         </Slider>
+      </div>
+      <div className="wrapper__newList">
+        {newTrans.map((d) => (
+          // <h1> {d.title}</h1>
+          <NewList data={d} />
+        ))}
       </div>
     </div>
   );
