@@ -72,8 +72,8 @@ const Home = () => {
     slidesToScroll: 1,
   };
 
-  if (!bestBook || !newTrans) return <div>...loading</div>;
-
+  if (!newTrans) return <div>...loading</div>;
+  if (!newReview) return <div>...loading</div>;
   return (
     <div className="wrapper">
       <div className="wrapper__banner">배너</div>
