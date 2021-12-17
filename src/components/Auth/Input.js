@@ -17,7 +17,6 @@ const Input = ({
         id={id}
         value={value}
         onChange={onChange}
-        // placeholder={placeholder}
         type={type}
         onKeyPress={onKeyPress}
       />

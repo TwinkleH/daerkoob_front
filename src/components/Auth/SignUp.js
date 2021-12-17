@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { useHistory } from "react-router";
 import Input from "./Input";
 import api from "api/api";
 export const SignUp = ({ toggleIsSignIn }) => {
@@ -11,7 +10,6 @@ export const SignUp = ({ toggleIsSignIn }) => {
     confirmPassword: "",
     birth: "",
   });
-  // const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     const {

@@ -9,9 +9,6 @@ export const SignIn = ({ toggleIsSignIn, from }) => {
   const { setCurrentUser } = useCurrentUser();
 
   const [message, setMessage] = useState("");
-  //const [message,setMessage] = useState("안녕");
-  //const [j, setJ] = useState("안녕");
-  // const [kind, setKind] = useState("로그인");
   const [info, setInfo] = useState({
     userId: "",
     password: "",
@@ -26,8 +23,6 @@ export const SignIn = ({ toggleIsSignIn, from }) => {
 
   //localstorage에 저장하는거 추가하기
   const handleSubmit = async () => {
-    // console.log(info.userId);
-    // console.log(info.password);
     try {
       await api
         .post("user/login", null, {
