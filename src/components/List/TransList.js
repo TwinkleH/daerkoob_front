@@ -1,14 +1,10 @@
 import React from "react";
-// import { useHistory } from "react-router-dom";
 import "./TransList.scss";
 import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 import api from "api/api";
 import useCurrentUser from "Hooks/useCurrentUser";
 
 const TransList = ({ data, toggle, onThumb }) => {
-  // FaRegThumbsUp;
-  // FaThumbsUp;
-
   const { currentUser, setCurrentUser } = useCurrentUser();
 
   const handleThumb = async (d) => {
@@ -36,7 +32,6 @@ const TransList = ({ data, toggle, onThumb }) => {
     };
     console.log(newObject);
     setCurrentUser(newObject);
-    // alert(response.data.message);
   };
 
   return (

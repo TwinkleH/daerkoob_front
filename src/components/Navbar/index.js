@@ -16,12 +16,6 @@ const Navbar = () => {
   const { currentBooks, setCurrentBooks } = useCurrentBooks();
 
   const [title, setTitle] = useState("");
-  // const toggleForm = () => {
-  //   setCurrentForm((prevForm) =>
-  //     prevForm === "필사페이지" ? "리뷰페이지" : "필사페이지"
-  //   );
-  // };
-  //console.log(currentUser);
   const handleLogout = () => {
     setCurrentUser({ id: 0 });
     localStorage.removeItem("currentUserState");
@@ -46,11 +40,6 @@ const Navbar = () => {
           },
         })
         .then((response) => {
-          // console.log(response);
-          // let preData = [];
-          // response.data.forEach((item) => {
-          //   preData.push(item);
-          // });
           setCurrentBooks([...response.data]);
           history.push("/form");
         });
@@ -74,9 +63,6 @@ const Navbar = () => {
           ></input>
           <button onClick={handleSubmit}>검색</button>
         </div>
-        {/* <div>
-          <Link to="/form">필사/리뷰</Link>
-        </div> */}
         <div>
           <Link to="/notice">공지사항</Link>
         </div>
