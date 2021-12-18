@@ -1,7 +1,6 @@
 import React from "react";
 import useCurrentUser from "Hooks/useCurrentUser";
 import "pages/Mypage/index.scss";
-// import Slider from "react-slick"; //좌우로 이동
 import "slick-carousel/slick/slick-theme.css";
 import InfoCard from "components/Card/InfoCard";
 const Mypage = () => {

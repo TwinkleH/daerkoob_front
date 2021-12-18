@@ -12,13 +12,6 @@ const Auth = ({ location }) => {
     setIsSignIn(!isSignIn);
   };
 
-  // useEffect(() => {
-  //   const { pathname } = location;
-  //   if (pathname === "/signup") setKind("회원가입");
-  //   else if (pathname === "/login") setKind("로그인");
-  //   else history.push("/");
-  // }, [history, location]);
-
   const beforeLocation = () => {
     !location.state
       ? history.push("/")

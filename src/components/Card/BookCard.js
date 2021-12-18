@@ -16,8 +16,6 @@ const BookCard = ({ data }) => {
   const history = useHistory();
   const { currentUser } = useCurrentUser();
   const handleClick = async () => {
-    // await setCurrentBook(data);
-    // console.log(currentBook);
     const response1 = await api.get(`transcription/judge/${isbn}`);
     const response2 = await api.get(`review/judge/${isbn}`);
     response1.data && setIsExist(true);
@@ -25,12 +23,7 @@ const BookCard = ({ data }) => {
     setFlip(!flip);
   };
   return (
-    <div
-      className="bookCard"
-      // // onMouseOver={handleMouseOver}
-      // onMouseOut={handleMouseOut}
-      onClick={handleClick}
-    >
+    <div className="bookCard" onClick={handleClick}>
       {flip ? (
         <>
           {isExist && (
