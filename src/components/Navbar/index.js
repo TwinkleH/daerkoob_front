@@ -5,7 +5,7 @@ import useCurrentUser from "Hooks/useCurrentUser";
 import api from "api/api";
 import useCurrentBooks from "Hooks/useCurrentBooks";
 import "./index.scss";
-import { BiSearchAlt } from "react-icons/bi";
+import { FaSearch } from "react-icons/fa";
 const Navbar = () => {
   const history = useHistory();
   // const activeStyle = {
@@ -55,7 +55,7 @@ const Navbar = () => {
       </div>
       <div className="nav__rightBottom">
         <div className="form__input">
-          <BiSearchAlt size="30" />
+          <FaSearch size="30" />
           <input
             placeholder="제목, 작가, 출판사 입력"
             onChange={handleChange}

@@ -75,14 +75,14 @@ const Home = () => {
   if (!newTrans) return <div>...loading</div>;
   if (!newReview) return <div>...loading</div>;
   return (
-    <div className="wrapper">
-      <div className="wrapper__banner">배너</div>
-      <div className="wrapper__container">
+    <div className="home">
+      <div className="home__banner">배너</div>
+      <div className="home__container">
         <HomeCard name="전체 리뷰수" data={totalReview} />
         <HomeCard name="전체 필사수" data={totalTrans} />
         <HomeCard name="등록된 책 수" data={totalBook} />
       </div>
-      <div className="wrapper__container">
+      <div className="home__container">
         <Slider {...settings}>
           {bestBook.map((d) => (
             <BookCard title={d.title} image={d.image} data={d} />
@@ -90,23 +90,23 @@ const Home = () => {
         </Slider>
       </div>
 
-      <div className="wrapper__newList">
-        {/* <h1 className="wrapper__newList__line">새로운 필사</h1> */}
+      <div className="home__newList">
+        {/* <h1 className="home__newList__line">새로운 필사</h1> */}
 
         <h1>새로운필사</h1>
         <h1>새로운리뷰</h1>
-        <div className="wrapper__newList__line">
+        <div className="home__newList__line">
           {newTrans.map((d) => (
             // <h1> {d.title}</h1>
             <NewList data={d} />
           ))}
         </div>
-        {/* <h1 className="wrapper__newList__line">새로운 리뷰</h1> */}
-        {/* <div className="wrapper__newList">
+        {/* <h1 className="home__newList__line">새로운 리뷰</h1> */}
+        {/* <div className="home__newList">
           <h1>새로운필사</h1>
         </div> */}
 
-        <div className="wrapper__newList__line">
+        <div className="home__newList__line">
           {newReview.map((d) => (
             // <h1> {d.title}</h1>
             <NewList data={d} />
