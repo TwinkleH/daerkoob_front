@@ -61,7 +61,9 @@ const Navbar = () => {
             onChange={handleChange}
             onKeyPress={handleKeyPress}
           ></input>
-          <button onClick={handleSubmit}>검색</button>
+          <button className="button__nav" onClick={handleSubmit}>
+            검색
+          </button>
         </div>
         <div>
           <Link to="/notice">공지사항</Link>
@@ -73,13 +75,16 @@ const Navbar = () => {
       {currentUser.id !== 0 ? (
         <div className="nav__rightTop">
           <div>
-            <button onClick={handleLogout}> 로그아웃</button>
+            <button className="button__nav" onClick={handleLogout}>
+              {" "}
+              로그아웃
+            </button>
           </div>
           <div>{currentUser.nickName}</div>
         </div>
       ) : (
         <div className="nav__rightTop">
-          <button>
+          <button className="button__nav">
             <Link to="/auth"> 로그인</Link>
           </button>
         </div>
