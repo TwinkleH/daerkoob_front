@@ -5,7 +5,7 @@ import useCurrentUser from "Hooks/useCurrentUser";
 import api from "api/api";
 import useCurrentBooks from "Hooks/useCurrentBooks";
 import "./index.scss";
-import { BiSearchAlt } from "react-icons/bi";
+import { FaSearch } from "react-icons/fa";
 const Navbar = () => {
   const history = useHistory();
   // const activeStyle = {
@@ -16,12 +16,6 @@ const Navbar = () => {
   const { currentBooks, setCurrentBooks } = useCurrentBooks();
 
   const [title, setTitle] = useState("");
-  // const toggleForm = () => {
-  //   setCurrentForm((prevForm) =>
-  //     prevForm === "필사페이지" ? "리뷰페이지" : "필사페이지"
-  //   );
-  // };
-  //console.log(currentUser);
   const handleLogout = () => {
     setCurrentUser({ id: 0 });
     localStorage.removeItem("currentUserState");
@@ -46,11 +40,6 @@ const Navbar = () => {
           },
         })
         .then((response) => {
-          // console.log(response);
-          // let preData = [];
-          // response.data.forEach((item) => {
-          //   preData.push(item);
-          // });
           setCurrentBooks([...response.data]);
           history.push("/form");
         });
@@ -66,17 +55,16 @@ const Navbar = () => {
       </div>
       <div className="nav__rightBottom">
         <div className="form__input">
-          <BiSearchAlt size="30" />
+          <FaSearch size="30" />
           <input
             placeholder="제목, 작가, 출판사 입력"
             onChange={handleChange}
             onKeyPress={handleKeyPress}
           ></input>
-          <button onClick={handleSubmit}>검색</button>
+          <button className="button__nav" onClick={handleSubmit}>
+            검색
+          </button>
         </div>
-        {/* <div>
-          <Link to="/form">필사/리뷰</Link>
-        </div> */}
         <div>
           <Link to="/notice">공지사항</Link>
         </div>
@@ -87,13 +75,16 @@ const Navbar = () => {
       {currentUser.id !== 0 ? (
         <div className="nav__rightTop">
           <div>
-            <button onClick={handleLogout}> 로그아웃</button>
+            <button className="button__nav" onClick={handleLogout}>
+              {" "}
+              로그아웃
+            </button>
           </div>
           <div>{currentUser.nickName}</div>
         </div>
       ) : (
         <div className="nav__rightTop">
-          <button>
+          <button className="button__nav">
             <Link to="/auth"> 로그인</Link>
           </button>
         </div>

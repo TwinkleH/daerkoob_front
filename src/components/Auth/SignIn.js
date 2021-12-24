@@ -9,9 +9,6 @@ export const SignIn = ({ toggleIsSignIn, from }) => {
   const { setCurrentUser } = useCurrentUser();
 
   const [message, setMessage] = useState("");
-  //const [message,setMessage] = useState("안녕");
-  //const [j, setJ] = useState("안녕");
-  // const [kind, setKind] = useState("로그인");
   const [info, setInfo] = useState({
     userId: "",
     password: "",
@@ -26,8 +23,6 @@ export const SignIn = ({ toggleIsSignIn, from }) => {
 
   //localstorage에 저장하는거 추가하기
   const handleSubmit = async () => {
-    // console.log(info.userId);
-    // console.log(info.password);
     try {
       await api
         .post("user/login", null, {
@@ -75,7 +70,9 @@ export const SignIn = ({ toggleIsSignIn, from }) => {
         type="password"
         onKeyPress={handleKeyPress}
       />
-      <button onClick={handleSubmit}>로그인하기</button>
+      <button className="button__sign" onClick={handleSubmit}>
+        로그인하기
+      </button>
       <span className="auth__noti">
         회원가입하시겠습니까?
         <strong onClick={toggleIsSignIn}>회원가입</strong>

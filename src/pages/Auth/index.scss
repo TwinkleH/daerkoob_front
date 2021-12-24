@@ -1,16 +1,14 @@
 @import "Styles/variable.scss";
 
 .sign {
-  //padding-top: -10vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  min-height: 90vh;
 }
 .auth {
   padding-top: 40%;
   width: 500px;
-  //background-color: rgba(26, 26, 28, 0.8);
   border: solid 0.5px black;
   padding: 60px 48px;
   box-shadow: 10px 5px 5px gray;
@@ -119,3 +117,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 //출처: https://baegofda.tistory.com/106 [오물오물 개발일기]
+// button {
+//   background-color: black;
+// }

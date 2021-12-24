@@ -7,11 +7,27 @@
   font-family: "Noto Sans KR", sans-serif;
 }
 
-input,
-button {
+input {
   all: unset;
 }
 button {
-  background-color: $mainColor;
+  all: unset;
+}
+.button {
+  all: unset;
+  &__nav {
+    background-color: $mainColor;
+    min-width: 30px;
+    border-radius: 20%;
+  }
+  &__sign {
+    background-color: $subColor;
+  }
+  // background-color: $mainColor;
+
   //더 꾸밀 예정
+}
+a {
+  text-decoration: none;
+  color: black;
 }

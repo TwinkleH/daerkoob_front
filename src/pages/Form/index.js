@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-// import { useHistory, useLocation } from "react-router-dom";
+import React from "react";
 
 import "./index.scss";
-import api from "api/api";
 import BookList from "components/List/BookList";
 import useCurrentBooks from "Hooks/useCurrentBooks";
 // import _data from "book.json";
@@ -16,53 +14,13 @@ const Form = () => {
   //   );
   // };
   //const [data, setData] = useState([]);
-  const { currentBooks, setCurrentBooks } = useCurrentBooks();
-  const [title, setTitle] = useState("");
-  const handleChange = (e) => {
-    setTitle(e.target.value);
-  };
-  const handleKeyPress = (e) => {
-    //엔터키로 입력하기
-    if (e.key === "Enter") {
-      handleSubmit();
-    }
-  };
-  const handleSubmit = async () => {
-    try {
-      await api
-        .post("book/find", null, {
-          params: {
-            title: title,
-            display: 18,
-          },
-        })
-        .then((response) => {
-          // console.log(response);
-          // let preData = [];
-          // response.data.forEach((item) => {
-          //   preData.push(item);
-          // });
-          setCurrentBooks([...response.data]);
-        });
-    } catch {
-      console.log("error");
-    }
-  };
+  const { currentBooks } = useCurrentBooks();
 
   return (
     <div className="form">
-      {/* <div className="form__input">
-        <input
-          placeholder="제목입력"
-          onChange={handleChange}
-          onKeyPress={handleKeyPress}
-        ></input>
-        <button onClick={handleSubmit}>검색</button>
-      </div> */}
       {currentBooks && (
         <div className="form__wrapper">
           <BookList data={currentBooks} />
-          {/* <Transcription data={mockData} /> */}
         </div>
       )}
     </div>
