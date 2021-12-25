@@ -46,7 +46,7 @@ const Grass = ({ userId, year }) => {
       {list.map((d) => (
         <Hover
           onHover={
-            d.date !== null && (
+            d.commit > 0 && (
               <div
                 className="grass__wrapper__block"
                 style={{
@@ -68,7 +68,11 @@ const Grass = ({ userId, year }) => {
             <div
               className="grass__wrapper__block"
               style={
-                d.commit < 10
+                d.commit === 0
+                  ? {
+                      backgroundColor: `#eee`,
+                    }
+                  : d.commit < 10
                   ? {
                       backgroundColor: `rgb(87,${255 - d.commit * 20},${
                         d.commit * 10
