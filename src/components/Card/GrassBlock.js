@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const GrassBlock = ({ d }) => {
-  const [hover, setHover] = useState(false);
+  // const [hover, setHover] = useState(false);
   console.log(d);
   const Hover = ({ onHover, children }) => (
     <div className="hover">
@@ -10,30 +10,49 @@ const GrassBlock = ({ d }) => {
     </div>
   );
   return (
-    <div>
-      {d.commit && (
-        <Hover onHover={<div> {d.date} </div>}>
+    <Hover
+      onHover={
+        d.commit > 0 && (
           <div
             className="grass__wrapper__block"
-            style={
-              d.commit < 10
-                ? {
-                    backgroundColor: `rgb(87,${255 - d.commit * 20},${
-                      d.commit * 10
-                    })`,
-                    width: "15px",
-                    height: "15px",
-                  }
-                : {
-                    backgroundColor: `rgb(87,${255 - 100},${100})`,
-                    width: "15px",
-                    height: "15px",
-                  }
-            }
-          />
-        </Hover>
+            style={{
+              width: "100px",
+              height: "50px",
+            }}
+          >
+            {d.date && (
+              <div>
+                {d.date.slice(0, 10)}
+                <p>{d.commit}개</p>
+              </div>
+            )}
+          </div>
+        )
+      }
+    >
+      {d.commit !== null && (
+        <div
+          className="grass__wrapper__block"
+          style={
+            d.commit === 0
+              ? {
+                  backgroundColor: `#eee`,
+                }
+              : d.commit < 10
+              ? {
+                  backgroundColor: `rgb(87,${255 - d.commit * 20},${
+                    d.commit * 10
+                  })`,
+                }
+              : {
+                  backgroundColor: `rgb(87,${255 - 100},${100})`,
+                  // width: "15px",
+                  // height: "15px",
+                }
+          }
+        ></div>
       )}
-    </div>
+    </Hover>
   );
 };
 
