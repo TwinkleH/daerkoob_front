@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "components/Card/BookCard.scss";
 import useCurrentUser from "Hooks/useCurrentUser";
+import { AiFillCheckCircle } from "react-icons/ai";
 //import BookDetail from "components/Card/BookDetail";
 //import useContents from "Hooks/useContents";
 // import { currentContent } from 'Store';
@@ -16,12 +17,18 @@ const BookCard = ({ data }) => {
   const history = useHistory();
   const { currentUser } = useCurrentUser();
   const handleClick = async () => {
-    const response1 = await api.get(`transcription/judge/${isbn}`);
-    const response2 = await api.get(`review/judge/${isbn}`);
-    response1.data && setIsExist(true);
-    response2.data && setIsExist(true);
     setFlip(!flip);
   };
+  useEffect(() => {
+    const init = async () => {
+      const response1 = await api.get(`transcription/judge/${isbn}`);
+      const response2 = await api.get(`review/judge/${isbn}`);
+      response1.data && setIsExist(true);
+      response2.data && setIsExist(true);
+    };
+    init();
+    return () => {};
+  }, []);
   return (
     <div className="bookCard" onClick={handleClick}>
       {flip ? (
@@ -99,6 +106,7 @@ const BookCard = ({ data }) => {
             className="bookCard__img"
           />
           {title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")}
+          {isExist ? <AiFillCheckCircle /> : ""}
         </>
       )}
     </div>
