@@ -8,6 +8,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import NewList from "components/List/NewList";
+import Loading from "Contents/Loading";
 const Home = () => {
   // const mockData = _data.concat();
   const [totalTrans, setTotalTrans] = useState(0); //전체 필사수
@@ -72,8 +73,8 @@ const Home = () => {
     slidesToScroll: 1,
   };
 
-  if (!newTrans) return <div>...loading</div>;
-  if (!newReview) return <div>...loading</div>;
+  if (!newTrans) return <Loading />;
+  if (!newReview) return <Loading />;
   return (
     <div className="home">
       <div className="home__banner">배너</div>
