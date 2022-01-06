@@ -9,7 +9,9 @@ const FriendPage = ({ match }) => {
   return (
     <div>
       <InfoCard id={id} />
-      <Grass userId={id} year={year} />
+      <div className="grass">
+        <Grass userId={id} year={year} />
+      </div>
     </div>
   );
 };
