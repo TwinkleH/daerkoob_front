@@ -12,7 +12,9 @@ const Mypage = () => {
   return (
     <div className="mypage">
       <InfoCard person="myself" id={currentUser.id} />
-      <Grass userId={currentUser.id} year={year} />
+      <div className="mypage__grass">
+        <Grass userId={currentUser.id} year={year} />
+      </div>
     </div>
   );
 };
