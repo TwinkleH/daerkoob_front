@@ -4,7 +4,7 @@ import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 import api from "api/api";
 import useCurrentUser from "Hooks/useCurrentUser";
 
-const TransList = ({ data, toggle, onThumb }) => {
+const TransList = ({ data, toggle, onThumb, title }) => {
   const { currentUser, setCurrentUser } = useCurrentUser();
 
   const handleThumb = async (d) => {
@@ -33,20 +33,22 @@ const TransList = ({ data, toggle, onThumb }) => {
     console.log(newObject);
     setCurrentUser(newObject);
   };
+  // const bookTitle =
 
   return (
     <div className="transList">
+      <div className="transList__title">{title}</div>
       {data ? (
         data.map((d) => (
-          //   <TransCard data={d} onThumb={handleThumb} thumbJudge={d.thumbJudge} />
-          // ))}
-
-          <div className="transList__line">
-            <div>필사:{d.content}</div>
-            <div onClick={() => followFriend(d.user)}>
-              유저닉네임:{d.user.nickName}
+          <div className="transList__box">
+            <div
+              onClick={() => followFriend(d.user)}
+              className="transList__box__nickName"
+            >
+              {d.user.nickName}
             </div>
-            <div>북아이디:{d.book.title}</div>
+            <hr />
+            <div>{d.content}</div>
             {toggle && (
               <button onClick={() => handleThumb(d)}>
                 {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:

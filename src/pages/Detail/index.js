@@ -6,6 +6,7 @@ import TransList from "components/List/TransList";
 // import qs from "qs";
 import TransRegister from "../../components/Card/TransRegister";
 import ReviewList from "components/List/ReviewList";
+import "./index.scss";
 const Detail = ({ match, location }) => {
   // const query = qs.parse(location.search, {
   //   iignoreQueryPrefix: true, //이 설정을 통해 문자열 맨 앞의 ?를 생략
@@ -69,7 +70,7 @@ const Detail = ({ match, location }) => {
   };
 
   return (
-    <div>
+    <div className="detail">
       {isRegister ? (
         <>
           {isTranscription ? ( //필사작성
@@ -86,6 +87,7 @@ const Detail = ({ match, location }) => {
               data={otherTrans}
               toggle={handleToggle}
               onThumb={handleThumb}
+              title={location.state.title}
             />
           ) : (
             //리뷰보기
