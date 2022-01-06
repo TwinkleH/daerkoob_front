@@ -39,7 +39,11 @@ const BookCard = ({ data }) => {
                 onClick={() => {
                   history.push({
                     pathname: `/detail/${isbn}`,
-                    state: { isRegister: false, isTranscription: true },
+                    state: {
+                      isRegister: false,
+                      isTranscription: true,
+                      title: `${title}`,
+                    },
                   });
                 }}
               >
@@ -49,7 +53,11 @@ const BookCard = ({ data }) => {
                 onClick={() => {
                   history.push({
                     pathname: `/detail/${isbn}`,
-                    state: { isRegister: false, isTranscription: false },
+                    state: {
+                      isRegister: false,
+                      isTranscription: false,
+                      title: `${title}`,
+                    },
                   });
                 }}
               >
@@ -63,7 +71,11 @@ const BookCard = ({ data }) => {
               currentUser.id !== 0
                 ? history.push({
                     pathname: `/detail/${isbn}`,
-                    state: { isRegister: true, isTranscription: true },
+                    state: {
+                      isRegister: true,
+                      isTranscription: true,
+                      title: `${title}`,
+                    },
                   })
                 : history.push({
                     pathname: `/auth`,
@@ -71,6 +83,7 @@ const BookCard = ({ data }) => {
                       from: `/detail/${isbn}`,
                       isRegister: true,
                       isTranscription: true,
+                      title: `${title}`,
                     },
                   });
             }}
