@@ -1,3 +1,4 @@
+@import "Styles/variable.scss";
 .nav {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -35,5 +36,5 @@
   // }
 }
 button {
-  background-color: red;
+  background-color: $darkMainColor;
 }
