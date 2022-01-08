@@ -71,33 +71,28 @@ const Detail = ({ match, location }) => {
 
   return (
     <div className="detail">
-      {isRegister ? (
-        <>
-          {isTranscription ? ( //필사작성
-            <TransRegister toggle={handleToggle} isbn={params.isbn} />
-          ) : (
-            //리뷰작성
-            <BookRegister toggle={handleToggle} isbn={params.isbn} />
-          )}
-        </>
+      <div className="detail__title">{location.state.title}</div>
+
+      {isTranscription ? ( //필사작성
+        <div className="detail__trans">
+          <TransList
+            data={otherTrans}
+            toggle={handleToggle}
+            onThumb={handleThumb}
+            title={location.state.title}
+          />
+          <TransRegister toggle={handleToggle} isbn={params.isbn} />
+        </div>
       ) : (
+        //리뷰작성
         <>
-          {isTranscription ? ( //필사보기
-            <TransList
-              data={otherTrans}
-              toggle={handleToggle}
-              onThumb={handleThumb}
-              title={location.state.title}
-            />
-          ) : (
-            //리뷰보기
-            <ReviewList
-              data={otherReview}
-              toggle={handleToggle}
-              onThumb={handleThumb}
-              onComment={handleComment}
-            />
-          )}
+          <BookRegister toggle={handleToggle} isbn={params.isbn} />
+          <ReviewList
+            data={otherReview}
+            toggle={handleToggle}
+            onThumb={handleThumb}
+            onComment={handleComment}
+          />
         </>
       )}
     </div>
