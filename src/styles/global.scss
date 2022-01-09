@@ -16,12 +16,12 @@ button {
 .button {
   all: unset;
   &__nav {
-    background-color: $mainColor;
+    background-color: $lightColor;
     min-width: 30px;
     border-radius: 20%;
   }
   &__sign {
-    background-color: $subColor;
+    background-color: $backGroundColor;
   }
   // background-color: $mainColor;
 

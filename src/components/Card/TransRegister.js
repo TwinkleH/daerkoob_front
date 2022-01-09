@@ -39,22 +39,26 @@ const TransRegister = ({ toggle, isbn }) => {
   }, []);
 
   return (
-    <div>
-      <div>책제목:{currentBook.title}</div>
-      <textarea
-        className="bookDatail__input"
-        cols="40"
-        rows="2"
-        onChange={handleChange}
-      ></textarea>
-      <div>
-        <button onClick={handleSubmit}>저장</button>
-      </div>
-      <div>
-        {/* {currentContent} */}
-        <button onClick={toggle}>다른사람 쓴 글 보러가기</button>
-      </div>
-    </div>
+    <>
+      {currentUser.id !== 0 && (
+        <div className="detail__trans__register">
+          {/* <div>책제목:{currentBook.title}</div> */}
+          <textarea
+            className="bookDatail__input"
+            cols="40"
+            rows="2"
+            onChange={handleChange}
+          ></textarea>
+          <div>
+            <button onClick={handleSubmit}>저장</button>
+          </div>
+          <div>
+            {/* {currentContent} */}
+            {/* <button onClick={toggle}>다른사람 쓴 글 보러가기</button> */}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

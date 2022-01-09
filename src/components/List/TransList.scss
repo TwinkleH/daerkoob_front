@@ -1,3 +1,4 @@
+@import "Styles/variable.scss";
 .transList {
   display: flex;
   flex-direction: column;
@@ -9,6 +10,7 @@
   }
   &__box {
     width: 500px;
+    background-color: $backGroundColor;
     border: solid 0.5px black;
     margin: 10px;
     display: flex;

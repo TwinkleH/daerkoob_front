@@ -37,7 +37,7 @@ const TransList = ({ data, toggle, onThumb, title }) => {
 
   return (
     <div className="transList">
-      <div className="transList__title">{title}</div>
+      {/* <div className="transList__title">{title}</div> */}
       {data ? (
         data.map((d) => (
           <div className="transList__box">
@@ -61,9 +61,9 @@ const TransList = ({ data, toggle, onThumb, title }) => {
         <>필사가 없습니다.</>
       )}
 
-      {currentUser.id !== 0 && toggle && (
+      {/* {currentUser.id !== 0 && toggle && (
         <button onClick={toggle}>작성하러가기</button>
-      )}
+      )} */}
     </div>
   );
 };

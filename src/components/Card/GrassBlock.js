@@ -37,7 +37,7 @@ const GrassBlock = ({ d }) => {
             style={
               d.commit === 0
                 ? {
-                    backgroundColor: `#eee`,
+                    backgroundColor: `#e1e2e1`,
                   }
                 : d.commit < 10
                 ? {

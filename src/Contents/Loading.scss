@@ -1,3 +1,4 @@
+@import "Styles/variable.scss";
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +13,7 @@ body {
   justify-items: center;
   align-items: center;
   min-height: 90vh;
-  // background-color: #102626;
+  background-color: $mainColor;
 
   &__container {
     position: relative;
@@ -69,12 +70,13 @@ body {
       transform: translateX(-50%);
       width: 20px;
       height: 20px;
-      background: #00fff9;
+      background: $lightColor;
       border-radius: 50%;
       z-index: 10;
-      box-shadow: 0 0 10px #00fff9, 0 0 20px #00fff9, 0 0 30px #00fff9,
-        0 0 40px #00fff9, 0 0 50px #00fff9, 0 0 60px #00fff9, 0 0 70px #00fff9,
-        0 0 80px #00fff9, 0 0 90px #00fff9, 0 0 100px #00fff9;
+      box-shadow: 0 0 10px $lightColor, 0 0 20px $lightColor,
+        0 0 30px $lightColor, 0 0 40px $lightColor, 0 0 50px $lightColor,
+        0 0 60px $lightColor, 0 0 70px $lightColor, 0 0 80px $lightColor,
+        0 0 90px $lightColor, 0 0 100px $lightColor;
     }
   }
 }
