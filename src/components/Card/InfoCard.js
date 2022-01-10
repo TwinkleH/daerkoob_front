@@ -46,7 +46,7 @@ const InfoCard = ({ person, id }) => {
       {MyTransList.length !== 0 ? (
         <>
           <div>필사목록</div>
-          <TransList data={MyTransList} />
+          <TransList data={MyTransList} from="mypage" />
         </>
       ) : (
         <div>필사가 없습니다</div>
