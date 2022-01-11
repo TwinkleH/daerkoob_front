@@ -4,7 +4,7 @@ import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 import api from "api/api";
 import useCurrentUser from "Hooks/useCurrentUser";
 
-const TransList = ({ data, toggle, onThumb, title }) => {
+const TransList = ({ data, toggle, onThumb, title, from }) => {
   const { currentUser, setCurrentUser } = useCurrentUser();
 
   const handleThumb = async (d) => {
@@ -41,12 +41,17 @@ const TransList = ({ data, toggle, onThumb, title }) => {
       {data ? (
         data.map((d) => (
           <div className="transList__box">
-            <div
-              onClick={() => followFriend(d.user)}
-              className="transList__box__nickName"
-            >
-              {d.user.nickName}
-            </div>
+            {from ? (
+              <div className="transList__box__title">{d.book.title}</div>
+            ) : (
+              <div
+                onClick={() => followFriend(d.user)}
+                className="transList__box__title"
+              >
+                {d.user.nickName}
+              </div>
+            )}
+
             <hr />
             <div>{d.content}</div>
             {toggle && (

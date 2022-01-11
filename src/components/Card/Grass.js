@@ -33,15 +33,35 @@ const Grass = ({ userId, year }) => {
   //   // console.log("a");
   //   list.push({ commit: null, date: null });
   // }
-
+  const month = [
+    "1월",
+    "2월",
+    "3월",
+    "4월",
+    "5월",
+    "6월",
+    "7월",
+    "8월",
+    "9월",
+    "10월",
+    "11월",
+    "12월",
+  ];
   return (
     <div className="grass__wrapper">
-      {day.map((d) => (
-        <span>{d}</span>
-      ))}
-      {list.map((d) => (
-        <GrassBlock d={d} />
-      ))}
+      <div className="grass__wrapper__column">
+        {month.map((d) => (
+          <span>{d}</span>
+        ))}
+      </div>
+      <div className="grass__wrapper__row">
+        {day.map((d) => (
+          <span>{d}</span>
+        ))}
+        {list.map((d) => (
+          <GrassBlock d={d} />
+        ))}
+      </div>
     </div>
   );
 };

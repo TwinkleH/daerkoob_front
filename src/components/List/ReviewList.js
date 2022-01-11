@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import useCurrentUser from "Hooks/useCurrentUser";
 import api from "api/api";
 import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 import "components/List/ReviewList.scss";
+import ReviewModal from "Utils/Modal/ReviewModal";
+import ReviewCard from "components/Card/ReviewCard";
 const ReviewList = ({ data, toggle, onThumb, onComment }) => {
   const { currentUser } = useCurrentUser();
   const followFriend = async (d) => {
@@ -23,25 +25,20 @@ const ReviewList = ({ data, toggle, onThumb, onComment }) => {
     });
     onThumb();
   };
+
   return (
     <div className="review">
       {data ? (
         data.map((d) => (
-          // <TransCard data={d} onThumb={handleThumb} thumbJudge={d.thumbJudge} />
-          <div className="review__box">
-            <div>필사:{d.content}</div>
-            <div onClick={() => followFriend(d.user)}>
-              유저닉네임:{d.user.nickName}
-            </div>
-            <div>책제목 :{d.book.title}</div>
-            <div> 리뷰 쓴 사람이 준 별점:{d.score}</div>
+          <>
+            <ReviewCard data={d} />
             {toggle && (
               <button onClick={() => handleThumb(d)}>
                 {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:
                 {d.thumbCount}
               </button>
             )}
-          </div>
+          </>
         ))
       ) : (
         <>리뷰가 없습니다.</>

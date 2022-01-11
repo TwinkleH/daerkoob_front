@@ -86,13 +86,16 @@ const Detail = ({ match, location }) => {
       ) : (
         //리뷰작성
         <>
-          <BookRegister toggle={handleToggle} isbn={params.isbn} />
-          <ReviewList
-            data={otherReview}
-            toggle={handleToggle}
-            onThumb={handleThumb}
-            onComment={handleComment}
-          />
+          {isRegister ? (
+            <BookRegister toggle={handleToggle} isbn={params.isbn} />
+          ) : (
+            <ReviewList
+              data={otherReview}
+              toggle={handleToggle}
+              onThumb={handleThumb}
+              onComment={handleComment}
+            />
+          )}
         </>
       )}
     </div>
