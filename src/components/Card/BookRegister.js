@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import api from "api/api";
 import { useHistory } from "react-router-dom";
 import { BsStarFill } from "react-icons/bs";
-const BookRegister = ({ toggle, isbn }) => {
+const BookRegister = ({ toggle, isbn, onClick }) => {
   const [reviewContent, setReviewContent] = useState("");
   const { currentUser } = useCurrentUser();
 
@@ -56,6 +56,7 @@ const BookRegister = ({ toggle, isbn }) => {
   };
   return (
     <div className="bookDetail">
+      <div onClick={onClick}> x</div>
       <div className="bookDetail__wrapper">
         <img src={currentBook.image} alt="" />
         <div>

@@ -40,33 +40,33 @@ const BookCard = ({ data }) => {
                   history.push({
                     pathname: `/detail/${isbn}`,
                     state: {
-                      isRegister: false,
+                      // isRegister: false,
                       isTranscription: true,
                       title: `${title}`,
                     },
                   });
                 }}
               >
-                다른사람 필사 보기
+                필사
               </div>
               <div
                 onClick={() => {
                   history.push({
                     pathname: `/detail/${isbn}`,
                     state: {
-                      isRegister: false,
+                      // isRegister: false,
                       isTranscription: false,
                       title: `${title}`,
                     },
                   });
                 }}
               >
-                다른사람 리뷰 보기
+                리뷰
               </div>
             </>
           )}
 
-          <div
+          {/* <div
             onClick={() => {
               currentUser.id !== 0
                 ? history.push({
@@ -108,7 +108,7 @@ const BookCard = ({ data }) => {
             }}
           >
             리뷰 쓰러가기
-          </div>
+          </div> */}
           {title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")}
         </>
       ) : (

@@ -4,7 +4,7 @@ import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 import api from "api/api";
 import useCurrentUser from "Hooks/useCurrentUser";
 
-const TransList = ({ data, toggle, onThumb, title, from }) => {
+const TransList = ({ data, onThumb, title, from }) => {
   const { currentUser, setCurrentUser } = useCurrentUser();
 
   const handleThumb = async (d) => {
@@ -54,12 +54,10 @@ const TransList = ({ data, toggle, onThumb, title, from }) => {
 
             <hr />
             <div>{d.content}</div>
-            {toggle && (
-              <button onClick={() => handleThumb(d)}>
-                {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:
-                {d.thumbCount}
-              </button>
-            )}
+
+            <button onClick={() => handleThumb(d)}>
+              {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumbCount}
+            </button>
           </div>
         ))
       ) : (

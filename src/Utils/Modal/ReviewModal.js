@@ -33,7 +33,7 @@ const ReviewModal = ({ data, isOpen, close }) => {
     console.log(allComment);
     getReview();
   }, [comment]);
-
+  console.log(allComment);
   return (
     <div className="modal">
       <button onClick={close} className="closeBtn">
