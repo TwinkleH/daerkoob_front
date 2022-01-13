@@ -5,7 +5,7 @@ import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 import "components/List/ReviewList.scss";
 import ReviewModal from "Utils/Modal/ReviewModal";
 import ReviewCard from "components/Card/ReviewCard";
-const ReviewList = ({ data, toggle, onThumb, onComment }) => {
+const ReviewList = ({ data, onThumb, onComment }) => {
   const { currentUser } = useCurrentUser();
   const followFriend = async (d) => {
     const response = await api.post("friend/add", null, {
@@ -30,22 +30,19 @@ const ReviewList = ({ data, toggle, onThumb, onComment }) => {
     <div className="review">
       {data ? (
         data.map((d) => (
-          <>
+          <div className="review__box">
             <ReviewCard data={d} />
-            {toggle && (
-              <button onClick={() => handleThumb(d)}>
-                {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:
-                {d.thumbCount}
-              </button>
-            )}
-          </>
+            <button onClick={() => handleThumb(d)}>
+              {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumbCount}
+            </button>
+          </div>
         ))
       ) : (
         <>리뷰가 없습니다.</>
       )}
-      {currentUser.id !== 0 && toggle && (
+      {/* {currentUser.id !== 0 && toggle && (
         <button onClick={toggle}>작성하러가기</button>
-      )}
+      )} */}
     </div>
   );
 };

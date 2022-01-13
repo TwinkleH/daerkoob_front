@@ -5,8 +5,18 @@
   flex-direction: column;
   // justify-content: center;
   align-items: center;
+  > button {
+    font-size: 1rem;
+    color: red;
+    background-color: $mainColor;
+  }
   &__title {
-    font-size: 2rem;
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+    > div {
+      font-size: 2rem;
+    }
   }
   &__trans {
     display: flex;

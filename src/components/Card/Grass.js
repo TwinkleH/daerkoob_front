@@ -56,7 +56,7 @@ const Grass = ({ userId, year }) => {
       </div>
       <div className="grass__wrapper__row">
         {day.map((d) => (
-          <span>{d}</span>
+          <span className="day">{d}</span>
         ))}
         {list.map((d) => (
           <GrassBlock d={d} />

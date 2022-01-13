@@ -18,12 +18,13 @@ const Detail = ({ match, location }) => {
   const [otherTrans, setOtherTrans] = useState([]);
   const [otherReview, setOtherReview] = useState([]);
   // const { currentBook } = useCurrentBook();
-  const [isRegister, setIsRegister] = useState(location.state.isRegister); //작성페이지인지 아닌지
+  // const [isRegister, setIsRegister] = useState(location.state.isRegister); //작성페이지인지 아닌지
   const isTranscription = location.state.isTranscription;
-  const handleToggle = () => {
-    //작성페이지 vs 필사리스트
-    setIsRegister(!isRegister);
-  };
+  // const handleToggle = () => {
+  //   //작성페이지 vs 필사리스트
+  //   setIsRegister(!isRegister);
+  // };
+  const [openRegister, setOpenRegister] = useState(false);
   const handleThumb = () => {
     //좋아요누르면
     handleTransExist();
@@ -58,11 +59,11 @@ const Detail = ({ match, location }) => {
   useEffect(() => {
     console.log("디테일페이지 새로 옴");
     //isTransition일때 로그인 안되어있으면 로그인하러가기...
-    if (!isRegister) {
-      //다른사람 코멘트 보러가는거면 현재 있는지 아닌지 확인한다.
-      handleTransExist();
-      handleReviewExist();
-    }
+
+    //다른사람 코멘트 보러가는거면 현재 있는지 아닌지 확인한다.
+    handleTransExist();
+    handleReviewExist();
+
     return () => {};
   }, []);
   const handleComment = () => {
@@ -71,27 +72,35 @@ const Detail = ({ match, location }) => {
 
   return (
     <div className="detail">
-      <div className="detail__title">{location.state.title}</div>
+      <div className="detail__title">
+        <div>{location.state.title}</div>
+      </div>
 
       {isTranscription ? ( //필사작성
         <div className="detail__trans">
           <TransList
             data={otherTrans}
-            toggle={handleToggle}
             onThumb={handleThumb}
             title={location.state.title}
           />
-          <TransRegister toggle={handleToggle} isbn={params.isbn} />
+          <TransRegister isbn={params.isbn} />
         </div>
       ) : (
         //리뷰작성
         <>
-          {isRegister ? (
-            <BookRegister toggle={handleToggle} isbn={params.isbn} />
+          <button onClick={() => setOpenRegister(!openRegister)}>
+            {openRegister ? <>리뷰보러가기</> : <>리뷰작성하러가기</>}
+          </button>
+          {openRegister ? (
+            <BookRegister
+              isbn={params.isbn}
+              onClick={() => {
+                setOpenRegister(false);
+              }}
+            />
           ) : (
             <ReviewList
               data={otherReview}
-              toggle={handleToggle}
               onThumb={handleThumb}
               onComment={handleComment}
             />
