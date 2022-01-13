@@ -11,6 +11,8 @@
 // }
 @import "Styles/variable.scss";
 .modal {
+  width: 100vw;
+  height: 90vh;
   background-color: $mainColor;
 }
 .re-comment {

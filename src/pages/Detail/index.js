@@ -72,7 +72,9 @@ const Detail = ({ match, location }) => {
 
   return (
     <div className="detail">
-      <div className="detail__title">{location.state.title}</div>
+      <div className="detail__title">
+        <div>{location.state.title}</div>
+      </div>
 
       {isTranscription ? ( //필사작성
         <div className="detail__trans">
@@ -86,22 +88,23 @@ const Detail = ({ match, location }) => {
       ) : (
         //리뷰작성
         <>
-          {openRegister && (
+          <button onClick={() => setOpenRegister(!openRegister)}>
+            {openRegister ? <>리뷰보러가기</> : <>리뷰작성하러가기</>}
+          </button>
+          {openRegister ? (
             <BookRegister
               isbn={params.isbn}
               onClick={() => {
                 setOpenRegister(false);
               }}
             />
+          ) : (
+            <ReviewList
+              data={otherReview}
+              onThumb={handleThumb}
+              onComment={handleComment}
+            />
           )}
-          <ReviewList
-            data={otherReview}
-            onThumb={handleThumb}
-            onComment={handleComment}
-          />
-          <button onClick={() => setOpenRegister(true)}>
-            리뷰작성하러가기
-          </button>
         </>
       )}
     </div>

@@ -1,6 +1,8 @@
 @import "Styles/variable.scss";
 .review {
   display: flex;
+  width: 100%;
+  justify-content: space-around;
   &__box {
     box-shadow: 0 4px 4px -4px gray;
     display: flex;
