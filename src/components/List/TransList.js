@@ -16,6 +16,7 @@ const TransList = ({ data, onThumb, title, from }) => {
     });
     onThumb();
   };
+
   const followFriend = async (d) => {
     const response = await api.post("friend/register", null, {
       params: {
@@ -24,7 +25,7 @@ const TransList = ({ data, onThumb, title, from }) => {
       },
     });
 
-    alert(response.data.message);
+    alert(response.data.message.message);
     console.log(response);
     const newObject = {
       ...currentUser,

@@ -16,11 +16,8 @@ const ReviewCard = ({ data }) => {
         <div>책제목 :{data.book.title}</div>
         <div> 리뷰 쓴 사람이 준 별점:{data.score}</div>
       </div>
-      {modalOpen ? (
-        <ReviewModal isOpen={modalOpen} close={closeModal} data={data} />
-      ) : (
-        ""
-      )}
+
+      <ReviewModal isOpen={modalOpen} close={closeModal} data={data} />
     </>
   );
 };
