@@ -20,8 +20,9 @@ const TransRegister = ({ toggle, isbn }) => {
       },
     });
     if (response.data) {
-      alert("저장했습니다.");
-      history.push("/");
+      console.log(response);
+      alert(response.data.message);
+      // history.push("/");
     }
   };
   useEffect(() => {

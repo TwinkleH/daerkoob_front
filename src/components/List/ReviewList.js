@@ -30,7 +30,7 @@ const ReviewList = ({ data, onThumb, onComment }) => {
     <div className="review">
       {data ? (
         data.map((d) => (
-          <div className="review__box">
+          <div className="review__list">
             <ReviewCard data={d} />
             <button onClick={() => handleThumb(d)}>
               {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumbCount}

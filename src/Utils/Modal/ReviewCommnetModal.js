@@ -1,47 +1,67 @@
 import React, { useState } from "react";
-import { FaThumbsUp, FaRegThumbsUp, FaCaretRight } from "react-icons/fa";
+import { FaThumbsUp, FaRegThumbsUp, FaCaretDown } from "react-icons/fa";
 import useCurrentUser from "Hooks/useCurrentUser";
 import api from "api/api";
-const ReviewCommnetModal = ({ data, onChange }) => {
+import CommentInputCard from "components/Card/CommentInputCard";
+const ReviewCommnetModal = ({ data, setCommentAdd }) => {
   const { currentUser } = useCurrentUser();
-  console.log(data);
   const d = data;
   const [commentsOpen, setCommentsOpen] = useState(false);
+  const [commentRegister, setCommentRegister] = useState(false);
   const handleCommentsOpen = () => {
     setCommentsOpen(!commentsOpen);
   };
-  const [comment, setComment] = useState("");
+  const [nestedComment, setNestedComment] = useState("");
   const handleChange = (e) => {
-    setComment(e.target.value);
+    setNestedComment(e.target.value);
   };
   const handleSubmit = async () => {
     const response = await api.post("comment/register/nested", null, {
       params: {
         userId: currentUser.id,
         commentId: d.id,
-        content: comment,
+        content: nestedComment,
       },
     });
-    setComment("");
+    setCommentAdd(nestedComment);
+    setNestedComment("");
+    setCommentRegister(false);
+
+    // handleNestedComment();
     console.log(response);
   };
   return (
     <div className="re-comment">
-      <FaCaretRight onClick={handleCommentsOpen} />
+      <h4>{d.writer.nickName}</h4>
       {d.content}
-      {d.writer.nickName}
-      <button onClick={() => {}}>
-        <FaThumbsUp />:{d.thumbCount}
-      </button>
+      <div>
+        <button onClick={() => {}}>
+          <FaThumbsUp />:{d.thumbCount}
+        </button>
+        <button onClick={() => setCommentRegister(!commentRegister)}>
+          답글
+        </button>
+      </div>
+      {commentRegister && (
+        <CommentInputCard
+          comment={nestedComment}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
+      )}
+      {d.nestedCount > 0 && (
+        <div>
+          <FaCaretDown onClick={handleCommentsOpen} />
+          <span>답글 {d.nestedCount}개 보기</span>
+        </div>
+      )}
+
       {commentsOpen && d.comments && (
         <>
           {d.comments.map((c) => (
             <div> &#45; {c.content}</div>
           ))}
-          <div>
-            <input type="text" value={comment} onChange={handleChange}></input>
-            <button onClick={handleSubmit}>댓글달기</button>
-          </div>
+          <div></div>
         </>
       )}
     </div>
