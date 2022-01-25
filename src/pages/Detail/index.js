@@ -17,6 +17,7 @@ const Detail = ({ match, location }) => {
   const { currentUser } = useCurrentUser();
   const [otherTrans, setOtherTrans] = useState([]);
   const [otherReview, setOtherReview] = useState([]);
+
   // const { currentBook } = useCurrentBook();
   // const [isRegister, setIsRegister] = useState(location.state.isRegister); //작성페이지인지 아닌지
   const isTranscription = location.state.isTranscription;
@@ -36,9 +37,10 @@ const Detail = ({ match, location }) => {
       `transcription/inquiry/${currentUser.id}/${params.isbn}`
     );
     //검색
+    console.log(response);
     let preData = [];
-    if (response.data.length > 0) {
-      response.data.forEach((item) => {
+    if (response.data.totalSize > 0) {
+      response.data.list.forEach((item) => {
         preData.push(item);
       });
       setOtherTrans(preData);
@@ -48,9 +50,10 @@ const Detail = ({ match, location }) => {
     const response = await api.get(
       `review/inquiry/${currentUser.id}/${params.isbn}`
     );
+
     let preData = [];
-    if (response.data.length > 0) {
-      response.data.forEach((item) => {
+    if (response.data.totalSize > 0) {
+      response.data.list.forEach((item) => {
         preData.push(item);
       });
       setOtherReview(preData);
@@ -63,7 +66,6 @@ const Detail = ({ match, location }) => {
     //다른사람 코멘트 보러가는거면 현재 있는지 아닌지 확인한다.
     handleTransExist();
     handleReviewExist();
-
     return () => {};
   }, []);
   const handleComment = () => {
