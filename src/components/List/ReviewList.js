@@ -3,7 +3,7 @@ import useCurrentUser from "Hooks/useCurrentUser";
 import api from "api/api";
 import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 import "components/List/ReviewList.scss";
-import ReviewModal from "Utils/Modal/ReviewModal";
+import ReviewModal from "components/Modal/ReviewModal";
 import ReviewCard from "components/Card/ReviewCard";
 const ReviewList = ({ data, onThumb, onComment }) => {
   const { currentUser } = useCurrentUser();

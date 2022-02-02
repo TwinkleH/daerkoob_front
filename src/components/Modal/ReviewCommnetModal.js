@@ -3,7 +3,7 @@ import { FaThumbsUp, FaRegThumbsUp, FaCaretDown } from "react-icons/fa";
 import useCurrentUser from "Hooks/useCurrentUser";
 import api from "api/api";
 import CommentInputCard from "components/Card/CommentInputCard";
-const ReviewCommnetModal = ({ data, setCommentAdd }) => {
+const ReviewCommnetModal = ({ data, setCommentAdd, onThumb }) => {
   const { currentUser } = useCurrentUser();
   const d = data;
   const [commentsOpen, setCommentsOpen] = useState(false);
@@ -15,6 +15,7 @@ const ReviewCommnetModal = ({ data, setCommentAdd }) => {
   const handleChange = (e) => {
     setNestedComment(e.target.value);
   };
+
   const handleSubmit = async () => {
     const response = await api.post("comment/register/nested", null, {
       params: {
@@ -30,16 +31,28 @@ const ReviewCommnetModal = ({ data, setCommentAdd }) => {
     // handleNestedComment();
     console.log(response);
   };
+  const handleThumb = async (d) => {
+    console.log(d);
+    const response = await api.post("thumb/comment", null, {
+      params: {
+        userIndex: currentUser.id,
+        commentId: d.id,
+      },
+    });
+    onThumb();
+    alert(response.data.message);
+  };
   return (
     <div className="re-comment">
       <h4>{d.writer.nickName}</h4>
       {d.content}
       <div>
-        <button onClick={() => {}}>
-          <FaThumbsUp />:{d.thumbCount}
+        <button onClick={() => handleThumb(d)}>
+          {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumbCount}
         </button>
+
         <button onClick={() => setCommentRegister(!commentRegister)}>
-          답글
+          <pre> &#09;댓글달기</pre>
         </button>
       </div>
       {commentRegister && (
@@ -47,6 +60,7 @@ const ReviewCommnetModal = ({ data, setCommentAdd }) => {
           comment={nestedComment}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
+          // handleKeyPress={handleKeyPress}
         />
       )}
       {d.nestedCount > 0 && (

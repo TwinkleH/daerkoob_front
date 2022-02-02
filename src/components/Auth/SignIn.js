@@ -48,6 +48,7 @@ export const SignIn = ({ toggleIsSignIn, from }) => {
   };
   const handleKeyPress = (e) => {
     //엔터키로 입력하기
+    // console.log("enter", e);
     if (e.key === "Enter") {
       handleSubmit();
     }

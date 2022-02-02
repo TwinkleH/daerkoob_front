@@ -1,6 +1,18 @@
 import React from "react";
 
-const CommentInputCard = ({ comment, handleChange, handleSubmit }) => {
+const CommentInputCard = ({
+  comment,
+  handleChange,
+  handleSubmit,
+  // handleKeyPress,
+}) => {
+  const handleKeyPress = (e) => {
+    //엔터키로 입력하기
+    console.log("keypress", e);
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
+  };
   return (
     <div className="addComment">
       <input
@@ -8,6 +20,8 @@ const CommentInputCard = ({ comment, handleChange, handleSubmit }) => {
         className="addComment__input"
         type="text"
         value={comment}
+        // onkeyPress={handleKeyPress}
+        onKeyPress={handleKeyPress}
         onChange={handleChange}
         placeholder="댓글추가"
       ></input>
