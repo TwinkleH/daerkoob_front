@@ -55,7 +55,7 @@ const InfoCard = ({ person, id }) => {
       {MyReviewList.length !== 0 ? (
         <>
           <div>리뷰목록</div>
-          <ReviewList data={MyReviewList} />
+          <ReviewList data={MyReviewList} from="mypage" />
         </>
       ) : (
         <div>리뷰가 없습니다.</div>
