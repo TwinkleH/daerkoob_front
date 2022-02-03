@@ -57,7 +57,12 @@ const TransList = ({ data, onThumb, title, from }) => {
             <div>{d.content}</div>
 
             <button onClick={() => handleThumb(d)}>
-              {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumbCount}
+              {from ? (
+                <span>좋아요개수</span>
+              ) : (
+                <>{d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}</>
+              )}
+              :{d.thumbCount}
             </button>
           </div>
         ))

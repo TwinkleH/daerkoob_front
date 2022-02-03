@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ReviewModal from "Utils/Modal/ReviewModal";
+import ReviewModal from "components/Modal/ReviewModal";
 const ReviewCard = ({ data }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => {

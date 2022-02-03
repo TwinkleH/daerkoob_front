@@ -14,6 +14,13 @@ const ReviewModal = ({ data, isOpen, close }) => {
   const [commentAdd, setCommentAdd] = useState("");
   const [allComment, setAllComment] = useState([]);
   const [commentCount, setCommentCount] = useState(0);
+  const getReview = async () => {
+    const response = await api.get(
+      `comment/inquiry/${data.id}/${currentUser.id}`
+    );
+    setAllComment(response.data.list);
+    setCommentCount(response.data.totalSize);
+  };
   const handleChange = (e) => {
     setComment(e.target.value);
   };
@@ -32,17 +39,13 @@ const ReviewModal = ({ data, isOpen, close }) => {
     console.log(response);
     alert(response.data.message);
   };
+
   useEffect(() => {
-    const getReview = async () => {
-      const response = await api.get(
-        `comment/inquiry/${data.id}/${currentUser.id}`
-      );
-      setAllComment(response.data.list);
-      setCommentCount(response.data.totalSize);
-    };
-    console.log(allComment);
     getReview();
   }, [comment, commentAdd]);
+  const handleThumb = () => {
+    getReview();
+  };
   console.log(allComment);
   return (
     <ReactModal
@@ -85,14 +88,13 @@ const ReviewModal = ({ data, isOpen, close }) => {
           comment={comment}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
+          // handleKeyPress={handleKeyPress}
         />
         {allComment.map((d) => (
           <ReviewCommnetModal
             data={d}
             setCommentAdd={setCommentAdd}
-            // commentAdd={commentAdd}
-            // nestedComment={nestedComment}
-            // setNestedComment={setNestedComment}
+            onThumb={handleThumb}
           />
         ))}
       </div>

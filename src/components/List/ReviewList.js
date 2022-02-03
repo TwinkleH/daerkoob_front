@@ -3,9 +3,9 @@ import useCurrentUser from "Hooks/useCurrentUser";
 import api from "api/api";
 import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 import "components/List/ReviewList.scss";
-import ReviewModal from "Utils/Modal/ReviewModal";
+import ReviewModal from "components/Modal/ReviewModal";
 import ReviewCard from "components/Card/ReviewCard";
-const ReviewList = ({ data, onThumb, onComment }) => {
+const ReviewList = ({ data, onThumb, onComment, from }) => {
   const { currentUser } = useCurrentUser();
   const followFriend = async (d) => {
     const response = await api.post("friend/add", null, {
@@ -25,7 +25,7 @@ const ReviewList = ({ data, onThumb, onComment }) => {
     });
     onThumb();
   };
-
+  console.log(from);
   return (
     <div className="review">
       {data ? (
@@ -33,7 +33,12 @@ const ReviewList = ({ data, onThumb, onComment }) => {
           <div className="review__list">
             <ReviewCard data={d} />
             <button onClick={() => handleThumb(d)}>
-              {d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}:{d.thumbCount}
+              {from ? (
+                <span>좋아요개수</span>
+              ) : (
+                <>{d.thumbJudge ? <FaThumbsUp /> : <FaRegThumbsUp />}</>
+              )}
+              :{d.thumbCount}
             </button>
           </div>
         ))

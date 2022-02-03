@@ -63,14 +63,37 @@ const Home = () => {
       // cleanup;
     };
   }, []);
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "black" }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "black" }}
+        onClick={onClick}
+      />
+    );
+  }
   var settings = {
-    dots: false,
+    // dots: true,
     infinite: true,
     speed: 500,
     autoplay: true,
-    autoplaySpeed: 1000,
+    // autoplaySpeed: 1000,
     slidesToShow: 4,
     slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
   };
 
   if (!newTrans) return <Loading />;
@@ -84,11 +107,13 @@ const Home = () => {
         <HomeCard name="등록된 책 수" data={totalBook} />
       </div>
       <div className="home__container">
-        <Slider {...settings}>
-          {bestBook.map((d) => (
-            <BookCard title={d.title} image={d.image} data={d} />
-          ))}
-        </Slider>
+        <div className="home__container__slider">
+          <Slider {...settings}>
+            {bestBook.map((d) => (
+              <BookCard title={d.title} image={d.image} data={d} />
+            ))}
+          </Slider>
+        </div>
       </div>
 
       <div className="home__newList">
