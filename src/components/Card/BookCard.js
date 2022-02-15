@@ -33,82 +33,35 @@ const BookCard = ({ data }) => {
     <div className="bookCard" onClick={handleClick}>
       {flip ? (
         <>
-          {isExist && (
-            <>
-              <div
-                onClick={() => {
-                  history.push({
-                    pathname: `/detail/${isbn}`,
-                    state: {
-                      // isRegister: false,
-                      isTranscription: true,
-                      title: `${title}`,
-                    },
-                  });
-                }}
-              >
-                필사
-              </div>
-              <div
-                onClick={() => {
-                  history.push({
-                    pathname: `/detail/${isbn}`,
-                    state: {
-                      // isRegister: false,
-                      isTranscription: false,
-                      title: `${title}`,
-                    },
-                  });
-                }}
-              >
-                리뷰
-              </div>
-            </>
-          )}
-
-          {/* <div
+          <div
             onClick={() => {
-              currentUser.id !== 0
-                ? history.push({
-                    pathname: `/detail/${isbn}`,
-                    state: {
-                      isRegister: true,
-                      isTranscription: true,
-                      title: `${title}`,
-                    },
-                  })
-                : history.push({
-                    pathname: `/auth`,
-                    state: {
-                      from: `/detail/${isbn}`,
-                      isRegister: true,
-                      isTranscription: true,
-                      title: `${title}`,
-                    },
-                  });
+              history.push({
+                pathname: `/detail/${isbn}`,
+                state: {
+                  // isRegister: false,
+                  isTranscription: true,
+                  title: `${title}`,
+                },
+              });
             }}
           >
-            필사 쓰러가기
+            필사
           </div>
           <div
             onClick={() => {
-              currentUser.id !== 0
-                ? history.push({
-                    pathname: `/detail/${isbn}`,
-                    state: { isRegister: true, isTranscription: false },
-                  })
-                : history.push({
-                    pathname: `/auth`,
-                    state: {
-                      from: `/detail/${isbn}`,
-                      isRegister: true,
-                      isTranscription: false,
-                    },
-                  });
+              history.push({
+                pathname: `/detail/${isbn}`,
+                state: {
+                  // isRegister: false,
+                  isTranscription: false,
+                  title: `${title}`,
+                },
+              });
             }}
           >
-            리뷰 쓰러가기
-          </div> */}
+            리뷰
+          </div>
+
           {title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")}
         </>
       ) : (

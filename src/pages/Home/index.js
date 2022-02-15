@@ -117,8 +117,6 @@ const Home = () => {
       </div>
 
       <div className="home__newList">
-        {/* <h1 className="home__newList__line">새로운 필사</h1> */}
-
         <h1>새로운필사</h1>
         <h1>새로운리뷰</h1>
         <div className="home__newList__line">
@@ -127,10 +125,6 @@ const Home = () => {
             <NewList data={d} />
           ))}
         </div>
-        {/* <h1 className="home__newList__line">새로운 리뷰</h1> */}
-        {/* <div className="home__newList">
-          <h1>새로운필사</h1>
-        </div> */}
 
         <div className="home__newList__line">
           {newReview.map((d) => (

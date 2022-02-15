@@ -18,7 +18,6 @@ const InfoCard = ({ person, id }) => {
     const responseTrans = await api.get(`user/transcription/${id}`);
     setMyTransList([...responseTrans.data]);
     const responseReview = await api.get(`user/review/${id}`);
-
     setMyReviewList([...responseReview.data]);
   };
   const gotoFriendPage = (friendId) => {
@@ -31,8 +30,29 @@ const InfoCard = ({ person, id }) => {
   };
   return (
     <div>
-      <h1>page</h1>
-      {person && (
+      <div className="mypage__top">
+        <span className="mypage__top__line" />
+        <div className="mypage__top__profile">
+          <div className="mypage__top__profile__img" />
+          <div className="mypage__top__profile__nickname">
+            {currentUser.nickName}
+          </div>
+        </div>
+        <div className="mypage__top__btn">
+          <button>
+            <p>{MyTransList.length}</p> <p>리뷰</p>
+          </button>
+          <button>
+            <p>{MyReviewList.length}</p>
+            <p>필사</p>
+          </button>
+          <button>
+            <p>{currentUser.friends.length}</p>
+            <p>친구</p>
+          </button>
+        </div>
+      </div>
+      {/* {person && (
         <>
           <h1> {currentUser.nickName}의친구목록</h1>
           {currentUser.friends.map((d) => (
@@ -63,7 +83,7 @@ const InfoCard = ({ person, id }) => {
       <div>잔디달력</div>
       {id !== currentUser.id && (
         <button onClick={gotoMypage}> 마이페이지 가기</button>
-      )}
+      )} */}
     </div>
   );
 };

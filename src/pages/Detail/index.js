@@ -7,6 +7,7 @@ import TransList from "components/List/TransList";
 import TransRegister from "../../components/Card/TransRegister";
 import ReviewList from "components/List/ReviewList";
 import "./index.scss";
+import Pagination from "components/Card/Pagination";
 const Detail = ({ match, location }) => {
   // const query = qs.parse(location.search, {
   //   iignoreQueryPrefix: true, //이 설정을 통해 문자열 맨 앞의 ?를 생략
@@ -17,7 +18,8 @@ const Detail = ({ match, location }) => {
   const { currentUser } = useCurrentUser();
   const [otherTrans, setOtherTrans] = useState([]);
   const [otherReview, setOtherReview] = useState([]);
-
+  const [page, setPage] = useState(1);
+  const [totalReviewPage, setTotalReviewPage] = useState(0);
   // const { currentBook } = useCurrentBook();
   // const [isRegister, setIsRegister] = useState(location.state.isRegister); //작성페이지인지 아닌지
   const isTranscription = location.state.isTranscription;
@@ -48,9 +50,9 @@ const Detail = ({ match, location }) => {
   };
   const handleReviewExist = async () => {
     const response = await api.get(
-      `review/inquiry/${currentUser.id}/${params.isbn}`
+      `review/inquiry/${currentUser.id}/${params.isbn}/${page}`
     );
-
+    setTotalReviewPage(response.data.totalSize);
     let preData = [];
     if (response.data.totalSize > 0) {
       response.data.list.forEach((item) => {
@@ -67,11 +69,14 @@ const Detail = ({ match, location }) => {
     handleTransExist();
     handleReviewExist();
     return () => {};
-  }, []);
+  }, [page]);
   const handleComment = () => {
     console.log("댓글다루기");
   };
-
+  const handlePageChange = (num) => {
+    console.log("detail", num);
+    setPage(num);
+  };
   return (
     <div className="detail">
       <div className="detail__title">
@@ -101,11 +106,17 @@ const Detail = ({ match, location }) => {
               }}
             />
           ) : (
-            <ReviewList
-              data={otherReview}
-              onThumb={handleThumb}
-              onComment={handleComment}
-            />
+            <>
+              <ReviewList
+                data={otherReview}
+                onThumb={handleThumb}
+                onComment={handleComment}
+              />
+              <Pagination
+                setNumber={handlePageChange}
+                total={totalReviewPage}
+              />
+            </>
           )}
         </>
       )}
