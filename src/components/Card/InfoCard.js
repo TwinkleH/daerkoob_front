@@ -4,15 +4,18 @@ import useCurrentUser from "Hooks/useCurrentUser";
 import api from "api/api";
 import TransList from "components/List/TransList";
 import ReviewList from "components/List/ReviewList";
+import MypageFriendsModal from "components/Modal/MypageFriendsModal";
+import MypageReviewModal from "components/Modal/MypageReviewModal";
+import MypageTransModal from "components/Modal/MypageTransModal";
+
 const InfoCard = ({ person, id }) => {
   const history = useHistory();
   const { currentUser } = useCurrentUser();
   const [MyTransList, setMyTransList] = useState([]);
   const [MyReviewList, setMyReviewList] = useState([]);
-  //이렇게 useEffect쓰는게 아닌가?
-  useEffect(() => {
-    init();
-  }, []);
+  const [friendModalOpen, setFriendModalOpen] = useState(false);
+  const [reviewModalOpen, setReviewModalOpen] = useState(false);
+  const [transModalOpen, setTransModalOpen] = useState(false);
 
   const init = async () => {
     const responseTrans = await api.get(`user/transcription/${id}`);
@@ -28,6 +31,7 @@ const InfoCard = ({ person, id }) => {
   const gotoMypage = () => {
     history.push(`/mypage`);
   };
+
   return (
     <div>
       <div className="mypage__top">
@@ -39,19 +43,35 @@ const InfoCard = ({ person, id }) => {
           </div>
         </div>
         <div className="mypage__top__btn">
-          <button>
+          <button onClick={() => setReviewModalOpen(true)}>
             <p>{MyTransList.length}</p> <p>리뷰</p>
           </button>
-          <button>
+          <button onClick={() => setTransModalOpen(true)}>
             <p>{MyReviewList.length}</p>
             <p>필사</p>
           </button>
-          <button>
+          <button onClick={() => setFriendModalOpen(true)}>
             <p>{currentUser.friends.length}</p>
             <p>친구</p>
           </button>
+          <MypageFriendsModal
+            isOpen={friendModalOpen}
+            onClose={() => setFriendModalOpen(false)}
+            data={currentUser.friends}
+          />
+          <MypageReviewModal
+            isOpen={reviewModalOpen}
+            onClose={() => setReviewModalOpen(false)}
+            data={MyReviewList}
+          />
+          <MypageTransModal
+            isOpen={transModalOpen}
+            onClose={() => setTransModalOpen(false)}
+            data={MyTransList}
+          />
         </div>
       </div>
+
       {/* {person && (
         <>
           <h1> {currentUser.nickName}의친구목록</h1>

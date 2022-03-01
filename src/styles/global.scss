@@ -6,7 +6,10 @@
   box-sizing: border-box;
   font-family: "Noto Sans KR", sans-serif;
 }
-
+body {
+  display: flex;
+  flex-direction: column;
+}
 input {
   all: unset;
 }
