@@ -4,6 +4,7 @@ import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 import api from "api/api";
 import useCurrentUser from "Hooks/useCurrentUser";
 const TransCard = ({ data, onThumb, thumbJudge }) => {
+  console.log(data);
   const [thumbUp, setThumbUp] = useState(false);
   const user = data.user;
   const book = data.book;
