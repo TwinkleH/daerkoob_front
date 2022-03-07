@@ -111,7 +111,7 @@ const Detail = ({ match, location }) => {
             setInView={setInView}
             totalTransPage={totalTransPage}
           />
-          <TransRegister isbn={params.isbn} />
+          <TransRegister isbn={params.isbn} update={handleTransExist} />
         </div>
       ) : (
         //리뷰작성

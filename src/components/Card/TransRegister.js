@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import useCurrentUser from "Hooks/useCurrentUser";
 import api from "api/api";
 import { useHistory } from "react-router-dom";
-const TransRegister = ({ toggle, isbn }) => {
+const TransRegister = ({ toggle, isbn, update }) => {
   const [currentContent, setCurrentContent] = useState("");
   const { currentUser } = useCurrentUser();
   const [currentBook, setCurrentBook] = useState([]);
@@ -22,23 +22,21 @@ const TransRegister = ({ toggle, isbn }) => {
     if (response.data) {
       console.log(response);
       alert(response.data.message);
-      // history.push("/");
+      update();
     }
   };
   useEffect(() => {
-    console.log("필사작성페이지 옴");
-
     const findBook = async () => {
       const response = await api.get(`book/find/${isbn}`);
       // console.log(response);
       setCurrentBook(response.data);
     };
     findBook();
-    return () => {
-      // cleanup;
-    };
   }, []);
-
+  const scrollTop = () => {
+    console.log(window);
+    window.scrollTo(0, 0);
+  };
   return (
     <>
       {currentUser.id !== 0 && (
@@ -59,6 +57,9 @@ const TransRegister = ({ toggle, isbn }) => {
           </div>
         </div>
       )}
+      <h1 onClick={scrollTop} className="toTop">
+        맨 위로 가기
+      </h1>
     </>
   );
 };

@@ -39,7 +39,7 @@ const TransList = ({
   // }, [transPage]);
 
   const handleThumb = async (d) => {
-    const response = await api.post("thumb/transcription", null, {
+    await api.post("thumb/transcription", null, {
       params: {
         userIndex: currentUser.id, //좋아요누르는사람
         transcriptionId: d.id, //필사아이디
@@ -103,7 +103,10 @@ const TransList = ({
                 <hr />
                 <div>{d.content}</div>
 
-                <button onClick={() => handleThumb(d)}>
+                <button
+                  onClick={() => handleThumb(d)}
+                  style={{ cursor: "pointer" }}
+                >
                   {from ? (
                     <span>좋아요개수</span>
                   ) : (

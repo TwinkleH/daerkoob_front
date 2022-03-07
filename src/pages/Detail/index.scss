@@ -30,3 +30,10 @@
     }
   }
 }
+.toTop {
+  position: -webkit-sticky;
+  position: sticky;
+  // right: 0;
+  height: 20%;
+  top: 200px;
+}
