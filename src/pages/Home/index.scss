@@ -6,10 +6,21 @@
   text-align: center;
   justify-content: center;
   max-width: 100vw;
+
   &__banner {
-    height: 300px;
+    width: 200px;
+    height: 510px;
+    overflow: hidden;
     background-color: $mainColor;
   }
+
+  &__banner img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   &__container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));

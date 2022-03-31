@@ -6,6 +6,7 @@ import api from "api/api";
 import useCurrentBooks from "Hooks/useCurrentBooks";
 import "./index.scss";
 import { FaSearch } from "react-icons/fa";
+
 const Navbar = () => {
   const history = useHistory();
   // const activeStyle = {
@@ -53,25 +54,25 @@ const Navbar = () => {
       <div className="nav__left">
         <Link to="/">home</Link>
       </div>
-      <div className="nav__rightBottom">
-        <div className="form__input">
-          <FaSearch size="30" />
+
+      <div className="nav__input">
+          <FaSearch size="20" />
           <input
             placeholder="제목, 작가, 출판사 입력"
             onChange={handleChange}
             onKeyPress={handleKeyPress}
           ></input>
-          <button className="button__nav" onClick={handleSubmit}>
-            검색
-          </button>
         </div>
-        <div>
+
+      <div className="nav__rightBottom">
+        <div className="nav__rightBottom__c1">
           <Link to="/notice">공지사항</Link>
         </div>
-        <div>
+        <div className="nav__rightBottom__c1">
           <Link to="/mypage"> 마이페이지</Link>
         </div>
       </div>
+      
       {currentUser.id !== 0 ? (
         <div className="nav__rightTop">
           <div>

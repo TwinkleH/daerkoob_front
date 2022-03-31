@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import NewList from "components/List/NewList";
 import Loading from "Contents/Loading";
+
 const Home = () => {
   // const mockData = _data.concat();
   const [totalTrans, setTotalTrans] = useState(0); //전체 필사수
@@ -100,7 +101,10 @@ const Home = () => {
   if (!newReview) return <Loading />;
   return (
     <div className="home">
-      <div className="home__banner">배너</div>
+      {/* <div className="home__banner">
+        <img src= 'banner_1.jpg'/> 
+      </div> */}
+
       <div className="home__container">
         <HomeCard name="전체 리뷰수" data={totalReview} />
         <HomeCard name="전체 필사수" data={totalTrans} />
