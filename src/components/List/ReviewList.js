@@ -25,14 +25,16 @@ const ReviewList = ({ data, onThumb, onComment, from }) => {
     });
     onThumb();
   };
-  console.log(from);
   return (
     <div className="review">
       {data ? (
         data.map((d) => (
           <div className="review__list">
             <ReviewCard data={d} />
-            <button onClick={() => handleThumb(d)}>
+            <button
+              onClick={() => handleThumb(d)}
+              style={{ cursor: "pointer" }}
+            >
               {from ? (
                 <span>좋아요개수</span>
               ) : (

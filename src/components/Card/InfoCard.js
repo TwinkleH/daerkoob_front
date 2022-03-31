@@ -20,6 +20,7 @@ const InfoCard = ({ person, id }) => {
   const init = async () => {
     const responseTrans = await api.get(`user/transcription/${id}`);
     setMyTransList([...responseTrans.data]);
+    console.log(MyTransList);
     const responseReview = await api.get(`user/review/${id}`);
     setMyReviewList([...responseReview.data]);
   };
@@ -31,6 +32,9 @@ const InfoCard = ({ person, id }) => {
   const gotoMypage = () => {
     history.push(`/mypage`);
   };
+  useEffect(() => {
+    init();
+  }, []);
 
   return (
     <div>

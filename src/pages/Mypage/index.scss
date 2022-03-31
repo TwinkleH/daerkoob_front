@@ -1,5 +1,6 @@
 @import "Styles/variable.scss";
 .mypage {
+  width: 100vw;
   min-height: 90vh;
   background-color: $mainColor;
   &__top {
@@ -57,4 +58,7 @@
       }
     }
   }
+}
+.friendPage {
+  width: 100vw;
 }

@@ -22,6 +22,10 @@
     display: flex;
 
     justify-content: space-around;
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+    }
     &__register {
       position: -webkit-sticky;
       position: sticky;
@@ -29,4 +33,15 @@
       top: 100px;
     }
   }
+}
+.toTop {
+  position: -webkit-sticky;
+  position: sticky;
+  // right: 0;
+  // height: 20%;
+  top: 90vh;
+  background-color: antiquewhite;
+  width: 100%;
+  height: 30px;
+  margin-top: 20px;
 }
