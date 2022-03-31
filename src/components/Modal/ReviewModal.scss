@@ -18,12 +18,22 @@
   flex-direction: column;
 }
 
+// .closeBtn {
+//   size: 10px;
+//   display: flex;
+//   align-items: flex-end;
+//   font-size: 50px;
+//   // color: $mainColor;
+// }
 .closeBtn {
-  size: 10px;
-  display: flex;
-  align-items: flex-end;
-  font-size: 50px;
-  // color: $mainColor;
+  position: absolute;
+  right: 35px;
+  bottom: 20px;
+  width: 70px;
+  height: 30px;
+  border-radius: 20px;
+  background-color: $mainColor;
+  text-align: center;
 }
 .addComment {
   display: flex;

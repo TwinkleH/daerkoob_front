@@ -32,7 +32,6 @@ export const SignIn = ({ toggleIsSignIn, from }) => {
           },
         })
         .then((response) => {
-          console.log(response);
           if (!response.data) {
             history.push("/auth");
             setMessage("실패했습니다");

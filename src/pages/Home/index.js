@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import NewList from "components/List/NewList";
 import Loading from "Contents/Loading";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 const Home = () => {
   // const mockData = _data.concat();
   const [totalTrans, setTotalTrans] = useState(0); //전체 필사수
@@ -21,7 +22,6 @@ const Home = () => {
   const TransCount = async () => {
     const response = await api.get("transcription/count");
     setTotalTrans(response.data);
-    // setTotalTrans
   };
   const ReviewCount = async () => {
     const response = await api.get("review/count");
@@ -34,23 +34,14 @@ const Home = () => {
   const BookBest = async () => {
     const response = await api.get("book/best");
     setBestBook(response.data);
-    console.log(response.data);
-    console.log(typeof response.data);
-    console.log(bestBook);
   };
   const NewTrans = async () => {
     const response = await api.get("transcription/recent");
     setNewTrans(response.data);
-    console.log(typeof response);
-    console.log(response.data);
-    console.log(newTrans);
   };
   const NewReview = async () => {
     const response = await api.get("review/recent");
     setNewReview(response.data);
-    console.log(typeof response);
-    console.log(response.data);
-    // console.log(newTrans);
   };
   useEffect(() => {
     TransCount();
@@ -63,37 +54,37 @@ const Home = () => {
       // cleanup;
     };
   }, []);
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "black" }}
-        onClick={onClick}
-      />
-    );
-  }
+  // function SampleNextArrow(props) {
+  //   const { className, style, onClick } = props;
+  //   return (
+  //     <div
+  //       className={className}
+  //       style={{ ...style, display: "block", background: "black" }}
+  //       onClick={onClick}
+  //     />
+  //   );
+  // }
 
-  function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "black" }}
-        onClick={onClick}
-      />
-    );
-  }
+  // function SamplePrevArrow(props) {
+  //   const { className, style, onClick } = props;
+  //   return (
+  //     <div
+  //       className={className}
+  //       style={{ ...style, display: "block", background: "black" }}
+  //       onClick={onClick}
+  //     />
+  //   );
+  // }
   var settings = {
-    // dots: true,
+    dots: true,
     infinite: true,
     speed: 500,
     autoplay: true,
     // autoplaySpeed: 1000,
     slidesToShow: 4,
     slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    prevArrow: <FaAngleLeft size="20px" fill="black" />,
+    nextArrow: <FaAngleRight size="20px" fill="black" />,
   };
 
   if (!newTrans) return <Loading />;
@@ -117,24 +108,16 @@ const Home = () => {
       </div>
 
       <div className="home__newList">
-        {/* <h1 className="home__newList__line">새로운 필사</h1> */}
-
         <h1>새로운필사</h1>
         <h1>새로운리뷰</h1>
         <div className="home__newList__line">
           {newTrans.map((d) => (
-            // <h1> {d.title}</h1>
             <NewList data={d} />
           ))}
         </div>
-        {/* <h1 className="home__newList__line">새로운 리뷰</h1> */}
-        {/* <div className="home__newList">
-          <h1>새로운필사</h1>
-        </div> */}
 
         <div className="home__newList__line">
           {newReview.map((d) => (
-            // <h1> {d.title}</h1>
             <NewList data={d} />
           ))}
         </div>

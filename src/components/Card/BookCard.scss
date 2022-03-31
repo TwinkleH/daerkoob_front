@@ -2,8 +2,9 @@
 .bookCard {
   flex-direction: column;
   justify-content: center;
-  box-shadow: 5px 5px 5px gray;
+  // box-shadow: 5px 5px 5px gray;
   width: 100%;
+  padding: 10px;
   height: 300px;
   &__img {
     margin-top: 10px;

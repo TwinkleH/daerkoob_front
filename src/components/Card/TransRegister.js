@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import useCurrentUser from "Hooks/useCurrentUser";
 import api from "api/api";
 import { useHistory } from "react-router-dom";
-const TransRegister = ({ toggle, isbn }) => {
+import { currentContent } from "Store";
+const TransRegister = ({ toggle, isbn, update }) => {
   const [currentContent, setCurrentContent] = useState("");
   const { currentUser } = useCurrentUser();
   const [currentBook, setCurrentBook] = useState([]);
@@ -20,35 +21,33 @@ const TransRegister = ({ toggle, isbn }) => {
       },
     });
     if (response.data) {
-      console.log(response);
       alert(response.data.message);
-      // history.push("/");
+
+      update();
+      setCurrentContent("");
     }
   };
   useEffect(() => {
-    console.log("필사작성페이지 옴");
-
     const findBook = async () => {
       const response = await api.get(`book/find/${isbn}`);
-      // console.log(response);
       setCurrentBook(response.data);
     };
     findBook();
-    return () => {
-      // cleanup;
-    };
   }, []);
-
+  const scrollTop = () => {
+    window.scrollTo(0, 0);
+  };
   return (
-    <>
+    <div className="detail__trans__wrapper">
       {currentUser.id !== 0 && (
         <div className="detail__trans__register">
           {/* <div>책제목:{currentBook.title}</div> */}
           <textarea
             className="bookDatail__input"
             cols="40"
-            rows="2"
+            rows="20"
             onChange={handleChange}
+            value={currentContent}
           ></textarea>
           <div>
             <button onClick={handleSubmit}>저장</button>
@@ -59,7 +58,10 @@ const TransRegister = ({ toggle, isbn }) => {
           </div>
         </div>
       )}
-    </>
+      <button onClick={scrollTop} className="toTop">
+        맨 위로 가기
+      </button>
+    </div>
   );
 };
 
