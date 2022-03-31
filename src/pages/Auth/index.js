@@ -6,7 +6,6 @@ import { useHistory } from "react-router";
 
 const Auth = ({ location }) => {
   const history = useHistory();
-  console.log(location);
   const [isSignIn, setIsSignIn] = useState(true);
   const toggleIsSignIn = () => {
     setIsSignIn(!isSignIn);

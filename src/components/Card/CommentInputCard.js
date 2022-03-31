@@ -8,7 +8,6 @@ const CommentInputCard = ({
 }) => {
   const handleKeyPress = (e) => {
     //엔터키로 입력하기
-    console.log("keypress", e);
     if (e.key === "Enter") {
       handleSubmit();
     }

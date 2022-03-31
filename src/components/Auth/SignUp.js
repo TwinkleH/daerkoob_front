@@ -31,7 +31,6 @@ export const SignUp = ({ toggleIsSignIn }) => {
           },
         })
         .then((response) => {
-          console.log(response);
           if (response.data.flag) {
             alert("회원가입 성공 ");
             toggleIsSignIn(); //회원가입 하고 바로 로그인페이지로 가기

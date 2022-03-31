@@ -54,7 +54,7 @@ const Navbar = () => {
         <Link to="/">home</Link>
       </div>
       <div className="nav__rightBottom">
-        {/* <div className="form__input">
+        <div className="form__input">
           <FaSearch size="30" />
           <input
             placeholder="제목, 작가, 출판사 입력"
@@ -64,7 +64,7 @@ const Navbar = () => {
           <button className="button__nav" onClick={handleSubmit}>
             검색
           </button>
-        </div> */}
+        </div>
         <div>
           <Link to="/notice">공지사항</Link>
         </div>

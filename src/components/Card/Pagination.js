@@ -1,29 +1,45 @@
 import React from "react";
 
-const PageNum = ({ index, handlePageChange }) => {
+const PageNum = ({ index, handlePageChange, thisPage }) => {
+  console.log(thisPage);
   return (
-    <button
-      onClick={() => handlePageChange(index)}
-      style={{ cursor: "pointer", width: "10px" }}
-    >
-      {index}
-    </button>
+    <>
+      {thisPage === index ? (
+        <button
+          onClick={() => handlePageChange(index)}
+          style={{ cursor: "pointer", width: "10px", backgroundColor: "red" }}
+        >
+          {index + 1}
+        </button>
+      ) : (
+        <button
+          onClick={() => handlePageChange(index)}
+          style={{ cursor: "pointer", width: "10px" }}
+        >
+          {index + 1}
+        </button>
+      )}
+    </>
   );
 };
-const Pagination = ({ setNumber, total }) => {
+const Pagination = ({ setNumber, total, page }) => {
   const handlePageChange = (num) => {
     setNumber(num);
     // console.log(num);
   };
+  console.log("page", page);
   const style = {
     display: "flex",
     gap: "10px",
   };
-  console.log(total);
   return (
     <div style={style}>
-      {[...Array(parseInt(total / 5 + 1))].map((e, i) => (
-        <PageNum index={i + 1} handlePageChange={handlePageChange} />
+      {[...Array(parseInt(1 + (total - 1) / 5))].map((e, i) => (
+        <PageNum
+          index={i}
+          handlePageChange={handlePageChange}
+          thisPage={page}
+        />
       ))}
     </div>
   );

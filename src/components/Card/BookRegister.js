@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import api from "api/api";
 import { useHistory } from "react-router-dom";
 import { BsStarFill } from "react-icons/bs";
-const BookRegister = ({ toggle, isbn, onClick }) => {
+const BookRegister = ({ isbn, onClick, setOpenRegister, update }) => {
   const [reviewContent, setReviewContent] = useState("");
   const { currentUser } = useCurrentUser();
 
@@ -31,7 +31,8 @@ const BookRegister = ({ toggle, isbn, onClick }) => {
 
     if (response.data) {
       alert("저장했습니다.");
-      history.push("/");
+      update();
+      setOpenRegister(false);
     }
   };
   useEffect(() => {
@@ -105,10 +106,7 @@ const BookRegister = ({ toggle, isbn, onClick }) => {
         <div>
           <button onClick={handleSubmit}>저장</button>
         </div>
-        <div>
-          {/* {currentContent} */}
-          <button onClick={toggle}>다른사람 쓴 글 보러가기</button>
-        </div>
+        <div>{/* {currentContent} */}</div>
       </div>
     </div>
   );

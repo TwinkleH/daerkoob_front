@@ -12,31 +12,8 @@ const TransList = ({
   setInView,
   totalTransPage,
 }) => {
-  // const [data, setData] = useState([]);
-  // const [transPage, setTransPage] = useState(1);
-  // const [loading, setLoading] = useState(false); //trans
   const [ref, inView] = useInView(); //trans
-  // console.log(ref);
   const { currentUser, setCurrentUser } = useCurrentUser();
-  // const [totalTransPage, setTotalTransPage] = useState(0);
-  // const handleTransExist = useCallback(async () => {
-  //   setLoading(true);
-  //   const response = await api.get(
-  //     `transcription/inquiry/${currentUser.id}/${isbn}/${transPage}`
-  //   );
-  //   //검색
-  //   setTotalTransPage(response.data.totalSize);
-  //   console.log(response);
-  //   let preData = [];
-  //   if (response.data.totalSize > 0) {
-  //     response.data.list.forEach((item) => {
-  //       preData.push(item);
-  //     });
-  //     setData([...data, ...preData]);
-  //     console.log(data);
-  //   }
-  //   setLoading(false);
-  // }, [transPage]);
 
   const handleThumb = async (d) => {
     await api.post("thumb/transcription", null, {
@@ -57,33 +34,19 @@ const TransList = ({
     });
 
     alert(response.data.message.message);
-    console.log(response);
     const newObject = {
       ...currentUser,
       friends: response.data.list,
     };
-    console.log(newObject);
     setCurrentUser(newObject);
   };
 
-  // useEffect(() => {
-  //   // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-  //   if (inView && !loading) {
-  //     setTransPage(transPage + 1);
-  //   }
-  // }, [inView, loading]);
-  // useEffect(() => {
-  //   handleTransExist();
-  // }, [handleTransExist]);
-
-  console.log(inView, "inview");
   useEffect(() => {
     setInView(inView);
   }, [inView]);
 
   return (
     <div className="transList">
-      {/* <div className="transList__title">{title}</div> */}
       {data ? (
         data.map((d, index) => (
           <React.Fragment key={index}>

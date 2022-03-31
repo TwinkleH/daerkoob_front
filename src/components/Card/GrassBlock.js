@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 const GrassBlock = ({ d }) => {
   // const [hover, setHover] = useState(false);
-  console.log(d);
   const Hover = ({ onHover, children }) => (
     <div className="hover">
       <div className="hover__no-hover">{children}</div>

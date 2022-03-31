@@ -25,7 +25,6 @@ const ReviewList = ({ data, onThumb, onComment, from }) => {
     });
     onThumb();
   };
-  console.log(from);
   return (
     <div className="review">
       {data ? (

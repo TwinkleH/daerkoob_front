@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Modal from "react-modal";
 import api from "api/api";
 import useCurrentUser from "Hooks/useCurrentUser";
 import "./ReviewModal.scss";
 import CommentInputCard from "components/Card/CommentInputCard";
 import { FaThumbsUp, FaRegThumbsUp, FaCaretDown } from "react-icons/fa";
-
+import Pagination from "components/Card/Pagination";
 const ReviewCommnetModal = ({ data, setCommentAdd, onThumb }) => {
   const { currentUser } = useCurrentUser();
   const d = data;
@@ -32,10 +32,8 @@ const ReviewCommnetModal = ({ data, setCommentAdd, onThumb }) => {
     setCommentRegister(false);
 
     // handleNestedComment();
-    console.log(response);
   };
   const handleThumb = async (d) => {
-    console.log(d);
     const response = await api.post("thumb/comment", null, {
       params: {
         userIndex: currentUser.id,
@@ -86,26 +84,29 @@ const ReviewCommnetModal = ({ data, setCommentAdd, onThumb }) => {
 };
 
 const ReviewModal = ({ data, isOpen, close }) => {
-  console.log(data);
   const { currentUser } = useCurrentUser();
   const [comment, setComment] = useState("");
   // const [nestedComment, setNestedComment] = useState("");
   const [commentAdd, setCommentAdd] = useState("");
   const [allComment, setAllComment] = useState([]);
   const [commentCount, setCommentCount] = useState(0);
-  const getReview = async () => {
+  const [paginationCommentCount, setPaginationCommentCount] = useState(0);
+  const [page, setPage] = useState(0);
+  const getReview = useCallback(async () => {
     const response = await api.get(
-      `comment/inquiry/${data.id}/${currentUser.id}`
+      `comment/inquiry/${data.id}/${currentUser.id}/${page}`
     );
+    console.log(response);
     setAllComment(response.data.list);
     setCommentCount(response.data.totalSize);
-  };
+    setPaginationCommentCount(response.data.realSize);
+  }, [page]);
   const handleChange = (e) => {
     setComment(e.target.value);
   };
-  const handleNestedComment = () => {
-    setCommentAdd(true);
-  };
+  // const handleNestedComment = () => {
+  //   setCommentAdd(true);
+  // };
   const handleSubmit = async () => {
     const response = await api.post("comment/register/review", null, {
       params: {
@@ -115,17 +116,20 @@ const ReviewModal = ({ data, isOpen, close }) => {
       },
     });
     setComment("");
-    console.log(response);
     alert(response.data.message);
+  };
+  const handlePageChange = (num) => {
+    console.log(num, "num");
+    setPage(num);
   };
 
   useEffect(() => {
     getReview();
-  }, [comment, commentAdd]);
+  }, [comment, commentAdd, getReview]);
   const handleThumb = () => {
     getReview();
   };
-  console.log(allComment);
+
   const customStyles = {
     overlay: {
       position: "fixed",
@@ -153,6 +157,15 @@ const ReviewModal = ({ data, isOpen, close }) => {
       backgroundColor: "gray",
     },
   };
+  useEffect(() => {
+    document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = `position: ""; top: "";`;
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+    };
+  }, []);
+  // console.log("reviewModal")
   return (
     <Modal isOpen={isOpen} style={customStyles}>
       <div className="modal">
@@ -162,19 +175,27 @@ const ReviewModal = ({ data, isOpen, close }) => {
         {data.book.title}
         <h2>전체 댓글 개수:{commentCount}</h2>
         <CommentInputCard
+          // 댓글쓰는input
           comment={comment}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           // handleKeyPress={handleKeyPress}
         />
+
         {allComment.map((d) => (
           <ReviewCommnetModal
+            // 댓글 나오는 모달
             data={d}
             setCommentAdd={setCommentAdd}
             onThumb={handleThumb}
           />
         ))}
       </div>
+      <Pagination
+        setNumber={handlePageChange}
+        total={paginationCommentCount}
+        page={page}
+      />
     </Modal>
   );
 };
