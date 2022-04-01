@@ -11,6 +11,7 @@ import NewList from "components/List/NewList";
 import Loading from "Contents/Loading";
 
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+
 const Home = () => {
   // const mockData = _data.concat();
   const [totalTrans, setTotalTrans] = useState(0); //전체 필사수
@@ -87,29 +88,48 @@ const Home = () => {
     prevArrow: <FaAngleLeft size="20px" fill="black" />,
     nextArrow: <FaAngleRight size="20px" fill="black" />,
   };
+  var bannerSettings = {
+    // dots: true,
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // prevArrow: <FaAngleLeft size="20px" fill="black" />,
+    // nextArrow: <FaAngleRight size="20px" fill="black" />,
+  };
 
   if (!newTrans) return <Loading />;
   if (!newReview) return <Loading />;
   return (
     <div className="home">
-      {/* <div className="home__banner">
-        <img src= 'banner_1.jpg'/> 
-      </div> */}
+      {/* <Slider>
+          {bannerIMG.map((d) => (
+            <img src="banner_1.jpeg" alt="" />
+          ))}
+        </Slider> */}
+      <div className="home__banner">
+        <Slider {...bannerSettings}>
+          <img src="banner_1.jpeg" />
+          <img src="banner_2.jpeg" />
+          <img src="banner_3.jpeg" />
+        </Slider>
+      </div>
 
       <div className="home__container">
         <HomeCard name="전체 리뷰수" data={totalReview} />
         <HomeCard name="전체 필사수" data={totalTrans} />
         <HomeCard name="등록된 책 수" data={totalBook} />
       </div>
-      <div className="home__container">
-        <div className="home__container__slider">
-          <Slider {...settings}>
-            {bestBook.map((d) => (
-              <BookCard title={d.title} image={d.image} data={d} />
-            ))}
-          </Slider>
-        </div>
+      {/* <div className="home__container"> */}
+      <div className="home__slider">
+        <Slider {...settings}>
+          {bestBook.map((d) => (
+            <BookCard title={d.title} image={d.image} data={d} />
+          ))}
+        </Slider>
       </div>
+      {/* </div> */}
 
       <div className="home__newList">
         <h1>새로운필사</h1>

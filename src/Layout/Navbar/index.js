@@ -56,35 +56,34 @@ const Navbar = () => {
       </div>
 
       <div className="nav__input">
-          <FaSearch size="20" />
-          <input
-            placeholder="제목, 작가, 출판사 입력"
-            onChange={handleChange}
-            onKeyPress={handleKeyPress}
-          ></input>
-        </div>
+        <FaSearch size="20" />
+        <input
+          placeholder="제목, 작가, 출판사 입력"
+          onChange={handleChange}
+          onKeyPress={handleKeyPress}
+        ></input>
+      </div>
 
-      <div className="nav__rightBottom">
-        <div className="nav__rightBottom__c1">
+      <div className="nav__right">
+        <div className="nav__right__c1">
           <Link to="/notice">공지사항</Link>
         </div>
-        <div className="nav__rightBottom__c1">
-          <Link to="/mypage"> 마이페이지</Link>
+        <div className="nav__right__c1">
+          <Link to="/mypage"> {currentUser.nickName}</Link>
         </div>
       </div>
-      
+
       {currentUser.id !== 0 ? (
-        <div className="nav__rightTop">
+        <div className="nav__right">
           <div>
             <button className="button__nav" onClick={handleLogout}>
               {" "}
               로그아웃
             </button>
           </div>
-          <div>{currentUser.nickName}</div>
         </div>
       ) : (
-        <div className="nav__rightTop">
+        <div className="nav__right">
           <button className="button__nav">
             <Link to="/auth"> 로그인</Link>
           </button>

@@ -1,18 +1,12 @@
 @import "Styles/variable.scss";
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap');
-
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    background-color: #edf0f1;
-}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap");
 
 .nav {
-    display: flex;
-    justify-content: flex-end; /*모두 오른쪽에 배치*/
-    align-items: center; /*헤더의 모든 항목을 중앙에 배치*/
-    padding: 10px 10%;
+  display: flex;
+  justify-content: flex-end; /*모두 오른쪽에 배치*/
+  align-items: center; /*헤더의 모든 항목을 중앙에 배치*/
+  padding: 10px 10%;
+  background-color: #edf0f1;
 }
 
 .nav__input {
@@ -25,16 +19,16 @@
   padding: 10px;
 }
 
-.nav__left{
-    cursor : pointer;
-    margin-right: auto; /*로고만 왼쪽으로 감*/
+.nav__left {
+  cursor: pointer;
+  margin-right: auto; /*로고만 왼쪽으로 감*/
 }
 
-.nav__rightBottom {
-    list-style: none;
+.nav__right {
+  list-style: none;
 }
 
-.nav__rightBottom__c1 {
+.nav__right__c1 {
   display: inline-block;
   padding: 0px 20px;
 
@@ -45,21 +39,21 @@
   text-decoration: none;
 }
 
-.nav__rightBottom__c1 :hover {
-    color : #0A6E0A;
-    transition: all 0.3s ease 0s;
+.nav__right__c1 :hover {
+  color: #0a6e0a;
+  transition: all 0.3s ease 0s;
 }
 
 button {
-    margin-left: 20px;
-    padding: 9px 25px;
-    background-color: rgba(0, 136,169,1);
-    border: none;
-    border-radius: 50px;
-    cursor:pointer;
-    transition: all 0.3s ease 0s; /*자연스럽게 변화*/
+  margin-left: 20px;
+  padding: 9px 25px;
+  background-color: rgba(0, 136, 169, 1);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s; /*자연스럽게 변화*/
 }
 
 button:hover {
-    background-color: rgba(0, 136,169,0.8);
+  background-color: rgba(0, 136, 169, 0.8);
 }
