@@ -28,10 +28,10 @@
   // }
 
   &__container {
-    width: 90vw;
+    width: 80vw;
     height: 20vh;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 10px;
     grid-row-gap: 10px;
     justify-items: center;
@@ -40,7 +40,7 @@
     // border: 1px solid #000;
   }
   &__slider {
-    width: 90vw;
+    width: 77vw;
     height: 400px;
     justify-content: center;
     align-items: center;
@@ -55,42 +55,38 @@
     justify-content: center;
     align-items: center;
     // border: 1px solid #000;
-    width: 90vw;
+    width: 80vw;
     height: 40vh;
-    border: 1px solid #444444;
-    margin: 30px;
     // border: 1px solid #444444;
+    margin: 30px 0 30px 0;
+    // border: 1px solid #444444;
+
     &__line {
       display: grid;
-      border-top: 2px solid #aaa;
-      padding: 20px;
+      width: 40vw;
+
+      // border-top: 2px solid #aaa;
+      // padding: 20px;
       grid-template-columns: repeat(2, 1fr);
-      justify-content: center;
+      // justify-content: center;
       align-items: center;
       &__one {
-        // border-right: 2px solid black;
-        // display: flex;
-        justify-content: center;
-        align-items: center;
-        color: gray;
-        background-color: #444444;
-        // position: fixed;
         width: 20vw;
+        display: flex;
+
+        color: gray;
+
         height: 5vh;
-        // border-right: 1px solid #444444;
-        margin: 5px;
-        // border-top: 1px solid #444444;
-        &::before {
-          content: "";
-          color: gray;
+
+        justify-content: space-between;
+        padding: 0 2px 0 2px;
+        &__title {
+          width: 80%;
           display: block;
-          // position: absolute;
-          bottom: 0;
-          right: 0;
-          background-color: white;
-          border-width: 0 0 5px 5px;
-          border-style: solid;
-          border-color: transparent transparent gray;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          text-align: start;
         }
       }
     }
@@ -101,7 +97,7 @@
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  padding: 20px;
-  width: 88%;
+  // padding: 20px;
+  width: 100%;
   background-color: $darkMainColor;
 }

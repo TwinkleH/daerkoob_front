@@ -121,6 +121,26 @@ const Home = () => {
         <HomeCard name="전체 필사수" data={totalTrans} />
         <HomeCard name="등록된 책 수" data={totalBook} />
       </div>
+      <div className="home__newList">
+        <div className="newList__trans">
+          <h3>새로운필사</h3>
+          <br />
+          <div className="home__newList__line">
+            {newTrans.map((d) => (
+              <NewList data={d} />
+            ))}
+          </div>
+        </div>
+        <div className="newList__review">
+          <h3>새로운리뷰</h3>
+          <br />
+          <div className="home__newList__line">
+            {newReview.map((d) => (
+              <NewList data={d} />
+            ))}
+          </div>
+        </div>
+      </div>
       {/* <div className="home__container"> */}
       <div className="home__slider">
         <Slider {...settings}>
@@ -130,22 +150,6 @@ const Home = () => {
         </Slider>
       </div>
       {/* </div> */}
-
-      <div className="home__newList">
-        <h1>새로운필사</h1>
-        <h1>새로운리뷰</h1>
-        <div className="home__newList__line">
-          {newTrans.map((d) => (
-            <NewList data={d} />
-          ))}
-        </div>
-
-        <div className="home__newList__line">
-          {newReview.map((d) => (
-            <NewList data={d} />
-          ))}
-        </div>
-      </div>
     </div>
   );
 };

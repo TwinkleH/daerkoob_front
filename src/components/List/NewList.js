@@ -3,16 +3,16 @@ import { FaThumbsUp } from "react-icons/fa";
 const NewList = ({ data, title }) => {
   console.log(data);
   return (
-    <div className="home__newList__line__one">
+    <tr className="home__newList__line__one">
       {title && title}
-      <span>
-        {data.user.nickName}:{data.content}
+
+      <span className="home__newList__line__one__title">{data.book.title}</span>
+      <span className="home__newList__line__one__nickName">
+        {/* <FaThumbsUp /> */}
+
+        {data.user.nickName}
       </span>
-      <p>
-        <FaThumbsUp />
-        {data.thumbCount}
-      </p>
-    </div>
+    </tr>
   );
 };
 
