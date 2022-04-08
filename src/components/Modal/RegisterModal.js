@@ -20,7 +20,7 @@ const RegisterModal = ({ isOpen, onClose, isbn, type }) => {
       params: {
         userId: currentUser.id,
         isbn: isbn,
-        reviewContent: content,
+        content: content,
         score: score,
       },
     });
@@ -75,7 +75,6 @@ const RegisterModal = ({ isOpen, onClose, isbn, type }) => {
   });
   return (
     <Modal isOpen={isOpen} onRequestClose={onClose} style={customStyles}>
-      <button onClick={onClose}>닫기</button>
       {currentBook && (
         <>
           <img src={currentBook.image} alt="" height="280" width="180" />
@@ -93,12 +92,15 @@ const RegisterModal = ({ isOpen, onClose, isbn, type }) => {
               <ReactStars
                 className="starRating"
                 count={5}
+                onClick={ratingChanged}
                 onChange={ratingChanged}
                 size={40}
                 color2={"#ffd700"}
               />
             )}
             <button onClick={handleSubmit}>저장</button>
+            &nbsp;&nbsp;&nbsp;
+            <button onClick={onClose}>닫기</button>
           </div>
         </>
       )}
