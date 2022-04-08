@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Modal from "react-modal";
-import TransCard from "components/Card/TransCard";
-const MypageTransModal = ({ isOpen, onClose, data }) => {
+const CustomModal = ({ isOpen, onClose }) => {
   const customStyles = {
     overlay: {
       position: "fixed",
@@ -12,8 +11,8 @@ const MypageTransModal = ({ isOpen, onClose, data }) => {
       backgroundColor: "rgba(255, 255, 255, 0.75)",
     },
     content: {
-      // width: "100%",
-      // height: "70vh",
+      width: "100%",
+      height: "70vh",
       position: "absolute",
       top: "50%",
       left: " 50%",
@@ -40,11 +39,8 @@ const MypageTransModal = ({ isOpen, onClose, data }) => {
   return (
     <Modal isOpen={isOpen} onRequestClose={onClose} style={customStyles}>
       <button onClick={onClose}>닫기</button>
-      {data.map((d) => (
-        <TransCard data={d} from="myPage" />
-      ))}
     </Modal>
   );
 };
 
-export default MypageTransModal;
+export default CustomModal;

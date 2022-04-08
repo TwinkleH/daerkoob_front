@@ -27,13 +27,13 @@ const TransRegister = ({ toggle, isbn, update }) => {
       setCurrentContent("");
     }
   };
-  useEffect(() => {
-    const findBook = async () => {
-      const response = await api.get(`book/find/${isbn}`);
-      setCurrentBook(response.data);
-    };
-    findBook();
-  }, []);
+  // useEffect(() => {
+  //   const findBook = async () => {
+  //     const response = await api.get(`book/find/${isbn}`);
+  //     setCurrentBook(response.data);
+  //   };
+  //   findBook();
+  // }, []);
   const scrollTop = () => {
     window.scrollTo(0, 0);
   };

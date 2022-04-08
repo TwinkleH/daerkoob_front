@@ -6,6 +6,8 @@ import api from "api/api";
 import useCurrentBooks from "Hooks/useCurrentBooks";
 import "./index.scss";
 import { FaSearch } from "react-icons/fa";
+import { AiOutlineNotification } from "react-icons/ai";
+import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
   const history = useHistory();
@@ -29,6 +31,7 @@ const Navbar = () => {
     //엔터키로 입력하기
     if (e.key === "Enter") {
       handleSubmit();
+      // setTitle("");
     }
   };
   const handleSubmit = async () => {
@@ -52,44 +55,50 @@ const Navbar = () => {
   return (
     <div className="nav">
       <div className="nav__left">
-        <Link to="/">home</Link>
+        <Link to="/">
+          <img className="nav__left__logo" src="daerkooblogo.png" alt="" />
+        </Link>
       </div>
 
       <div className="nav__input">
-          <FaSearch size="20" />
-          <input
-            placeholder="제목, 작가, 출판사 입력"
-            onChange={handleChange}
-            onKeyPress={handleKeyPress}
-          ></input>
+        <FaSearch size="20" className="nav__input__icon" />
+        <input
+          onClick={() => setTitle("")}
+          placeholder="제목, 작가, 출판사 입력"
+          onChange={handleChange}
+          onKeyPress={handleKeyPress}
+          value={title}
+        ></input>
+      </div>
+      <div className="nav__right">
+        <div className="nav__right__c1">
+          <Link to="/notice">
+            <AiOutlineNotification size="25" />
+          </Link>
+        </div>
+        <div className="nav__right__c1">
+          <Link to="/mypage">
+            <CgProfile size="25" />
+          </Link>
         </div>
 
-      <div className="nav__rightBottom">
-        <div className="nav__rightBottom__c1">
-          <Link to="/notice">공지사항</Link>
-        </div>
-        <div className="nav__rightBottom__c1">
-          <Link to="/mypage"> 마이페이지</Link>
-        </div>
-      </div>
-      
-      {currentUser.id !== 0 ? (
-        <div className="nav__rightTop">
+        {currentUser.id !== 0 ? (
+          // <div className="nav__right">
           <div>
             <button className="button__nav" onClick={handleLogout}>
               {" "}
               로그아웃
             </button>
           </div>
-          <div>{currentUser.nickName}</div>
-        </div>
-      ) : (
-        <div className="nav__rightTop">
+        ) : (
+          // </div>
+          // <div className="nav__right">
           <button className="button__nav">
             <Link to="/auth"> 로그인</Link>
           </button>
-        </div>
-      )}
+          // </div>
+        )}
+      </div>
     </div>
   );
 };
