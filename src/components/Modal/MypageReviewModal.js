@@ -29,14 +29,14 @@ const MypageReviewModal = ({ isOpen, onClose, data }) => {
       // backgroundColor: "gray",
     },
   };
-  useEffect(() => {
-    document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
-    return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.cssText = `position: ""; top: "";`;
-      window.scrollTo(0, parseInt(scrollY || "0") * -1);
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
+  //   return () => {
+  //     const scrollY = document.body.style.top;
+  //     document.body.style.cssText = `position: ""; top: "";`;
+  //     window.scrollTo(0, parseInt(scrollY || "0") * -1);
+  //   };
+  // }, []);
   return (
     <Modal isOpen={isOpen} onRequestClose={onClose} style={customStyles}>
       <button onClick={onClose}>닫기</button>

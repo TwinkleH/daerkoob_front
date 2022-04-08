@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./index.scss";
-import BookList from "components/List/BookList";
+import FormList from "components/List/FormList";
 import useCurrentBooks from "Hooks/useCurrentBooks";
 // import _data from "book.json";
 const Form = () => {
@@ -20,7 +20,7 @@ const Form = () => {
     <div className="form">
       {currentBooks && (
         <div className="form__wrapper">
-          <BookList data={currentBooks} />
+          <FormList data={currentBooks} />
         </div>
       )}
     </div>

@@ -70,11 +70,15 @@ export const SignIn = ({ toggleIsSignIn, from }) => {
         type="password"
         onKeyPress={handleKeyPress}
       />
-      <button className="button__sign" onClick={handleSubmit}>
-        로그인하기
+      <button
+        className="button__sign"
+        onClick={handleSubmit}
+        style={{ margin: "5%" }}
+      >
+        로그인
       </button>
       <span className="auth__noti">
-        회원가입하시겠습니까?
+        회원가입하시겠습니까?&nbsp;&nbsp;
         <strong onClick={toggleIsSignIn}>회원가입</strong>
       </span>
 

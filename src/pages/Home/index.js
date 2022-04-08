@@ -11,6 +11,7 @@ import NewList from "components/List/NewList";
 import Loading from "Contents/Loading";
 
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import InfoCard from "components/Card/InfoCard";
 
 const Home = () => {
   // const mockData = _data.concat();
@@ -99,8 +100,9 @@ const Home = () => {
     // nextArrow: <FaAngleRight size="20px" fill="black" />,
   };
 
-  if (!newTrans) return <Loading />;
-  if (!newReview) return <Loading />;
+  if (!newTrans || !newReview || !bestBook) return <Loading />;
+  // if (!newReview) return <Loading />;
+
   return (
     <div className="home">
       {/* <Slider>
@@ -115,7 +117,6 @@ const Home = () => {
           <img src="banner_3.jpeg" />
         </Slider>
       </div>
-
       <div className="home__container">
         <HomeCard name="전체 리뷰수" data={totalReview} />
         <HomeCard name="전체 필사수" data={totalTrans} />

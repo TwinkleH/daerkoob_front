@@ -19,6 +19,7 @@ const Input = ({
         onChange={onChange}
         type={type}
         onKeyPress={onKeyPress}
+        style={{ verticalAlign: "bottom" }}
       />
       <span className="auth__inputWrapper__placeholder">{placeholder}</span>
       <span className="auth__inputWrapper__message">{message}</span>

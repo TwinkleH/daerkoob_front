@@ -3,7 +3,7 @@ import { FaThumbsUp } from "react-icons/fa";
 const NewList = ({ data, title }) => {
   console.log(data);
   return (
-    <tr className="home__newList__line__one">
+    <div className="home__newList__line__one">
       {title && title}
 
       <span className="home__newList__line__one__title">{data.book.title}</span>
@@ -12,7 +12,7 @@ const NewList = ({ data, title }) => {
 
         {data.user.nickName}
       </span>
-    </tr>
+    </div>
   );
 };
 

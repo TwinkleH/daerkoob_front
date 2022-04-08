@@ -12,6 +12,7 @@ import Detail from "../pages/Detail";
 import useCurrentUser from "Hooks/useCurrentUser";
 import FriendPage from "pages/Mypage/FriendPage";
 import NotFound from "pages/NotFound";
+import DetailList from "components/List/DetailList";
 const Router = () => {
   const { currentUser } = useCurrentUser();
   const pushWhenSignedIn = (Component) =>
@@ -39,6 +40,7 @@ const Router = () => {
         <Route path="/notice" component={Notice} />
         {/* <Route path="/transcription" component={Review} /> */}
         <Route path="/detail/:isbn?" component={Detail} />
+        {/* <Route path="/detail/list/:isbn?" component={DetailList} /> */}
         {/*        
         <Route path="/bookregister/:id" component={BookRegister} />
         id를 파라미터로 받기
