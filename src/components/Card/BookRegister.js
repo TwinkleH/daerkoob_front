@@ -41,9 +41,6 @@ const BookRegister = ({ isbn, onClick, setOpenRegister, update }) => {
       setCurrentBook(response.data);
     };
     findBook();
-    return () => {
-      // cleanup;
-    };
   }, []);
   const handleStarClick = (e, index) => {
     e.preventDefault();
