@@ -1,12 +1,10 @@
 import React from "react";
 import "pages/Notice/index.scss";
-
+// import InfoCard from "components/Card/InfoCard";
+// import useCurrentUser from "Hooks/useCurrentUser";
 const Notice = (props) => {
-  return (
-    <div className="notice">
-      <h1>notice</h1>
-    </div>
-  );
+  // const { currentUser } = useCurrentUser();
+  return <div className="notice">notice</div>;
 };
 
 export default Notice;

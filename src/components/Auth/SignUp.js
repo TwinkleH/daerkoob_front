@@ -100,9 +100,12 @@ export const SignUp = ({ toggleIsSignIn }) => {
         type="date"
         onChange={handleChange}
       />
-      <button onClick={handleSubmit}>회원가입하기</button>
+      <button onClick={handleSubmit} style={{ margin: "5%" }}>
+        회원가입하기
+      </button>
       <span className="auth__noti">
-        계정이 있으신가요?<strong onClick={toggleIsSignIn}>로그인</strong>
+        계정이 있으신가요? &nbsp;&nbsp;
+        <strong onClick={toggleIsSignIn}>로그인</strong>
       </span>
     </div>
   );

@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;200;300;400;500;600&display=swap");
 @import "Styles/variable.scss";
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "Hahmlet", serif;
 }
 body {
   display: flex;
@@ -13,25 +13,29 @@ body {
 }
 input {
   all: unset;
+  // text-align: center;
+  // justify-content: center;
+  align-items: center;
 }
 // button {
 //   all: unset;
 // }
-.button {
+button {
   all: unset;
-  &__nav {
-    background-color: $lightColor;
-    min-width: 30px;
-    border-radius: 20%;
-  }
-  &__sign {
-    background-color: $backGroundColor;
-  }
-  // background-color: $mainColor;
-
-  //더 꾸밀 예정
+  padding: 9px 25px;
+  background-color: $mainColor;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease 0s; /*자연스럽게 변화*/
 }
+
+button:hover {
+  background-color: $pointColor;
+}
+
 a {
   text-decoration: none;
-  color: black;
+  color: white;
 }

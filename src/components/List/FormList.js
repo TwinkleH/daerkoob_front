@@ -1,6 +1,6 @@
 import React from "react";
 import BookCard from "components/Card/BookCard";
-const BookList = ({ data }) => {
+const FormList = ({ data }) => {
   return (
     <div className="form__wrapper">
       {data.map((d) => (
@@ -10,4 +10,4 @@ const BookList = ({ data }) => {
   );
 };
 
-export default BookList;
+export default FormList;
