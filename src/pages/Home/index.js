@@ -92,9 +92,9 @@ const Home = () => {
   if (!newReview) return <Loading />;
   return (
     <div className="home">
-      {/* <div className="home__banner">
+      <div className="home__banner">
         <img src= 'banner_1.jpg'/> 
-      </div> */}
+      </div>
 
       <div className="home__container">
         <HomeCard name="전체 리뷰수" data={totalReview} />
